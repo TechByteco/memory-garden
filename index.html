@@ -10,6 +10,7 @@
   <meta name="description" content="Memory Garden by Lujain — The #1 visual spaced repetition & active recall study app for students in Tamil Nadu & India. Watch your chapters turn into living 3D plants that wilt as memory fades. Prepare for TN Board, CBSE, NEET & JEE with Ebbinghaus calculus.">
   <meta name="keywords" content="Memory Garden, Lujain, Spaced Repetition Tamil Nadu, Ebbinghaus Forgetting Curve, Active Recall App India, TN State Board Revision, 10th 12th Board Exam Study Planner, NEET JEE Biology Maths, Study Timer Pomodoro, நினைவாற்றல் தோட்டம், Samacheer Kalvi revision app, Chennai student study planner">
   <meta name="author" content="Lujain">
+  <meta name="google-site-verification" content="googlea50c8ffb1068b499">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://memory-garden-zeta.vercel.app/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -245,6 +246,11 @@
         <button class="chip" data-filter="Mathematics">📐 Maths</button>
         <button class="chip" data-filter="Physics">⚡ Physics</button>
         <button class="chip" data-filter="Chemistry">🧪 Chem</button>
+        <button class="chip" data-filter="species:tree">🌳 Trees</button>
+        <button class="chip" data-filter="species:grape">🍇 Grapes</button>
+        <button class="chip" data-filter="species:sunflower">🌻 Sunflowers</button>
+        <button class="chip" data-filter="species:cactus">🌵 Cacti</button>
+        <button class="chip" data-filter="species:blossom">🌸 Blossoms</button>
       </div>
       <div class="toolbar-actions">
         <button class="btn btn-ghost btn-sm" id="btn-open-bucket" title="Pick up the water bucket">🪣 Water Bucket</button>
@@ -735,6 +741,16 @@
           <option value="Physics">⚡ Physics</option>
           <option value="Chemistry">🧪 Chemistry</option>
           <option value="Other">📚 Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Botanical Representation (Garden Species)</label>
+        <select id="ch-plant-type" class="form-select">
+          <option value="tree">🌳 Bonsai / Oak Tree (Enduring Roots)</option>
+          <option value="grape">🍇 Grapevine & Trellis (Clustered Concepts)</option>
+          <option value="sunflower">🌻 Solar Sunflower (Radiant Equations)</option>
+          <option value="cactus">🌵 Desert Cactus (Resilient Tenacity)</option>
+          <option value="blossom">🌸 Rose / Cherry Blossom (Delicate Mastery)</option>
         </select>
       </div>
       <div class="form-group">

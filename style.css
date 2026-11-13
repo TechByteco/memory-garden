@@ -331,8 +331,20 @@ html[data-theme="light"] input[type="range"]::-webkit-slider-thumb { background:
 .stage-withered { border-top: 4px solid var(--withered); background: linear-gradient(180deg, rgba(180,83,9,.08), transparent 55%); }
 @keyframes wilt-card { 0%,100% { box-shadow: var(--shadow-sm); } 50% { box-shadow: var(--shadow-sm), 0 0 18px rgba(245,158,11,.2); } }
 
-.plant-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .6rem; }
+.plant-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .6rem; gap: .4rem; }
+.plant-tags { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
 .subject-badge { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: .18rem .55rem; border-radius: var(--r-pill); }
+.species-badge { font-size: .68rem; font-weight: 700; display: inline-flex; align-items: center; gap: .25rem; padding: .18rem .5rem; border-radius: var(--r-pill); transition: all .2s ease; }
+.species-tree      { background: rgba(34,197,94,.14); color: #4ade80; border: 1px solid rgba(34,197,94,.28); }
+.species-grape     { background: rgba(168,85,247,.14); color: #c084fc; border: 1px solid rgba(168,85,247,.28); }
+.species-sunflower { background: rgba(245,158,11,.14); color: #fbbf24; border: 1px solid rgba(245,158,11,.28); }
+.species-cactus    { background: rgba(20,184,166,.14); color: #2dd4bf; border: 1px solid rgba(20,184,166,.28); }
+.species-blossom   { background: rgba(244,63,94,.14); color: #fb7185; border: 1px solid rgba(244,63,94,.28); }
+html[data-theme="light"] .species-tree      { color: #15803d; }
+html[data-theme="light"] .species-grape     { color: #7e22ce; }
+html[data-theme="light"] .species-sunflower { color: #b45309; }
+html[data-theme="light"] .species-cactus    { color: #0f766e; }
+html[data-theme="light"] .species-blossom   { color: #be123c; }
 .sub-Biology    { background: rgba(16,185,129,.15); color: #34d399; border: 1px solid rgba(52,211,153,.3); }
 .sub-Mathematics{ background: rgba(56,189,248,.15); color: #38bdf8; border: 1px solid rgba(56,189,248,.3); }
 .sub-Physics    { background: rgba(168,85,247,.15); color: #c084fc; border: 1px solid rgba(192,132,252,.3); }

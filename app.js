@@ -11,44 +11,144 @@
 
 const DEMO_CHAPTERS = [
   {
-    id:"ch-bio-1", title:"Photosynthesis: Light Reactions & Z-Scheme",
-    subject:"Biology", dateStudied:daysAgo(6), lastWatered:daysAgo(6),
-    revisions:0, difficulty:2, stability:2.1,
-    question:"What molecule supplies electrons to Photosystem II via photolysis?",
-    answer:"Water (H₂O) → O₂ + 4H⁺ + 4e⁻ via the oxygen-evolving complex.",
-    feynman:"Water gets cracked open by sunlight like an egg, handing over electrons while releasing the oxygen we breathe."
+    id: "ch-bio-1",
+    title: "Photosynthesis: Light Reactions & Calvin Cycle",
+    subject: "Biology",
+    plantType: "tree",
+    dateStudied: daysAgo(6),
+    lastWatered: daysAgo(6),
+    revisions: 0,
+    difficulty: 2,
+    stability: 2.1,
+    question: "What molecule supplies electrons to PS II, and which enzyme fixes CO₂ in the Calvin cycle?",
+    answer: "Photolysis of water (H₂O → O₂ + 4H⁺ + 4e⁻) supplies PS II; RuBisCO fixes CO₂ onto RuBP.",
+    feynman: "Water gets cracked open by sunlight like an egg, donating electrons; RuBisCO plucks CO₂ from thin air to weave living plant sugars."
   },
   {
-    id:"ch-math-1", title:"Matrix Inverses & Determinants",
-    subject:"Mathematics", dateStudied:daysAgo(4), lastWatered:daysAgo(4),
-    revisions:1, difficulty:3, stability:3.2,
-    question:"What condition guarantees A⁻¹ exists, and what is the formula?",
-    answer:"det(A) ≠ 0. Then A⁻¹ = (1/det(A)) · adj(A).",
-    feynman:"If a matrix transformation squashes 2D space flat (area=0), you can never undo it — so determinant must be non-zero."
+    id: "ch-chem-1",
+    title: "Aldehydes, Ketones & Nucleophilic Addition",
+    subject: "Chemistry",
+    plantType: "grape",
+    dateStudied: daysAgo(8),
+    lastWatered: daysAgo(3),
+    revisions: 2,
+    difficulty: 2,
+    stability: 5.4,
+    question: "Why are aldehydes more reactive than ketones toward nucleophilic addition?",
+    answer: "Aldehydes experience less steric hindrance (one H vs two alkyl groups) and have a more electrophilic carbonyl carbon.",
+    feynman: "An aldehyde has an open, undefended flank—just a tiny hydrogen—letting nucleophiles strike easily like ripe grapes ready to harvest!"
   },
   {
-    id:"ch-bio-2", title:"Neurobiology: Action Potentials & Synapses",
-    subject:"Biology", dateStudied:daysAgo(1), lastWatered:daysAgo(1),
-    revisions:0, difficulty:2, stability:2.0,
-    question:"Which ion channels open during the depolarization phase of an action potential?",
-    answer:"Voltage-gated Na⁺ channels open rapidly, allowing Na⁺ influx from −70 mV to +30 mV.",
-    feynman:"When a nerve is nudged past threshold, sodium floodgates snap open — positive ions rush in like a burst dam."
+    id: "ch-math-1",
+    title: "Matrix Inverses, Determinants & Eigenvalues",
+    subject: "Mathematics",
+    plantType: "sunflower",
+    dateStudied: daysAgo(4),
+    lastWatered: daysAgo(4),
+    revisions: 1,
+    difficulty: 3,
+    stability: 3.2,
+    question: "What geometric condition guarantees A⁻¹ exists, and what does det(A) = 0 signify?",
+    answer: "det(A) ≠ 0. If det(A) = 0, the matrix squashes an n-dimensional space into lower dimensions (zero area/volume), so it cannot be inverted.",
+    feynman: "Like sunflower seeds radiating in 2D spirals, a matrix stretches space. If determinant is zero, space is squashed flat into a line—you can never un-squash it."
   },
   {
-    id:"ch-phys-1", title:"Electromagnetic Induction & Faraday's Law",
-    subject:"Physics", dateStudied:daysAgo(12), lastWatered:daysAgo(12),
-    revisions:0, difficulty:3, stability:1.8,
-    question:"State Faraday's Law and explain the negative sign in ε = −dΦ/dt.",
-    answer:"Induced EMF equals rate of change of magnetic flux. The minus sign (Lenz's Law) means the induced current opposes the flux change.",
-    feynman:"Nature resists sudden magnetic changes — push a magnet in, the wire fights back with its own opposing field."
+    id: "ch-phys-1",
+    title: "Electromagnetic Induction & Faraday's Law",
+    subject: "Physics",
+    plantType: "tree",
+    dateStudied: daysAgo(12),
+    lastWatered: daysAgo(12),
+    revisions: 0,
+    difficulty: 3,
+    stability: 1.8,
+    question: "State Faraday's Law and explain the physical significance of the minus sign (Lenz's Law).",
+    answer: "ε = −dΦ/dt. The negative sign means induced EMF creates a current whose magnetic field opposes the original flux change.",
+    feynman: "Nature hates abrupt magnetic shifts: push a magnet into a living wire coil, and the current fights back like resilient tree roots holding their ground."
   },
   {
-    id:"ch-chem-1", title:"Aldehydes, Ketones & Nucleophilic Addition",
-    subject:"Chemistry", dateStudied:daysAgo(8), lastWatered:daysAgo(3),
-    revisions:2, difficulty:2, stability:5.4,
-    question:"Why are aldehydes more reactive than ketones toward nucleophilic addition?",
-    answer:"Aldehydes have less steric hindrance (one H, one R group) and greater electrophilicity at the carbonyl carbon.",
-    feynman:"An aldehyde has an open undefended side — just a tiny hydrogen — making nucleophilic attackers strike much more easily."
+    id: "ch-bio-2",
+    title: "Neurobiology: Action Potentials & Synapses",
+    subject: "Biology",
+    plantType: "cactus",
+    dateStudied: daysAgo(1),
+    lastWatered: daysAgo(1),
+    revisions: 0,
+    difficulty: 2,
+    stability: 2.0,
+    question: "Which ion channels trigger depolarization, and what is the resting membrane potential?",
+    answer: "Voltage-gated Na⁺ channels open rapidly, allowing Na⁺ influx. Resting potential is approximately −70 mV.",
+    feynman: "Like a desert cactus bristling with sharp needles, a neuron stays primed at −70 mV; touch threshold and sodium floodgates fire a lightning spike!"
+  },
+  {
+    id: "ch-chem-2",
+    title: "Coordination Compounds & Crystal Field Theory",
+    subject: "Chemistry",
+    plantType: "grape",
+    dateStudied: daysAgo(5),
+    lastWatered: daysAgo(5),
+    revisions: 1,
+    difficulty: 2,
+    stability: 2.6,
+    question: "How does crystal field splitting (Δₒ) explain the vibrant purple/blue colors of transition metal complexes?",
+    answer: "Ligand electron fields split d-orbitals into t₂g and e_g; absorbed visible photons promote d-d transitions, transmitting the complementary hue.",
+    feynman: "Surrounding ligands push the metal's d-orbitals onto different energy shelves like hanging grape clusters—absorbed yellow light makes grapes gleam royal violet!"
+  },
+  {
+    id: "ch-math-2",
+    title: "Dynamic Programming & Bellman Optimality",
+    subject: "Mathematics",
+    plantType: "blossom",
+    dateStudied: daysAgo(2),
+    lastWatered: daysAgo(2),
+    revisions: 1,
+    difficulty: 3,
+    stability: 3.5,
+    question: "What two properties must a problem satisfy to be solvable with Dynamic Programming?",
+    answer: "1. Optimal Substructure (optimal global solution is made of optimal sub-solutions). 2. Overlapping Subproblems.",
+    feynman: "Don't count the petals on every new rosebud from scratch; store past sub-solutions in memory so you only calculate each branch once."
+  },
+  {
+    id: "ch-phys-2",
+    title: "Wave Optics: Young's Double Slit & Diffraction",
+    subject: "Physics",
+    plantType: "sunflower",
+    dateStudied: daysAgo(9),
+    lastWatered: daysAgo(9),
+    revisions: 0,
+    difficulty: 2,
+    stability: 1.9,
+    question: "Write the fringe width expression β in Young's Double Slit Experiment and describe how slit distance affects it.",
+    answer: "β = λD / d. Fringe width is inversely proportional to slit distance d and directly proportional to screen distance D and wavelength λ.",
+    feynman: "Like sunlight rippling through overlapping sunflower petals, light waves crest and trough together, painting alternating bright and dark stripes."
+  },
+  {
+    id: "ch-cs-1",
+    title: "Self-Balancing Trees: AVL Rotations & Red-Black Invariants",
+    subject: "Mathematics",
+    plantType: "tree",
+    dateStudied: daysAgo(3),
+    lastWatered: daysAgo(3),
+    revisions: 2,
+    difficulty: 3,
+    stability: 4.8,
+    question: "What is the maximum balance factor allowed in an AVL tree, and when is a double rotation (LR/RL) needed?",
+    answer: "Balance factor must be in {-1, 0, +1}. A double rotation is required when the insertion creates a 'zig-zag' imbalance (left-right or right-left).",
+    feynman: "Just like pruning a bonsai tree so heavy boughs don't topple the trunk, an AVL tree swings its branches around to guarantee O(log n) height."
+  },
+  {
+    id: "ch-phys-3",
+    title: "Thermodynamics & Carnot Engine Efficiency",
+    subject: "Physics",
+    plantType: "cactus",
+    dateStudied: daysAgo(7),
+    lastWatered: daysAgo(2),
+    revisions: 2,
+    difficulty: 2,
+    stability: 4.2,
+    question: "What is the maximum theoretical efficiency η of a Carnot heat engine operating between T_H and T_C?",
+    answer: "η = 1 − (T_C / T_H), where temperatures are in Kelvin. It is the upper limit for any cyclic heat engine.",
+    feynman: "Like a desert cactus surviving between blistering daylight heat and freezing desert night, heat engines can only convert work from the temperature difference!"
   }
 ];
 
@@ -108,77 +208,321 @@ function evolutionTier(chapter) {
 }
 
 // =============================================================================
-// 4. SVG PLANT GENERATOR
+// =============================================================================
+// 4. SPECIES ENGINE & PROCEDURAL 3D BOTANICAL SVG GENERATOR
 // =============================================================================
 
+function getPlantType(chapter) {
+  if (chapter && chapter.plantType) return chapter.plantType;
+  const title = ((chapter && chapter.title) || "").toLowerCase();
+  const subj  = ((chapter && chapter.subject) || "").toLowerCase();
+  if (title.includes("tree") || title.includes("banyan") || title.includes("oak") || title.includes("avl") || title.includes("calvin") || title.includes("photo")) return "tree";
+  if (title.includes("grape") || title.includes("chem") || title.includes("aldehyde") || title.includes("coordination") || subj === "chemistry") return "grape";
+  if (title.includes("sunflower") || title.includes("wave") || title.includes("optics") || title.includes("eigen") || subj === "mathematics") return "sunflower";
+  if (title.includes("cactus") || title.includes("neuro") || title.includes("thermo") || title.includes("carnot") || title.includes("induction")) return "cactus";
+  if (title.includes("blossom") || title.includes("rose") || title.includes("dynamic") || title.includes("bellman") || title.includes("lotus")) return "blossom";
+  return "tree";
+}
+
+function speciesMeta(type) {
+  switch (type) {
+    case "tree":      return { icon: "🌳", name: "Tree", label: "Ancient Oak / Bonsai" };
+    case "grape":     return { icon: "🍇", name: "Grape", label: "Grapevine Trellis" };
+    case "sunflower": return { icon: "🌻", name: "Sunflower", label: "Solar Sunflower" };
+    case "cactus":    return { icon: "🌵", name: "Cactus", label: "Desert Cactus" };
+    case "blossom":   return { icon: "🌸", name: "Blossom", label: "Rose Blossom" };
+    default:          return { icon: "🌱", name: "Plant", label: "Botanical Sprout" };
+  }
+}
+
+// ─── 1. BONSAI / OAK TREE ───
+function renderTreeSVG(chapter, h, wilt, tier, id) {
+  const droop = (1 - h);
+  const stX = 100 + droop * 22;
+  const sW = 9.5 - droop * 3;
+  const foliageScale = 0.55 + h * 0.55;
+  const leafCol1 = h > 0.4 ? wilt.leaf : "#b45309";
+  const leafCol2 = h > 0.4 ? "#22c55e" : "#d97706";
+  const leafCol3 = h > 0.4 ? "#15803d" : "#78350f";
+
+  let fallenLeaves = "";
+  if (droop > 0.35) {
+    fallenLeaves = `
+      <g opacity="${0.6 + droop * 0.4}">
+        <ellipse cx="78" cy="148" rx="6" ry="2.8" fill="#b45309" transform="rotate(-15 78 148)"/>
+        <ellipse cx="120" cy="149" rx="5.5" ry="2.5" fill="#78350f" transform="rotate(25 120 149)"/>
+        <ellipse cx="98" cy="151" rx="4.5" ry="2.2" fill="#d97706" transform="rotate(-8 98 151)"/>
+      </g>`;
+  }
+
+  let fruits = "";
+  if (h > 0.65) {
+    fruits = `
+      <g opacity="${Math.min(1, (h - 0.6) * 2.5)}">
+        <circle cx="70" cy="74" r="3.2" fill="#fbbf24"/>
+        <circle cx="69" cy="73" r="1.1" fill="#fff" opacity=".85"/>
+        <circle cx="128" cy="72" r="3.2" fill="#fbbf24"/>
+        <circle cx="127" cy="71" r="1.1" fill="#fff" opacity=".85"/>
+        <circle cx="102" cy="58" r="3.5" fill="#f59e0b"/>
+        <circle cx="101" cy="57" r="1.2" fill="#fff" opacity=".85"/>
+      </g>`;
+  }
+
+  return `
+    <path d="M88 150 Q96 142 94 122 Q98 108 98 94 Q94 80 72 70" fill="none" stroke="url(#bark-${id})" stroke-width="${sW * 0.8}" stroke-linecap="round"/>
+    <path d="M112 150 Q104 142 104 122 Q100 108 102 92 Q108 78 128 68" fill="none" stroke="url(#bark-${id})" stroke-width="${sW * 0.8}" stroke-linecap="round"/>
+    <path d="M100 152 Q${stX} 118 100 82" fill="none" stroke="url(#bark-${id})" stroke-width="${sW}" stroke-linecap="round"/>
+    <path d="M98 150 Q${stX - 2} 118 99 84" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="${sW * 0.28}" stroke-linecap="round"/>
+
+    <g transform="translate(0, ${droop * 16})" opacity="${0.65 + h * 0.35}">
+      <circle cx="72" cy="62" r="${22 * foliageScale}" fill="${leafCol3}" opacity=".85"/>
+      <circle cx="128" cy="60" r="${22 * foliageScale}" fill="${leafCol3}" opacity=".85"/>
+      <circle cx="100" cy="46" r="${26 * foliageScale}" fill="${leafCol3}" opacity=".85"/>
+      <circle cx="62" cy="70" r="${18 * foliageScale}" fill="${leafCol1}"/>
+      <circle cx="85" cy="52" r="${22 * foliageScale}" fill="${leafCol1}"/>
+      <circle cx="115" cy="50" r="${22 * foliageScale}" fill="${leafCol1}"/>
+      <circle cx="138" cy="68" r="${18 * foliageScale}" fill="${leafCol1}"/>
+      <circle cx="100" cy="56" r="${20 * foliageScale}" fill="${leafCol2}"/>
+      <circle cx="82" cy="64" r="${15 * foliageScale}" fill="${leafCol2}"/>
+      <circle cx="118" cy="62" r="${15 * foliageScale}" fill="${leafCol2}"/>
+      ${fruits}
+    </g>
+    ${fallenLeaves}
+  `;
+}
+
+// ─── 2. GRAPEVINE & TRELLIS ───
+function renderGrapeSVG(chapter, h, wilt, tier, id) {
+  const droop = (1 - h);
+  const vineW = 5 - droop * 1.5;
+  const grapeRadius = 2.8 + h * 2.2;
+  const leafCol = h > 0.4 ? wilt.leaf : "#78350f";
+  const grapeFill = h > 0.38 ? `url(#grp-${id})` : "#5c3317";
+  const glossOp = Math.max(0, (h - 0.25) * 1.3);
+
+  const grapesCoords = [
+    [87, 98], [95, 96], [105, 96], [113, 98],
+    [89, 107], [97, 106], [103, 106], [111, 107],
+    [93, 116], [100, 115], [107, 116],
+    [96, 124], [104, 124],
+    [100, 133]
+  ];
+
+  const grapesSvg = grapesCoords.map(([gx, gy]) => `
+    <g transform="translate(${gx},${gy + droop * 8})">
+      <circle cx="0" cy="0" r="${grapeRadius}" fill="${grapeFill}"/>
+      ${glossOp > 0 ? `<circle cx="-${grapeRadius*0.35}" cy="-${grapeRadius*0.35}" r="${grapeRadius*0.32}" fill="rgba(255,255,255,${glossOp * 0.75})"/>` : ""}
+    </g>
+  `).join("");
+
+  return `
+    <g class="trellis-frame" opacity="0.95">
+      <rect x="65" y="44" width="7" height="106" rx="2" fill="url(#wood-${id})" stroke="rgba(0,0,0,.2)" stroke-width=".8"/>
+      <rect x="128" y="44" width="7" height="106" rx="2" fill="url(#wood-${id})" stroke="rgba(0,0,0,.2)" stroke-width=".8"/>
+      <rect x="61" y="64" width="78" height="5" rx="1.5" fill="url(#wood-${id})" stroke="rgba(0,0,0,.15)" stroke-width=".6"/>
+      <rect x="61" y="92" width="78" height="5" rx="1.5" fill="url(#wood-${id})" stroke="rgba(0,0,0,.15)" stroke-width=".6"/>
+      <rect x="61" y="120" width="78" height="5" rx="1.5" fill="url(#wood-${id})" stroke="rgba(0,0,0,.15)" stroke-width=".6"/>
+    </g>
+
+    <path d="M100 150 Q94 135 76 122 Q66 110 69 94 Q73 78 88 66 Q104 56 128 62" fill="none" stroke="url(#bark-${id})" stroke-width="${vineW}" stroke-linecap="round"/>
+    <path d="M100 150 Q96 135 78 123" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="${vineW*0.3}" stroke-linecap="round"/>
+
+    <path d="M68 85 Q60 82 63 76 Q66 70 60 67" fill="none" stroke="${h > 0.4 ? '#84cc16' : '#a16207'}" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M132 64 Q140 60 138 54 Q135 48 141 46" fill="none" stroke="${h > 0.4 ? '#84cc16' : '#a16207'}" stroke-width="1.6" stroke-linecap="round"/>
+
+    <g transform="translate(64, ${72 + droop * 8}) rotate(${-25 + droop * 40})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C-12,-16,-28,-8,-22,6 C-30,12,-22,26,-10,24 C-4,32,10,26,12,18 C18,8,12,-8,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q-10 12 -4 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+      <path d="M-6 8 Q-18 6 -20 12" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M-4 14 Q6 12 10 16" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+    </g>
+    <g transform="translate(132, ${70 + droop * 8}) rotate(${20 - droop * 35})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C12,-16,28,-8,22,6 C30,12,22,26,10,24 C4,32,-10,26,-12,18 C-18,8,-12,-8,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q10 12 4 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+      <path d="M6 8 Q18 6 20 12" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M4 14 Q-6 12 -10 16" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+    </g>
+    <g transform="translate(100, ${52 + droop * 6}) scale(${0.75 + h * 0.25})" opacity="${0.75 + h * 0.25}">
+      <path d="M0 0 C-10,-14,-22,-6,-18,4 C-24,10,-18,20,-8,18 C-2,24,8,20,10,14 C14,6,10,-6,0,0 Z" fill="${leafCol}"/>
+    </g>
+
+    <path d="M97 86 Q100 90 100 95" fill="none" stroke="url(#bark-${id})" stroke-width="2.5" stroke-linecap="round"/>
+
+    <g class="grape-cluster">
+      ${grapesSvg}
+    </g>
+  `;
+}
+
+// ─── 3. SOLAR SUNFLOWER ───
+function renderSunflowerSVG(chapter, h, wilt, tier, id) {
+  const droop = (1 - h);
+  const stX = 100 + droop * 30;
+  const stY = 56 + droop * 40;
+  const headRot = droop * 36;
+  const stemW = 7 - droop * 2;
+  const petalScale = 0.6 + h * 0.45;
+  const leafCol = wilt.leaf;
+  const petalCol1 = h > 0.4 ? "#f59e0b" : "#b45309";
+  const petalCol2 = h > 0.4 ? "#fbbf24" : "#d97706";
+  const petalCol3 = h > 0.4 ? "#fde047" : "#92400e";
+
+  const outerPetals = Array.from({length: 16}, (_, i) => {
+    const deg = i * 22.5;
+    return `<ellipse cx="0" cy="-24" rx="4.8" ry="14" fill="${i % 2 === 0 ? petalCol1 : petalCol2}" transform="rotate(${deg})" opacity=".92"/>`;
+  }).join("");
+
+  const innerPetals = Array.from({length: 16}, (_, i) => {
+    const deg = i * 22.5 + 11.25;
+    return `<ellipse cx="0" cy="-19" rx="3.6" ry="10" fill="${petalCol3}" transform="rotate(${deg})" opacity=".95"/>`;
+  }).join("");
+
+  return `
+    <path d="M100 150 Q${98 + droop * 18} 115 ${stX} ${stY}" fill="none" stroke="url(#sg-${id})" stroke-width="${stemW}" stroke-linecap="round"/>
+    <path d="M99 150 Q${96 + droop * 18} 115 ${stX - 2} ${stY}" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="${stemW * 0.3}" stroke-linecap="round"/>
+
+    <g transform="translate(${80 + droop * 12}, ${115 + droop * 10}) rotate(${-30 + droop * 50})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C-18,-15,-32,4,0,22 C4,14,3,6,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q-12 8 0 20" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+      <path d="M-4 6 Q-18 4 -18 10" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M-2 12 Q-14 12 -12 16" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+    </g>
+    <g transform="translate(${120 + droop * 20}, ${105 + droop * 14}) rotate(${30 - droop * 50})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C18,-15,32,4,0,22 C-4,14,-3,6,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q12 8 0 20" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+      <path d="M4 6 Q18 4 18 10" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M2 12 Q14 12 12 16" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+    </g>
+
+    <g transform="translate(${stX}, ${stY}) rotate(${headRot}) scale(${petalScale})">
+      <circle cx="0" cy="4" r="28" fill="rgba(0,0,0,.2)" filter="url(#bl-${id})"/>
+      ${outerPetals}
+      ${innerPetals}
+      <circle cx="0" cy="0" r="14.5" fill="url(#sf-${id})" stroke="#78350f" stroke-width="1"/>
+      ${[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map(a => `<circle cx="0" cy="-9" r="1.3" fill="#fde68a" opacity=".7" transform="rotate(${a})"/>`).join("")}
+      ${[18, 54, 90, 126, 162, 198, 234, 270, 306, 342].map(a => `<circle cx="0" cy="-5" r="1.1" fill="#fed7aa" opacity=".6" transform="rotate(${a})"/>`).join("")}
+      <circle cx="-3" cy="-3" r="3" fill="rgba(255,255,255,.25)"/>
+    </g>
+  `;
+}
+
+// ─── 4. DESERT CACTUS ───
+function renderCactusSVG(chapter, h, wilt, tier, id) {
+  const droop = (1 - h);
+  const cactusCol = h > 0.4 ? `url(#cact-${id})` : "#713f12";
+  const cactusScale = 0.8 + h * 0.2;
+  const bloomScale = 0.4 + h * 0.65;
+  const bloomOp = 0.55 + h * 0.45;
+
+  return `
+    <g class="cactus-soil">
+      <ellipse cx="80" cy="148" rx="4.5" ry="2.2" fill="#cbd5e1"/>
+      <ellipse cx="122" cy="149" rx="5" ry="2.5" fill="#94a3b8"/>
+      <ellipse cx="106" cy="147" rx="3.5" ry="1.8" fill="#e2e8f0"/>
+    </g>
+
+    <g transform="translate(0, ${droop * 10}) scale(${cactusScale})" style="transform-origin: 100px 150px;">
+      <path d="M84 116 Q64 116 66 94 Q67 80 72 80 Q78 80 76 94 Q76 104 88 106 Z" fill="${cactusCol}" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M72 80 L72 96" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-linecap="round"/>
+
+      <path d="M116 124 Q136 124 134 102 Q133 90 128 90 Q122 90 124 102 Q124 112 112 114 Z" fill="${cactusCol}" stroke="rgba(0,0,0,.15)" stroke-width=".8"/>
+      <path d="M128 90 L128 104" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-linecap="round"/>
+
+      <path d="M82 150 C80 95 82 66 100 66 C118 66 120 95 118 150 Z" fill="${cactusCol}" stroke="rgba(0,0,0,.2)" stroke-width="1"/>
+
+      <path d="M88 150 C87 98 89 72 100 70" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="1.2"/>
+      <path d="M112 150 C113 98 111 72 100 70" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="1.2"/>
+      <path d="M100 150 L100 68" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
+
+      ${[82, 98, 114, 130, 144].map(y => `
+        <line x1="88" y1="${y}" x2="84" y2="${y-2}" stroke="#fef08a" stroke-width="1.2"/>
+        <line x1="88" y1="${y}" x2="85" y2="${y+2}" stroke="#fde047" stroke-width="1"/>
+        <line x1="100" y1="${y-4}" x2="97" y2="${y-7}" stroke="#fef08a" stroke-width="1.2"/>
+        <line x1="100" y1="${y-4}" x2="103" y2="${y-7}" stroke="#fef08a" stroke-width="1.2"/>
+        <line x1="112" y1="${y}" x2="116" y2="${y-2}" stroke="#fef08a" stroke-width="1.2"/>
+        <line x1="112" y1="${y}" x2="115" y2="${y+2}" stroke="#fde047" stroke-width="1"/>
+      `).join("")}
+    </g>
+
+    <g transform="translate(100, ${66 + droop * 12}) scale(${bloomScale})" opacity="${bloomOp}">
+      <circle cx="0" cy="2" r="14" fill="rgba(0,0,0,.22)" filter="url(#bl-${id})"/>
+      ${[0, 45, 90, 135, 180, 225, 270, 315].map((a, i) => `
+        <ellipse cx="0" cy="-10" rx="5" ry="9" fill="${i % 2 === 0 ? '#f43f5e' : '#fb7185'}" transform="rotate(${a})" opacity=".92"/>
+      `).join("")}
+      <circle cx="0" cy="0" r="5" fill="#fef08a"/>
+      ${[0, 60, 120, 180, 240, 300].map(a => `<circle cx="0" cy="-3.5" r=".9" fill="#f59e0b" transform="rotate(${a})"/>`).join("")}
+    </g>
+  `;
+}
+
+// ─── 5. ROSE / CHERRY BLOSSOM ───
+function renderBlossomSVG(chapter, h, wilt, tier, id) {
+  const droop = (1 - h);
+  const stX = 100 + droop * 36;
+  const stY = 56 + droop * 46;
+  const sc = 0.5 + h * 0.6;
+  const fO = 0.55 + h * 0.45;
+  const leafCol = wilt.leaf;
+
+  return `
+    <path d="M100 150 Q${98 + droop * 22} 110 ${stX} ${stY}" fill="none" stroke="url(#sg-${id})" stroke-width="5" stroke-linecap="round"/>
+    <path d="M99 150 Q${96 + droop * 22} 110 ${stX - 2} ${stY}" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.4" stroke-linecap="round"/>
+
+    <polygon points="${96 + droop * 12},126 ${90 + droop * 10},129 ${96 + droop * 12},132" fill="#15803d"/>
+    <polygon points="${104 + droop * 18},108 ${110 + droop * 20},111 ${104 + droop * 18},114" fill="#15803d"/>
+
+    <g transform="translate(${84 + droop * 12}, ${120 + droop * 8}) rotate(${-30 + droop * 60})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C-18,-10,-24,6,0,16 C3,11,2,4,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q-10 6 0 15" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+    </g>
+    <g transform="translate(${116 + droop * 20}, ${106 + droop * 12}) rotate(${30 - droop * 60})" opacity="${0.7 + h * 0.3}">
+      <path d="M0 0 C18,-10,24,6,0,16 C-3,11,-2,4,0,0 Z" fill="${leafCol}"/>
+      <path d="M0 0 Q10 6 0 15" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+    </g>
+
+    <g transform="translate(${stX}, ${stY}) scale(${sc})" opacity="${fO}">
+      <ellipse cx="0" cy="5" rx="18" ry="5.5" fill="rgba(0,0,0,.22)" filter="url(#bl-${id})"/>
+      ${[0, 45, 90, 135, 180, 225, 270, 315].map((a, i) => `
+        <ellipse cx="0" cy="-14" rx="6" ry="${10 + (i % 3)}" fill="${i % 2 === 0 ? wilt.flower : wilt.leaf}" transform="rotate(${a})" opacity="${0.78 + 0.1 * (i % 2)}"/>
+      `).join("")}
+      <circle cx="0" cy="0" r="9" fill="url(#bloss-${id})"/>
+      <path d="M-4 -3 C-2 -7 2 -7 4 -3 C3 2 -3 3 -4 -3" fill="none" stroke="#ffe4e6" stroke-width="1.2"/>
+      <circle cx="-2.5" cy="-3" r="3.2" fill="rgba(255,255,255,.32)"/>
+    </g>
+  `;
+}
+
+// ─── MASTER SVG DISPATCHER ───
 function plantSVG(chapter, r, wilt) {
   const h = Math.max(0, Math.min(1, (r - 0.2) / 0.8));
   const tier = evolutionTier(chapter);
-  const id = chapter.id.replace(/[^a-z0-9]/gi, '');
+  const id = (chapter.id || "c1").replace(/[^a-z0-9]/gi, '');
+  const plantType = getPlantType(chapter);
 
-  // Stem geometry (droops as h falls)
-  const stX = 100 + (1 - h) * 38;
-  const stY = 55  + (1 - h) * 50;
-  const cX  = 100 + (1 - h) * 28;
-  const cY  = 108 + (1 - h) * 16;
-  const sW  = 7   - (1 - h) * 2.5;
-
-  // Leaf angles (droop when wilting)
-  const lA = -35 + (1 - h) * 65;
-  const rA =  35 - (1 - h) * 65;
-  const lOp = 0.7 + h * 0.3;
-
-  // Ancient orbiting particles
   let particles = "";
   if (tier.tier === "ancient" && h > 0.5) {
     for (let i = 0; i < 6; i++) {
       const ang = (i / 6) * 360;
-      particles += `<circle cx="0" cy="-30" r="${i%2===0?3.5:2.5}" fill="${i%2===0?'#fbbf24':'#c084fc'}" opacity="0.85">
-        <animateTransform attributeName="transform" type="rotate" from="${ang} ${stX} ${stY}" to="${ang+360} ${stX} ${stY}" dur="${1.8+i*0.35}s" repeatCount="indefinite"/>
+      particles += `<circle cx="0" cy="-30" r="${i % 2 === 0 ? 3.5 : 2.5}" fill="${i % 2 === 0 ? '#fbbf24' : '#c084fc'}" opacity="0.85">
+        <animateTransform attributeName="transform" type="rotate" from="${ang} 100 65" to="${ang+360} 100 65" dur="${1.8+i*0.35}s" repeatCount="indefinite"/>
       </circle>`;
     }
   }
 
-  // Subject-specific 3D flower
-  const sc = 0.5 + h * 0.6;
-  const fO = 0.55 + h * 0.45;
-  let flowerEl = "";
-
-  if (chapter.subject === "Mathematics") {
-    flowerEl = `<g transform="translate(${stX},${stY}) scale(${sc})" opacity="${fO}">
-      <ellipse cx="0" cy="4" rx="17" ry="5" fill="rgba(0,0,0,.25)" filter="url(#bl-${id})"/>
-      <polygon points="0,-22 6,-6 22,0 6,6 0,22 -6,6 -22,0 -6,-6" fill="${wilt.flower}" opacity=".9"/>
-      <polygon points="0,-15 4,-4 15,0 4,4 0,15 -4,4 -15,0 -4,-4" fill="${wilt.leaf}"/>
-      <circle cx="0" cy="0" r="7" fill="url(#mc-${id})"/>
-      <circle cx="-2" cy="-2" r="3" fill="rgba(255,255,255,.35)"/>
-    </g>`;
-  } else if (chapter.subject === "Physics") {
-    flowerEl = `<g transform="translate(${stX},${stY}) scale(${sc})" opacity="${fO}">
-      <ellipse cx="0" cy="4" rx="16" ry="4.5" fill="rgba(0,0,0,.2)" filter="url(#bl-${id})"/>
-      <ellipse cx="0" cy="-14" rx="6" ry="13" fill="#c084fc" opacity=".85"/>
-      <ellipse cx="0" cy="-14" rx="6" ry="13" fill="#a855f7" transform="rotate(60)" opacity=".85"/>
-      <ellipse cx="0" cy="-14" rx="6" ry="13" fill="#d8b4fe" transform="rotate(120)" opacity=".75"/>
-      <circle cx="0" cy="0" r="7" fill="url(#pc-${id})"/>
-      <circle cx="-2" cy="-2" r="2.5" fill="rgba(255,255,255,.4)"/>
-    </g>`;
-  } else if (chapter.subject === "Chemistry") {
-    flowerEl = `<g transform="translate(${stX},${stY}) scale(${sc})" opacity="${fO}">
-      <ellipse cx="0" cy="4" rx="16" ry="5" fill="rgba(0,0,0,.2)" filter="url(#bl-${id})"/>
-      ${[0,72,144,216,288].map((a,i) => `<ellipse cx="0" cy="-14" rx="${5+i%2}" ry="12" fill="${i%2===0?wilt.flower:wilt.leaf}" transform="rotate(${a})" opacity=".9"/>`).join("")}
-      <circle cx="0" cy="0" r="8" fill="url(#cc-${id})"/>
-      <circle cx="-2.5" cy="-2.5" r="3" fill="rgba(255,255,255,.35)"/>
-    </g>`;
+  let plantBody = "";
+  if (plantType === "tree") {
+    plantBody = renderTreeSVG(chapter, h, wilt, tier, id);
+  } else if (plantType === "grape") {
+    plantBody = renderGrapeSVG(chapter, h, wilt, tier, id);
+  } else if (plantType === "sunflower") {
+    plantBody = renderSunflowerSVG(chapter, h, wilt, tier, id);
+  } else if (plantType === "cactus") {
+    plantBody = renderCactusSVG(chapter, h, wilt, tier, id);
   } else {
-    flowerEl = `<g transform="translate(${stX},${stY}) scale(${sc})" opacity="${fO}">
-      <ellipse cx="0" cy="5" rx="18" ry="5.5" fill="rgba(0,0,0,.22)" filter="url(#bl-${id})"/>
-      ${[0,45,90,135,180,225,270,315].map((a,i) => `<ellipse cx="0" cy="-14" rx="6" ry="${10+i%3}" fill="${i%2===0?wilt.flower:wilt.leaf}" transform="rotate(${a})" opacity="${.75+.1*(i%2)}"/>`).join("")}
-      <circle cx="0" cy="0" r="9" fill="url(#bc-${id})"/>
-      <circle cx="-2.5" cy="-3" r="3.5" fill="rgba(255,255,255,.3)"/>
-      ${tier.tier==="ancient"?`<circle cx="0" cy="0" r="13.5" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,3" opacity=".8"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/></circle>`:""}
-    </g>`;
+    plantBody = renderBlossomSVG(chapter, h, wilt, tier, id);
   }
 
-  return `<svg class="plant-svg" viewBox="0 0 200 195" xmlns="http://www.w3.org/2000/svg">
+  return `<svg class="plant-svg species-svg-${plantType}" viewBox="0 0 200 195" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="bl-${id}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <linearGradient id="pg-${id}" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -197,22 +541,30 @@ function plantSVG(chapter, r, wilt) {
       <stop offset="0%" stop-color="${wilt.stem}cc"/><stop offset="40%" stop-color="${wilt.stem}"/>
       <stop offset="100%" stop-color="${wilt.stem}88"/>
     </linearGradient>
-    <radialGradient id="mc-${id}" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#d97706"/>
+    <linearGradient id="bark-${id}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#451a03"/><stop offset="40%" stop-color="#78350f"/><stop offset="100%" stop-color="#9a3412"/>
+    </linearGradient>
+    <linearGradient id="wood-${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/><stop offset="50%" stop-color="#92400e"/><stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <radialGradient id="grp-${id}" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e879f9"/><stop offset="35%" stop-color="#a855f7"/><stop offset="70%" stop-color="#6b21a8"/><stop offset="100%" stop-color="#3b0764"/>
     </radialGradient>
-    <radialGradient id="pc-${id}" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#0284c7"/>
+    <radialGradient id="sf-${id}" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#d97706"/><stop offset="55%" stop-color="#78350f"/><stop offset="100%" stop-color="#451a03"/>
     </radialGradient>
-    <radialGradient id="cc-${id}" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#fed7aa"/><stop offset="100%" stop-color="#c2410c"/>
-    </radialGradient>
-    <radialGradient id="bc-${id}" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#bbf7d0"/><stop offset="100%" stop-color="#166534"/>
+    <linearGradient id="cact-${id}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#047857"/><stop offset="25%" stop-color="#10b981"/><stop offset="50%" stop-color="#6ee7b7"/><stop offset="75%" stop-color="#10b981"/><stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <radialGradient id="bloss-${id}" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fecdd3"/><stop offset="55%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#9f1239"/>
     </radialGradient>
   </defs>
+
   <!-- Ground shadow -->
   <ellipse cx="100" cy="192" rx="42" ry="5" fill="rgba(0,0,0,.15)" filter="url(#bl-${id})"/>
-  <!-- 3D Pot -->
+
+  <!-- 3D Planter Pot -->
   <path d="M61 148 L139 148 L127 183 L73 183 Z" fill="url(#pg-${id})" stroke="rgba(0,0,0,.2)" stroke-width="1"/>
   <path d="M61 148 L73 183 L65 183 L57 148 Z" fill="rgba(0,0,0,.15)"/>
   <path d="M129 148 L127 183 L133 183 L143 148 Z" fill="rgba(255,255,255,.07)"/>
@@ -222,32 +574,10 @@ function plantSVG(chapter, r, wilt) {
   <path d="M88 146 Q100 148 112 146" fill="none" stroke="rgba(0,0,0,.25)" stroke-width=".8"/>
   <ellipse cx="84" cy="147" rx="3" ry="2" fill="rgba(255,255,255,.08)"/>
   <ellipse cx="116" cy="148" rx="2.5" ry="1.5" fill="rgba(255,255,255,.06)"/>
-  <!-- Plant group -->
+
+  <!-- Living Botanical Subject -->
   <g class="plant-group">
-    <path d="M102 152 Q${cX+4} ${cY+4} ${stX+3} ${stY+4}" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="${sW+1}" stroke-linecap="round"/>
-    <path d="M100 152 Q${cX} ${cY} ${stX} ${stY}" fill="none" stroke="url(#sg-${id})" stroke-width="${sW}" stroke-linecap="round"/>
-    <path d="M99 152 Q${cX-2} ${cY-1} ${stX-2} ${stY}" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="${sW*0.35}" stroke-linecap="round"/>
-    <!-- Left leaf -->
-    <g transform="translate(${84+(1-h)*12},${118+(1-h)*9}) rotate(${lA})" opacity="${lOp}">
-      <path d="M1 1 C-18,-10,-26,5,1,16" fill="rgba(0,0,0,.18)" transform="translate(2,3)"/>
-      <path d="M0 0 C-22,-13,-30,5,0,16 C4,11,2,4,0,0" fill="${wilt.leaf}"/>
-      <path d="M0 0 C-10,-6,-15,2,0,8" fill="rgba(255,255,255,.18)"/>
-      <path d="M0 0 C-8,2,-6,8,0,15" fill="none" stroke="rgba(0,0,0,.18)" stroke-width=".8" stroke-linecap="round"/>
-      <path d="M-5 4 C-14,2,-16,6,-12,8" fill="none" stroke="rgba(0,0,0,.1)" stroke-width=".6"/>
-    </g>
-    <!-- Right leaf -->
-    <g transform="translate(${116+(1-h)*20},${104+(1-h)*12}) rotate(${rA})" opacity="${lOp}">
-      <path d="M-1 1 C18,-10,26,5,-1,16" fill="rgba(0,0,0,.18)" transform="translate(-2,3)"/>
-      <path d="M0 0 C22,-13,30,5,0,16 C-4,11,-2,4,0,0" fill="${wilt.leaf}"/>
-      <path d="M0 0 C10,-6,15,2,0,8" fill="rgba(255,255,255,.18)"/>
-      <path d="M0 0 C8,2,6,8,0,15" fill="none" stroke="rgba(0,0,0,.18)" stroke-width=".8" stroke-linecap="round"/>
-      <path d="M5 4 C14,2,16,6,12,8" fill="none" stroke="rgba(0,0,0,.1)" stroke-width=".6"/>
-    </g>
-    ${chapter.revisions >= 1 ? `<g transform="translate(${100+(1-h)*8},${130+(1-h)*6}) rotate(${-15+(1-h)*30})" opacity="${lOp*0.8}">
-      <path d="M0 0 C-14,-8,-18,3,0,10 C3,7,1,3,0,0" fill="${wilt.leaf}" opacity=".8"/>
-      <path d="M0 0 C6,2,4,5,0,9" fill="none" stroke="rgba(0,0,0,.12)" stroke-width=".6"/>
-    </g>` : ""}
-    ${flowerEl}
+    ${plantBody}
     ${particles}
   </g>
 </svg>`;
@@ -265,7 +595,11 @@ function renderGarden() {
     const r = retention(ch, state.simDays);
     if (state.filter === "urgent")   return r < 0.60;
     if (state.filter === "thriving") return r >= 0.80;
-    if (["Biology","Mathematics","Physics","Chemistry"].includes(state.filter)) return ch.subject === state.filter;
+    if (state.filter.startsWith("species:")) {
+      const spec = state.filter.split(":")[1];
+      return getPlantType(ch) === spec;
+    }
+    if (["Biology","Mathematics","Physics","Chemistry","Other"].includes(state.filter)) return ch.subject === state.filter;
     return true;
   });
 
@@ -298,12 +632,17 @@ function renderGarden() {
     const tier = evolutionTier(ch);
     const pct = Math.round(r * 100);
     const subClass = `sub-${ch.subject}`;
+    const plantType = getPlantType(ch);
+    const spec = speciesMeta(plantType);
 
     return `<div class="plant-card ${w.cardClass} tier-${tier.tier}" data-id="${ch.id}">
       ${tier.show ? `<div class="tier-badge tier-${tier.tier}">${tier.label}</div>` : ""}
       ${w.urgent ? `<div class="water-callout">💧 Water me!</div>` : ""}
       <div class="plant-header">
-        <span class="subject-badge ${subClass}">${ch.subject}</span>
+        <div class="plant-tags">
+          <span class="subject-badge ${subClass}">${ch.subject}</span>
+          <span class="species-badge species-${plantType}" title="${spec.label}">${spec.icon} ${spec.name}</span>
+        </div>
         <span class="retention-badge ${w.retClass}">${pct >= 60 ? "🌱" : "🥀"} ${pct}%</span>
       </div>
       <h3 class="plant-title">${esc(ch.title)}</h3>
@@ -719,18 +1058,20 @@ function setupAddChapterModal() {
 
   document.getElementById("form-add").addEventListener("submit", e => {
     e.preventDefault();
-    const subject    = document.getElementById("ch-subject").value;
-    const title      = document.getElementById("ch-name").value.trim();
-    const date       = document.getElementById("ch-date").value;
-    const difficulty = parseInt(document.getElementById("ch-difficulty").value);
-    const question   = document.getElementById("ch-question").value.trim();
-    const answer     = document.getElementById("ch-answer").value.trim();
+    const subject     = document.getElementById("ch-subject").value;
+    const plantTypeEl = document.getElementById("ch-plant-type");
+    const plantType   = plantTypeEl ? plantTypeEl.value : "tree";
+    const title       = document.getElementById("ch-name").value.trim();
+    const date        = document.getElementById("ch-date").value;
+    const difficulty  = parseInt(document.getElementById("ch-difficulty").value);
+    const question    = document.getElementById("ch-question").value.trim();
+    const answer      = document.getElementById("ch-answer").value.trim();
 
     if (!title) return;
     const s0 = difficulty===1?2.8: difficulty===2?2.0: 1.4;
 
     state.chapters.unshift({
-      id: "ch-" + Date.now(), title, subject, dateStudied:date, lastWatered:date,
+      id: "ch-" + Date.now(), title, subject, plantType, dateStudied:date, lastWatered:date,
       revisions:0, difficulty, stability:s0,
       question: question || `What is the key principle of ${title}?`,
       answer:   answer   || `Core concepts of ${title}.`,
@@ -1690,30 +2031,48 @@ function setupGardenToolbar() {
 // =============================================================================
 
 function saveChapters() {
-  localStorage.setItem("mg_chapters_v2", JSON.stringify(state.chapters));
+  localStorage.setItem("mg_chapters_v3", JSON.stringify(state.chapters));
 }
 
 function loadChapters() {
-  const saved = localStorage.getItem("mg_chapters_v2");
-  if (saved) {
+  const savedV3 = localStorage.getItem("mg_chapters_v3");
+  const savedV2 = localStorage.getItem("mg_chapters_v2");
+
+  if (savedV3) {
     try {
-      state.chapters = JSON.parse(saved);
-      // Backfill flashcard Q&A from demo if missing
-      state.chapters.forEach(ch => {
-        const demo = DEMO_CHAPTERS.find(d => d.id === ch.id);
-        if (demo) {
-          if (!ch.question) ch.question = demo.question;
-          if (!ch.answer)   ch.answer   = demo.answer;
-          if (!ch.feynman)  ch.feynman  = demo.feynman;
-        }
-      });
+      state.chapters = JSON.parse(savedV3);
     } catch(e) {
       state.chapters = JSON.parse(JSON.stringify(DEMO_CHAPTERS));
     }
+  } else if (savedV2) {
+    try {
+      const old = JSON.parse(savedV2);
+      const oldIds = new Set(old.map(c => c.id));
+      const newDemos = DEMO_CHAPTERS.filter(d => !oldIds.has(d.id));
+      old.forEach(ch => {
+        if (!ch.plantType) ch.plantType = getPlantType(ch);
+      });
+      state.chapters = [...old, ...newDemos];
+    } catch(e) {
+      state.chapters = JSON.parse(JSON.stringify(DEMO_CHAPTERS));
+    }
+    saveChapters();
   } else {
     state.chapters = JSON.parse(JSON.stringify(DEMO_CHAPTERS));
     saveChapters();
   }
+
+  // Ensure all chapters have plantType and flashcard info
+  state.chapters.forEach(ch => {
+    if (!ch.plantType) ch.plantType = getPlantType(ch);
+    const demo = DEMO_CHAPTERS.find(d => d.id === ch.id);
+    if (demo) {
+      if (!ch.question)  ch.question  = demo.question;
+      if (!ch.answer)    ch.answer    = demo.answer;
+      if (!ch.feynman)   ch.feynman   = demo.feynman;
+      if (!ch.plantType) ch.plantType = demo.plantType;
+    }
+  });
 }
 
 // =============================================================================
