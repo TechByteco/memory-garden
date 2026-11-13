@@ -2,7 +2,13 @@
 
 > **Built with 💚 by Lujain**  
 > *"A garden where every chapter you study becomes a living plant that wilts as your brain forgets it."*  
-> Built with pure HTML5, CSS3, and JavaScript. Zero external backend required.
+> Pure HTML5, CSS3, and JavaScript — zero backend required.
+
+[![Live on Vercel](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://memory-garden-zeta.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/TechByteco/memory-garden)
+
+🌐 **Live Demo:** [https://memory-garden-zeta.vercel.app](https://memory-garden-zeta.vercel.app)  
+📦 **GitHub Repository:** [https://github.com/TechByteco/memory-garden](https://github.com/TechByteco/memory-garden)
 
 ---
 
