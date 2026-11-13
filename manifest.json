@@ -1,0 +1,19 @@
+{
+  "name": "Memory Garden — Spaced Repetition by Lujain",
+  "short_name": "Memory Garden",
+  "description": "Visual Spaced Repetition where chapters become plants that wilt as your brain forgets them. Built by Lujain for Tamil Nadu & Indian students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070f0b",
+  "theme_color": "#10b981",
+  "lang": "en-IN",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

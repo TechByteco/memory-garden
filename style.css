@@ -934,6 +934,98 @@ html[data-theme="light"] .testing-effect-note { color: #5b21b6; background: rgba
   font-size: .75rem; color: var(--text-3); font-family: var(--mono);
 }
 
+/* ─── SEO & REGIONAL SECTION (TAMIL NADU) ─── */
+.seo-regional-section {
+  margin-top: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.seo-card {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--bg-card) 95%, transparent), color-mix(in srgb, var(--bg-2) 90%, transparent));
+  border: 1px solid rgba(74,222,128,.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  padding: 2.2rem;
+}
+
+.seo-badge-row {
+  display: flex; gap: .75rem; flex-wrap: wrap; align-items: center;
+  margin-bottom: 1rem;
+}
+
+.badge-tn {
+  font-size: .75rem; font-weight: 700;
+  background: rgba(245,158,11,.14); color: var(--amber);
+  border: 1px solid rgba(245,158,11,.35);
+  padding: .3rem .8rem; border-radius: var(--r-pill);
+}
+
+.badge-curriculum {
+  font-size: .75rem; font-weight: 600;
+  background: rgba(56,189,248,.12); color: var(--teal);
+  border: 1px solid rgba(56,189,248,.3);
+  padding: .3rem .8rem; border-radius: var(--r-pill);
+}
+
+.seo-heading {
+  font-size: 1.6rem; font-weight: 800; color: var(--text);
+  margin-bottom: .8rem; letter-spacing: -.02em;
+}
+
+.seo-subtext {
+  font-size: .92rem; color: var(--text-2); line-height: 1.65;
+  max-width: 960px; margin-bottom: 1.8rem;
+}
+
+.seo-features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem; margin-bottom: 2rem;
+}
+
+.seo-feat-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 1.2rem; border-radius: var(--r-md);
+  transition: transform .25s ease, border-color .25s ease;
+}
+.seo-feat-card:hover { transform: translateY(-3px); border-color: var(--border-h); }
+.seo-feat-icon { font-size: 1.6rem; display: block; margin-bottom: .5rem; }
+.seo-feat-card h4 { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
+.seo-feat-card p { font-size: .8rem; color: var(--text-2); line-height: 1.45; }
+
+.seo-faq-block {
+  border-top: 1px solid var(--border);
+  padding-top: 1.6rem; margin-top: 1rem;
+}
+
+.faq-title {
+  font-size: 1.15rem; font-weight: 800; color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.faq-item {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: .75rem;
+  overflow: hidden;
+  transition: border-color .2s ease;
+}
+.faq-item[open] { border-color: rgba(74,222,128,.4); background: color-mix(in srgb, var(--bg-3) 40%, transparent); }
+
+.faq-q {
+  font-size: .92rem; font-weight: 700; color: var(--text);
+  padding: .9rem 1.2rem; cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; font-size: 1.2rem; color: var(--green-l); transition: transform .2s ease; }
+.faq-item[open] .faq-q::after { content: "−"; transform: rotate(180deg); }
+
+.faq-a {
+  padding: 0 1.2rem 1.1rem;
+  font-size: .85rem; color: var(--text-2); line-height: 1.6;
+}
+
 /* ─── UTILS ─── */
 .hidden { display: none !important; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070f0b"/>
+      <stop offset="60%" stop-color="#0e1c14"/>
+      <stop offset="100%" stop-color="#162b1e"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="30" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="200" cy="180" r="280" fill="#10b981" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="1020" cy="460" r="320" fill="#38bdf8" opacity="0.1" filter="url(#glow)"/>
+
+  <!-- Border -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="rgba(74,222,128,0.25)" stroke-width="2"/>
+
+  <!-- Badge -->
+  <rect x="90" y="85" width="230" height="42" rx="21" fill="rgba(34,197,94,0.18)" stroke="rgba(74,222,128,0.4)" stroke-width="1.5"/>
+  <text x="205" y="112" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#4ade80" text-anchor="middle" letter-spacing="2">BIO × MATHS SYSTEM</text>
+
+  <!-- Title -->
+  <text x="90" y="200" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="68" font-weight="800" fill="#ffffff" letter-spacing="-1">Memory Garden 🌱</text>
+
+  <!-- Subtitle -->
+  <text x="90" y="260" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="600" fill="#94a39b">
+    Where Chapters Become Plants That Wilt As Your Brain Forgets Them
+  </text>
+
+  <!-- Formula Callout -->
+  <rect x="90" y="315" width="560" height="90" rx="16" fill="rgba(0,0,0,0.45)" stroke="rgba(74,222,128,0.3)" stroke-width="1.5"/>
+  <text x="125" y="365" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="700" fill="#4ade80">R(t) = e^(−t/S)</text>
+  <text x="125" y="390" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="15" fill="#94a39b">
+    Ebbinghaus Forgetting Curve • Synaptic Consolidation
+  </text>
+
+  <!-- Highlights Pills -->
+  <g transform="translate(90, 445)">
+    <rect x="0" y="0" width="220" height="44" rx="22" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)"/>
+    <text x="110" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#38bdf8" text-anchor="middle">🪣 3D Water Bucket</text>
+
+    <rect x="235" y="0" width="230" height="44" rx="22" fill="rgba(168,85,247,0.12)" stroke="rgba(168,85,247,0.35)"/>
+    <text x="350" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#c084fc" text-anchor="middle">⏱️ Seed Focus Timer</text>
+
+    <rect x="480" y="0" width="240" height="44" rx="22" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.35)"/>
+    <text x="600" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#fbbf24" text-anchor="middle">🦉 Circadian Blueprint</text>
+  </g>
+
+  <!-- Author Tag Bottom -->
+  <rect x="90" y="525" width="310" height="40" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)"/>
+  <text x="245" y="550" font-family="'Plus Jakarta Sans', sans-serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">
+    ✨ Designed &amp; Built by <tspan fill="#4ade80">Lujain</tspan>
+  </text>
+
+  <text x="1100" y="550" font-family="'Plus Jakarta Sans', sans-serif" font-size="17" font-weight="700" fill="#94a39b" text-anchor="end">
+    Tamil Nadu &amp; Global Student Edition
+  </text>
+</svg>

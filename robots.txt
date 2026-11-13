@@ -1,0 +1,16 @@
+# robots.txt for Memory Garden by Lujain
+User-agent: *
+Allow: /
+
+# Priority crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://memory-garden-zeta.vercel.app/sitemap.xml
