@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Garden 🌱 — Built by Lujain | Spaced Repetition meets Neuroscience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     AMBIENT WEATHER CANVAS (renders behind everything)
+══════════════════════════════════════════════════════════ -->
+<canvas id="weather-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════ -->
+<header class="navbar">
+  <div class="nav-brand">
+    <div class="brand-logo"><span>🌱</span></div>
+    <div>
+      <h1 class="brand-title">Memory Garden <span class="badge-bio">Bio × Maths</span></h1>
+      <p class="brand-sub">Spaced repetition where forgetting wilts your plants • <span class="brand-author">Built by <strong>Lujain</strong></span></p>
+    </div>
+  </div>
+
+  <div class="nav-center">
+    <!-- Streak indicator -->
+    <div class="streak-pill" id="streak-pill" title="Consecutive days you've watered a plant">
+      <span class="streak-fire">🔥</span>
+      <span id="streak-count">0</span>
+      <span class="streak-label">day streak</span>
+    </div>
+    <!-- Pomodoro mini-pill -->
+    <div class="pomo-pill hidden" id="pomo-pill">
+      <span>⏱️</span>
+      <span id="pomo-nav-time">25:00</span>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <div class="stat-pill">
+      <span class="stat-label">Garden Health</span>
+      <span id="garden-health-score" class="stat-val">100%</span>
+      <div class="health-bar"><div id="garden-health-fill" class="health-fill" style="width:100%"></div></div>
+    </div>
+    <div class="stat-pill urgent-pill">
+      <span>🥀</span>
+      <span id="urgent-count" class="stat-val">0</span>
+      <span class="stat-label">Need Water</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm" id="btn-toggle-sound" title="Toggle ambient soundscape">🔇</button>
+      <button class="btn btn-ghost btn-sm" id="btn-toggle-theme" title="Toggle light/dark theme">☀️</button>
+      <button class="btn btn-ghost btn-sm" id="btn-open-pitch">🧠 Science</button>
+      <button class="btn btn-ghost btn-sm" id="btn-export-csv">📥 Export</button>
+      <button class="btn btn-primary" id="btn-add-chapter">➕ Plant Chapter</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     TIME MACHINE BAR
+══════════════════════════════════════════════════════════ -->
+<section class="time-machine-bar">
+  <div class="tm-inner">
+    <div class="tm-left">
+      <span class="pulse-dot">●</span>
+      <strong>Time Travel Simulator</strong>
+      <span class="tm-hint">Watch the garden wilt live as days pass</span>
+    </div>
+    <div class="tm-center">
+      <input type="range" id="time-slider" min="0" max="30" value="0" step="0.25">
+      <div class="slider-labels">
+        <span>Today</span><span>+7d</span><span>+14d</span><span>+21d</span><span>+30d</span>
+      </div>
+    </div>
+    <div class="tm-right">
+      <span class="badge-time" id="simulated-day-label">Today</span>
+      <button class="chip active" data-days="0">Today</button>
+      <button class="chip" data-days="3">+3d</button>
+      <button class="chip chip-warn" data-days="7">🔥 7 Days</button>
+      <button class="chip chip-danger" data-days="21">+21d</button>
+      <button class="chip" id="btn-reset-time">↺</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- Tab nav -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="garden">🌿 Garden <span id="plant-count-badge" class="count-badge">0</span></button>
+    <button class="tab" data-tab="analytics">📈 Ebbinghaus Lab</button>
+    <button class="tab" data-tab="pomodoro">⏱️ Focus Timer</button>
+    <button class="tab" data-tab="compare">⚖️ Cramming vs Spaced</button>
+    <button class="tab" data-tab="chronotype">🦉 Body Clock</button>
+    <button class="tab" data-tab="planner">🎯 Exam Planner</button>
+    <button class="tab" data-tab="sandbox">🔬 Math Sandbox</button>
+  </nav>
+
+  <!-- ─── TAB: GARDEN ─── -->
+  <section class="tab-panel active" id="panel-garden">
+    <div class="garden-toolbar">
+      <div class="filter-row">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="urgent">🥀 Urgent</button>
+        <button class="chip" data-filter="thriving">💚 Thriving</button>
+        <button class="chip" data-filter="Biology">🌱 Bio</button>
+        <button class="chip" data-filter="Mathematics">📐 Maths</button>
+        <button class="chip" data-filter="Physics">⚡ Physics</button>
+        <button class="chip" data-filter="Chemistry">🧪 Chem</button>
+      </div>
+      <div class="toolbar-actions">
+        <button class="btn btn-ghost btn-sm" id="btn-open-bucket" title="Pick up the water bucket">🪣 Water Bucket</button>
+        <button class="btn btn-ghost btn-sm" id="btn-water-all-urgent">💧 Water All Urgent</button>
+        <button class="btn btn-ghost btn-sm" id="btn-reload-demo">🔄 Demo Data</button>
+        <span class="muted" id="garden-summary">0 chapters</span>
+      </div>
+    </div>
+
+    <!-- Weather banner (shows dynamically based on garden health) -->
+    <div id="weather-banner" class="weather-banner hidden"></div>
+
+    <div class="garden-grid" id="plants-grid"></div>
+  </section>
+
+  <!-- ─── TAB: EBBINGHAUS LAB ─── -->
+  <section class="tab-panel" id="panel-analytics">
+    <div class="analytics-grid">
+      <div class="card span-2">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Memory Decay Curve: R = e<sup>−t/S</sup></h2>
+            <p class="card-sub">Real-time Ebbinghaus projection with spaced repetition intervals overlaid</p>
+          </div>
+          <div class="chart-controls">
+            <label>Chapter:</label>
+            <select id="chapter-select" class="form-select sm"></select>
+            <label>Range:</label>
+            <select id="chart-range" class="form-select sm">
+              <option value="14">14 days</option>
+              <option value="30" selected>30 days</option>
+              <option value="60">60 days</option>
+              <option value="90">90 days</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="retention-chart"></canvas></div>
+        <div class="chart-annotations" id="chart-annotations"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">📐 The Maths</h3>
+        <div class="formula-box">
+          <div class="formula">R(t) = e<sup>−t/S</sup></div>
+          <p class="formula-credit">Hermann Ebbinghaus, 1885</p>
+        </div>
+        <div class="var-list">
+          <div class="var-row"><span class="var">R</span><div><strong>Retention</strong><p>Probability of unaided recall (plant health %)</p></div></div>
+          <div class="var-row"><span class="var">t</span><div><strong>Time elapsed</strong><p>Days since last study/revision</p></div></div>
+          <div class="var-row"><span class="var">S</span><div><strong>Stability</strong><p>Memory strength in days. Grows with each revision.</p></div></div>
+          <div class="var-row"><span class="var">t½</span><div><strong>Half-life</strong><p>t½ = S · ln(2) ≈ 0.693 · S</p></div></div>
+        </div>
+        <div class="threshold-list">
+          <h4>🌿 Wilt Thresholds</h4>
+          <div class="threshold-item thriving-t"><span></span> &gt;80% — Thriving (long-term cortex)</div>
+          <div class="threshold-item stable-t"><span></span> 60–80% — Stable (synaptic traces firm)</div>
+          <div class="threshold-item wilting-t"><span></span> 40–60% — 🥀 Optimal window! Water now!</div>
+          <div class="threshold-item withered-t"><span></span> &lt;40% — Withered (re-learning required)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">📊 Garden Statistics</h3>
+        <div id="stats-panel" class="stats-panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: POMODORO ─── -->
+  <section class="tab-panel" id="panel-pomodoro">
+    <div class="pomo-layout">
+      <div class="card pomo-card">
+        <h2 class="card-title">⏱️ Seed-to-Sprout Focus Timer</h2>
+        <p class="card-sub">Study for 25 minutes, watch a seed sprout in real-time. When the timer ends your chosen chapter is auto-watered!</p>
+
+        <div class="pomo-visual">
+          <svg id="pomo-plant-svg" viewBox="0 0 200 220" class="pomo-svg">
+            <!-- Soil -->
+            <ellipse cx="100" cy="175" rx="50" ry="12" fill="#3b1f0b" opacity="0.8"/>
+            <rect x="60" y="168" width="80" height="8" rx="4" fill="#6d3f1a"/>
+            <!-- Dynamic plant grows here via JS -->
+            <g id="pomo-plant-group"></g>
+          </svg>
+          <div class="pomo-timer-ring">
+            <svg viewBox="0 0 120 120" class="ring-svg">
+              <circle cx="60" cy="60" r="52" class="ring-bg"/>
+              <circle cx="60" cy="60" r="52" class="ring-progress" id="ring-progress"
+                stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+            </svg>
+            <div class="timer-center">
+              <div id="pomo-time-display" class="timer-digits">25:00</div>
+              <div id="pomo-phase-label" class="timer-phase">Focus Session</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pomo-controls">
+          <select id="pomo-chapter-select" class="form-select">
+            <option value="">— Select chapter to auto-water —</option>
+          </select>
+          <div class="pomo-btns">
+            <button class="btn btn-primary" id="btn-pomo-start">▶ Start Focus</button>
+            <button class="btn btn-ghost" id="btn-pomo-pause" disabled>⏸ Pause</button>
+            <button class="btn btn-ghost" id="btn-pomo-reset">↺ Reset</button>
+          </div>
+          <div class="pomo-sessions">
+            🍅 Sessions today: <strong id="pomo-session-count">0</strong>
+            &nbsp;|&nbsp; Total focus: <strong id="pomo-total-time">0 min</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pomo-info-card">
+        <h3 class="card-title">🧠 Why 25 Minutes?</h3>
+        <div class="science-block">
+          <div class="science-icon">🎯</div>
+          <div>
+            <strong>Ultradian Rhythm</strong>
+            <p>The brain cycles through 90-min ultradian rhythms. The first 25 minutes of a cycle are the peak analytical focus window (high norepinephrine).</p>
+          </div>
+        </div>
+        <div class="science-block">
+          <div class="science-icon">💡</div>
+          <div>
+            <strong>Diffuse Mode Thinking</strong>
+            <p>The 5-min break triggers diffuse mode — a resting neural state where the prefrontal cortex consolidates patterns studied in focus mode (Baird et al., 2012).</p>
+          </div>
+        </div>
+        <div class="science-block">
+          <div class="science-icon">🌱</div>
+          <div>
+            <strong>Seed Metaphor</strong>
+            <p>As your session progresses, the seed in this timer cracks, roots, sprouts, and blossoms — mirroring how new synaptic connections strengthen under sustained focus.</p>
+          </div>
+        </div>
+        <div class="pomo-history" id="pomo-history">
+          <h4>Recent Sessions</h4>
+          <div id="pomo-history-list" class="pomo-history-list">
+            <p class="muted">No sessions yet. Start your first focus sprint!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: CRAMMING VS SPACED ─── -->
+  <section class="tab-panel" id="panel-compare">
+    <div class="compare-layout">
+      <div class="card compare-setup-card">
+        <h2 class="card-title">⚖️ Cramming vs Spaced Repetition Simulator</h2>
+        <p class="card-sub">Configure both students and simulate their exam performance over time</p>
+
+        <div class="student-configs">
+          <div class="student-config student-a">
+            <div class="student-header">
+              <span class="student-emoji">😰</span>
+              <div>
+                <strong>Student A — The Crammer</strong>
+                <p>Studies intensely once, never reviews</p>
+              </div>
+            </div>
+            <div class="config-row">
+              <label>Study session duration</label>
+              <select id="cram-hours" class="form-select sm">
+                <option value="2">2 hours</option>
+                <option value="4">4 hours</option>
+                <option value="8" selected>8 hours</option>
+                <option value="12">12 hours (all-nighter)</option>
+              </select>
+            </div>
+            <div class="config-row">
+              <label>Days before exam</label>
+              <select id="cram-days-before" class="form-select sm">
+                <option value="1" selected>1 day before</option>
+                <option value="2">2 days before</option>
+                <option value="3">3 days before</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="vs-divider">VS</div>
+
+          <div class="student-config student-b">
+            <div class="student-header">
+              <span class="student-emoji">🌱</span>
+              <div>
+                <strong>Student B — The Memory Gardener</strong>
+                <p>Short sessions, spaced over time</p>
+              </div>
+            </div>
+            <div class="config-row">
+              <label>Minutes per session</label>
+              <select id="spaced-mins" class="form-select sm">
+                <option value="20" selected>20 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+              </select>
+            </div>
+            <div class="config-row">
+              <label>Spaced interval strategy</label>
+              <select id="spaced-interval" class="form-select sm">
+                <option value="sm2">SM-2 Algorithm (1,6,15,35...)</option>
+                <option value="fibonacci" selected>Fibonacci (1,2,3,5,8,13...)</option>
+                <option value="conservative">Conservative (1,3,7,14,21...)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-params">
+          <div class="param-row">
+            <label>Exam in <strong id="exam-days-label">30</strong> days</label>
+            <input type="range" id="compare-exam-days" min="7" max="90" value="30">
+          </div>
+          <button class="btn btn-primary btn-block" id="btn-run-compare">▶ Run Simulation</button>
+        </div>
+      </div>
+
+      <div class="card compare-result-card">
+        <div class="compare-scoreboard" id="compare-scoreboard">
+          <div class="score-box score-a">
+            <div class="score-emoji">😰</div>
+            <div class="score-label">Student A</div>
+            <div class="score-val" id="score-a-exam">—</div>
+            <div class="score-sub">Exam Day</div>
+          </div>
+          <div class="score-box score-b">
+            <div class="score-emoji">🌱</div>
+            <div class="score-label">Student B</div>
+            <div class="score-val" id="score-b-exam">—</div>
+            <div class="score-sub">Exam Day</div>
+          </div>
+          <div class="score-box score-a">
+            <div class="score-label">Crammer — 1 month later</div>
+            <div class="score-val score-bad" id="score-a-later">—</div>
+          </div>
+          <div class="score-box score-b">
+            <div class="score-label">Gardener — 1 month later</div>
+            <div class="score-val score-good" id="score-b-later">—</div>
+          </div>
+        </div>
+        <div class="chart-wrap tall"><canvas id="compare-chart"></canvas></div>
+        <div id="compare-verdict" class="verdict hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: BODY CLOCK ─── -->
+  <section class="tab-panel" id="panel-chronotype">
+    <div class="chrono-grid">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">🧠 Circadian Chronotype Diagnostic</h2>
+            <p class="card-sub">Discover your biological prime time for hard subjects</p>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="btn-retake-quiz">Retake</button>
+        </div>
+        <div id="quiz-view">
+          <div class="quiz-progress"><div class="quiz-fill" id="quiz-fill" style="width:0%"></div></div>
+          <div id="quiz-container"></div>
+        </div>
+        <div id="quiz-result" class="hidden"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">⏰ Your Optimal Daily Blueprint</h3>
+        <p class="card-sub">Synchronized with your circadian biology</p>
+        <div id="circadian-timeline" class="circadian-timeline"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: EXAM PLANNER ─── -->
+  <section class="tab-panel" id="panel-planner">
+    <div class="planner-grid">
+      <div class="card">
+        <h2 class="card-title">🎯 Exam Countdown & Auto-Planner</h2>
+        <p class="card-sub">Set your exam date. The algorithm computes the optimal spaced schedule so every chapter hits ≥85% on exam day.</p>
+        <form id="planner-form" class="form-stack">
+          <div class="form-group">
+            <label>Exam Name</label>
+            <input type="text" id="exam-name" class="form-input" value="Board Final Exams">
+          </div>
+          <div class="form-group">
+            <label>Exam Date</label>
+            <input type="date" id="exam-date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Target Retention on Exam Day</label>
+            <select id="target-ret" class="form-select">
+              <option value="0.80">80% — Solid Pass</option>
+              <option value="0.85" selected>85% — High Distinction</option>
+              <option value="0.90">90% — Top 1% Mastery</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Generate Spaced Plan</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="countdown-hero">
+          <div class="countdown-box">
+            <span class="countdown-num" id="countdown-days">--</span>
+            <span class="countdown-unit">Days Left</span>
+          </div>
+          <div>
+            <h3 id="planner-exam-name">Board Final Exams</h3>
+            <p id="planner-status" class="card-sub">Configure your exam above</p>
+          </div>
+        </div>
+        <div class="planner-calendar" id="planner-calendar"></div>
+        <div id="planner-queue"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: MATH SANDBOX ─── -->
+  <section class="tab-panel" id="panel-sandbox">
+    <div class="sandbox-grid">
+      <div class="card">
+        <h2 class="card-title">🔬 Calculus & Forgetting Curve Sandbox</h2>
+        <p class="card-sub">Interactively explore the differential equation dR/dt = −R/S and its solutions. Drag the sliders to reshape the forgetting curve in real time.</p>
+
+        <div class="sandbox-controls">
+          <div class="sandbox-slider-group">
+            <label>Initial Stability S₀ = <strong id="sb-s0-val">2.0</strong> days</label>
+            <input type="range" id="sb-s0" min="0.5" max="15" step="0.1" value="2.0">
+            <p class="slider-hint">Higher S = slower initial forgetting (easier/more familiar material)</p>
+          </div>
+          <div class="sandbox-slider-group">
+            <label>Decay Constant λ = <strong id="sb-lambda-val">0.50</strong> (= 1/S)</label>
+            <input type="range" id="sb-lambda" min="0.05" max="2.0" step="0.05" value="0.5">
+            <p class="slider-hint">λ = 1/S. High λ = fast forgetting (high cognitive load)</p>
+          </div>
+          <div class="sandbox-slider-group">
+            <label>Revision Multiplier k = <strong id="sb-k-val">2.0</strong>×</label>
+            <input type="range" id="sb-k" min="1.2" max="4.0" step="0.1" value="2.0">
+            <p class="slider-hint">Each revision multiplies S by k. Higher = stronger memory consolidation</p>
+          </div>
+          <div class="sandbox-slider-group">
+            <label>Number of revisions = <strong id="sb-revisions-val">3</strong></label>
+            <input type="range" id="sb-revisions" min="0" max="8" step="1" value="3">
+          </div>
+        </div>
+
+        <div class="sandbox-derived">
+          <div class="derived-stat">
+            <span class="derived-label">Memory Half-Life t½</span>
+            <span class="derived-val" id="sb-halflife">1.39 days</span>
+          </div>
+          <div class="derived-stat">
+            <span class="derived-label">After 7 days (without revision)</span>
+            <span class="derived-val" id="sb-r7">30%</span>
+          </div>
+          <div class="derived-stat">
+            <span class="derived-label">Final S after revisions</span>
+            <span class="derived-val" id="sb-final-s">16 days</span>
+          </div>
+          <div class="derived-stat">
+            <span class="derived-label">After 7 days (with revisions)</span>
+            <span class="derived-val" id="sb-r7-spaced">89%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chart-wrap tall"><canvas id="sandbox-chart"></canvas></div>
+        <div class="sandbox-derivative-box">
+          <h4>🎯 Tangent Line — Instantaneous Forgetting Rate</h4>
+          <p>At t = <strong id="sb-tangent-t">0</strong> days, the derivative:</p>
+          <div class="formula-mini">dR/dt = −(1/S) · e<sup>−t/S</sup> = <strong id="sb-derivative-val">−0.50</strong> per day</div>
+          <input type="range" id="sb-tangent-slider" min="0" max="30" step="0.5" value="0">
+          <p class="slider-hint">Move the tangent point along the curve</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer class="app-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">🌱</span>
+      <div>
+        <strong>Memory Garden</strong>
+        <p>Bio × Maths Spaced Repetition Engine</p>
+      </div>
+    </div>
+    <div class="footer-author-pill">
+      <span>✨ Built by <strong>Lujain</strong></span>
+    </div>
+    <p class="footer-meta">Ebbinghaus Forgetting Curve \(R = e^{-t/S}\) • Synaptic Consolidation</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════ -->
+
+<!-- Add Chapter Modal -->
+<div class="modal-overlay hidden" id="modal-add">
+  <div class="modal-card">
+    <div class="modal-hdr">
+      <h3>🌱 Plant a New Chapter</h3>
+      <button class="modal-x" data-close="modal-add">&times;</button>
+    </div>
+    <form id="form-add" class="modal-body">
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="ch-subject" class="form-select">
+          <option value="Biology">🌱 Biology</option>
+          <option value="Mathematics">📐 Mathematics</option>
+          <option value="Physics">⚡ Physics</option>
+          <option value="Chemistry">🧪 Chemistry</option>
+          <option value="Other">📚 Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Chapter / Concept Title</label>
+        <input type="text" id="ch-name" class="form-input" placeholder="e.g. Calvin Cycle & Carbon Fixation" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date Studied</label>
+          <input type="date" id="ch-date" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label>Difficulty</label>
+          <select id="ch-difficulty" class="form-select">
+            <option value="1">Easy (S₀ = 2.8d)</option>
+            <option value="2" selected>Medium (S₀ = 2.0d)</option>
+            <option value="3">Hard (S₀ = 1.4d)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Recall Question <span class="optional">(optional — powers flashcard)</span></label>
+        <input type="text" id="ch-question" class="form-input" placeholder="e.g. What is the net equation of the Calvin Cycle?">
+      </div>
+      <div class="form-group">
+        <label>Answer / Key Formula <span class="optional">(optional)</span></label>
+        <input type="text" id="ch-answer" class="form-input" placeholder="e.g. 3CO₂ + 9ATP + 6NADPH → G3P">
+      </div>
+      <div class="modal-ftr">
+        <button type="button" class="btn btn-ghost" data-close="modal-add">Cancel</button>
+        <button type="submit" class="btn btn-primary">Plant in Garden 🌱</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Water / Active Recall Modal -->
+<div class="modal-overlay hidden" id="modal-water">
+  <div class="modal-card modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title-row">
+        <span id="water-icon">🌱</span>
+        <div>
+          <h3 id="water-chapter-title">Chapter</h3>
+          <span class="badge-pill" id="water-subject-badge">Biology</span>
+        </div>
+      </div>
+      <button class="modal-x" data-close="modal-water">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Mode switcher -->
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="flashcard">🎴 Flashcard</button>
+        <button class="mode-btn" data-mode="feynman">🧑‍🏫 Feynman</button>
+      </div>
+
+      <!-- Flashcard face -->
+      <div id="mode-flashcard" class="mode-panel">
+        <div class="flashcard" id="flashcard" title="Click to flip">
+          <div class="fc-front">
+            <div class="fc-tag">QUESTION</div>
+            <p id="fc-q" class="fc-text"></p>
+            <div class="fc-hint">🔄 Click card to flip</div>
+          </div>
+          <div class="fc-back">
+            <div class="fc-tag fc-tag-ans">ANSWER</div>
+            <p id="fc-a" class="fc-text"></p>
+            <div class="fc-hint">✅ Rate recall below</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feynman panel -->
+      <div id="mode-feynman" class="mode-panel hidden">
+        <div class="feynman-box">
+          <span class="feynman-label">The Feynman Technique</span>
+          <p id="feynman-prompt-text" class="feynman-prompt"></p>
+          <textarea id="feynman-input" class="form-input" rows="3" placeholder="Explain simply — no jargon…"></textarea>
+          <div class="feynman-footer">
+            <span id="feynman-words">0 words</span>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-show-ideal">Show Ideal</button>
+          </div>
+          <div id="feynman-ideal" class="ideal-answer hidden">
+            <strong>Core Concept:</strong>
+            <p id="feynman-ideal-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recall rating -->
+      <div class="recall-section">
+        <div class="recall-hdr">
+          <span>Rate your recall quality</span>
+          <span class="science-note">Calibrates S (memory stability)</span>
+        </div>
+        <div class="recall-grid">
+          <button class="recall-btn" data-factor="1.4">
+            <span class="rb-emoji">😰</span>
+            <strong>Hard</strong>
+            <span>S × 1.4</span>
+          </button>
+          <button class="recall-btn selected" data-factor="2.0">
+            <span class="rb-emoji">😊</span>
+            <strong>Good</strong>
+            <span>S × 2.0</span>
+          </button>
+          <button class="recall-btn" data-factor="2.8">
+            <span class="rb-emoji">🌟</span>
+            <strong>Easy</strong>
+            <span>S × 2.8</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="testing-effect-note">
+        🧠 <strong>Testing Effect:</strong> Retrieval before seeing the answer strengthens dendritic spines up to 300% more than passive re-reading (Roediger & Karpicke, 2006).
+      </div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-ghost" data-close="modal-water">Cancel</button>
+      <button class="btn btn-primary" id="btn-confirm-water">🪣 Collect Bucket & Pour 💧</button>
+    </div>
+  </div>
+</div>
+
+<!-- Science / Pitch Modal -->
+<div class="modal-overlay hidden" id="modal-pitch">
+  <div class="modal-card modal-lg">
+    <div class="modal-hdr">
+      <h3>🧠 Science Architecture & Judge's Pitch <span class="badge-creator">Built by Lujain</span></h3>
+      <button class="modal-x" data-close="modal-pitch">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="pitch-banner">
+        <h4>"Why do students forget 70% of what they study within 7 days?"</h4>
+        <p>The brain evolved to prune unrepeated stimuli. Memory Garden fuses <strong>neuroscience</strong> with <strong>exponential calculus</strong> to make forgetting visible — and fixable. Designed & built by <strong>Lujain</strong>.</p>
+      </div>
+      <div class="pitch-cols">
+        <div class="pitch-col">
+          <h5>🧬 Biology: LTP & Synaptic Consolidation</h5>
+          <p>Study creates temporary hippocampal traces. Without reactivation, proteins degrade and microglia prune connections. Revising at the <em>40–60% inflection point</em> triggers Long-Term Potentiation (LTP), transferring knowledge to the neocortex permanently.</p>
+        </div>
+        <div class="pitch-col">
+          <h5>📐 Maths: Differential Equations</h5>
+          <p>Retention satisfies dR/dt = −R/S, solved by R(t) = e<sup>−t/S</sup>. Each revision multiplies S by k > 1, flattening the derivative. The result: exponentially longer intervals between required revisions.</p>
+        </div>
+      </div>
+      <div class="demo-steps">
+        <h5>⚡ 60-Second Judge Demo:</h5>
+        <ol>
+          <li>Open the <strong>Garden</strong> — see healthy green plants at Day 0</li>
+          <li>Click <strong>🔥 7 Days</strong> on the Time Traveller — watch plants wilt live</li>
+          <li>Click <strong>💧 Revise & Water</strong> — flashcard appears, stability S doubles</li>
+          <li>Switch to <strong>Ebbinghaus Lab</strong> — show the math curves diverge</li>
+          <li>Run the <strong>Cramming vs Spaced Simulator</strong> — Crammer forgets 80%, Gardener retains 75%</li>
+          <li>Show <strong>Math Sandbox</strong> — drag λ slider, watch the curve react in real-time</li>
+        </ol>
+      </div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-primary" data-close="modal-pitch">Let's Explore! 🌱</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     INTERACTIVE 3D WATER BUCKET & POURING SYSTEM
+══════════════════════════════════════════════════════════ -->
+<div id="water-bucket-layer" class="water-bucket-layer hidden">
+  <!-- Top HUD banner -->
+  <div class="bucket-hud" id="bucket-hud">
+    <div class="bucket-hud-left">
+      <span class="bucket-hud-icon">🪣</span>
+      <div class="bucket-hud-text">
+        <strong id="bucket-hud-title">Water Bucket Ready!</strong>
+        <p id="bucket-hud-sub">Move or drag the bucket near your plant to pour water</p>
+      </div>
+    </div>
+    <div class="bucket-hud-actions">
+      <button class="btn btn-primary btn-sm" id="btn-bucket-autopour">⚡ Pour Now</button>
+      <button class="btn btn-ghost btn-sm" id="btn-bucket-cancel">✕ Cancel</button>
+    </div>
+  </div>
+
+  <!-- Draggable / Floating 3D Water Bucket -->
+  <div id="interactive-bucket" class="interactive-bucket">
+    <div class="bucket-inner" id="bucket-inner">
+      <svg class="bucket-svg" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bucket-metal" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="35%" stop-color="#0284c7"/>
+            <stop offset="75%" stop-color="#0369a1"/>
+            <stop offset="100%" stop-color="#0c4a6e"/>
+          </linearGradient>
+          <linearGradient id="bucket-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fde047"/>
+            <stop offset="50%" stop-color="#ca8a04"/>
+            <stop offset="100%" stop-color="#854d0e"/>
+          </linearGradient>
+          <radialGradient id="bucket-water-grad" cx="45%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#67e8f9"/>
+            <stop offset="60%" stop-color="#06b6d4"/>
+            <stop offset="100%" stop-color="#0e7490"/>
+          </radialGradient>
+          <filter id="bucket-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(56,189,248,0.45)"/>
+          </filter>
+        </defs>
+        <!-- Arched top handle -->
+        <path d="M 28 42 C 28 12, 72 12, 72 42" fill="none" stroke="url(#bucket-brass)" stroke-width="5" stroke-linecap="round"/>
+        <!-- Spout on right -->
+        <path d="M 68 55 L 98 32 L 104 38 L 74 68 Z" fill="url(#bucket-metal)" stroke="#0c4a6e" stroke-width="1"/>
+        <!-- Spout rose/sprinkler head -->
+        <ellipse cx="101" cy="35" rx="5" ry="8" fill="url(#bucket-brass)" transform="rotate(-30 101 35)"/>
+        <!-- Bucket body (trapezoid with rounded base) -->
+        <path d="M 22 42 L 78 42 L 72 88 L 28 88 Z" fill="url(#bucket-metal)" stroke="#0c4a6e" stroke-width="1.2"/>
+        <!-- Metal bands for 3D realism -->
+        <path d="M 24 56 Q 50 60 76 56" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+        <path d="M 26 74 Q 50 78 74 74" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="2"/>
+        <!-- Specular body highlight -->
+        <path d="M 32 44 L 35 86" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="3" stroke-linecap="round"/>
+        <!-- Rim -->
+        <ellipse cx="50" cy="42" rx="28" ry="7" fill="url(#bucket-brass)" stroke="#854d0e" stroke-width="1"/>
+        <!-- Water inside -->
+        <ellipse id="bucket-water-surface" cx="50" cy="42" rx="24" ry="5.5" fill="url(#bucket-water-grad)"/>
+        <ellipse cx="46" cy="41" rx="14" ry="2.5" fill="rgba(255,255,255,0.4)"/>
+        <!-- Water droplet hovering at spout -->
+        <circle id="spout-drop" cx="106" cy="38" r="2.5" fill="#38bdf8" opacity="0.9">
+          <animate attributeName="cy" values="36;41;36" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+
+      <!-- Pouring water stream (visible when pouring) -->
+      <div id="water-stream-wrap" class="water-stream-wrap hidden">
+        <svg class="water-stream-svg" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Animated water curves with dash offsets -->
+          <path class="stream-line stream-1" d="M 12 8 Q 50 80, 85 200" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+          <path class="stream-line stream-2" d="M 16 10 Q 60 85, 90 205" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+          <path class="stream-line stream-3" d="M 8 12 Q 40 90, 80 195" fill="none" stroke="#0284c7" stroke-width="4" stroke-linecap="round"/>
+          <!-- Falling drops -->
+          <circle cx="30" cy="50" r="3.5" fill="#38bdf8" class="stream-drop drop-1"/>
+          <circle cx="55" cy="110" r="4" fill="#7dd3fc" class="stream-drop drop-2"/>
+          <circle cx="75" cy="165" r="3" fill="#bae6fd" class="stream-drop drop-3"/>
+          <circle cx="85" cy="195" r="4.5" fill="#0284c7" class="stream-drop drop-4"/>
+        </svg>
+        <!-- Splash impact ripples & particles at target pot -->
+        <div class="water-splash-zone" id="water-splash-zone">
+          <span class="splash-drop sd-1"></span>
+          <span class="splash-drop sd-2"></span>
+          <span class="splash-drop sd-3"></span>
+          <span class="splash-drop sd-4"></span>
+          <span class="splash-drop sd-5"></span>
+          <span class="splash-ripple sr-1"></span>
+          <span class="splash-ripple sr-2"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
