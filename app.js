@@ -153,6 +153,204 @@ const DEMO_CHAPTERS = [
 ];
 
 // =============================================================================
+// 1b. CBSE NCERT CLASS 11 & 12 BIO-MATHS CURRICULUM REPOSITORY
+// =============================================================================
+
+const NCERT_CURRICULUM = [
+  // ─── CLASS 12 BIOLOGY ───
+  {
+    id: "ncert-bio12-1", classNum: 12, subject: "Biology", plantType: "blossom", chapterNo: 1,
+    title: "Sexual Reproduction in Flowering Plants", unit: "Reproduction", weightage: "High Yield (NEET: ~3-4 Qs)",
+    ncertPage: "Chapter 1, NCERT Class 12",
+    formula: "Pollen tube enters via micropyle (Porogamy); Double fertilization: Syngamy (2n Zygote) + Triple Fusion (3n PEN).",
+    question: "What are the products of double fertilization in angiosperms, and what is the ploidy of each?",
+    answer: "Syngamy forms diploid (2n) zygote; triple fusion of one male gamete with diploid secondary nucleus forms triploid (3n) Primary Endosperm Nucleus (PEN).",
+    feynman: "Like a twin marriage: one gamete joins the egg to make the baby seed, while the second joins two polar nuclei to bake a 3-layer cake (endosperm) to nourish it!"
+  },
+  {
+    id: "ncert-bio12-2", classNum: 12, subject: "Biology", plantType: "grape", chapterNo: 2,
+    title: "Human Reproduction & Menstrual Cycle", unit: "Reproduction", weightage: "High Yield (NEET: ~3 Qs)",
+    ncertPage: "Chapter 2, NCERT Class 12",
+    formula: "Spermiogenesis (spermatid → sperm); LH surge triggers ovulation on Day 14; Cleavage → Morula → Blastocyst.",
+    question: "Which hormone surge causes rupture of the Graafian follicle and release of the ovum during the menstrual cycle?",
+    answer: "Rapid secretion of Luteinizing Hormone (LH) leading to maximum level (LH surge) mid-cycle (around 14th day) induces ovulation.",
+    feynman: "Like an egg timer: estrogen builds up until it trips an LH master alarm in the pituitary, bursting open the follicle door!"
+  },
+  {
+    id: "ncert-bio12-3", classNum: 12, subject: "Biology", plantType: "grape", chapterNo: 4,
+    title: "Principles of Inheritance and Variation", unit: "Genetics and Evolution", weightage: "Super High Yield (NEET: ~5-6 Qs)",
+    ncertPage: "Chapter 4, NCERT Class 12",
+    formula: "Monohybrid: 3:1 (phenotypic), 1:2:1 (genotypic); Dihybrid: 9:3:3:1; Test cross ratio = 1:1 or 1:1:1:1.",
+    question: "What is the genotypic and phenotypic ratio in incomplete dominance (e.g. Mirabilis jalapa / Antirrhinum)?",
+    answer: "Both phenotypic and genotypic ratios are identical: 1 Red (RR) : 2 Pink (Rr) : 1 White (rr).",
+    feynman: "Instead of one allele bullying the other into hiding, both alleles mix paint colors in the heterozygote like red and white blending to pink!"
+  },
+  {
+    id: "ncert-bio12-4", classNum: 12, subject: "Biology", plantType: "tree", chapterNo: 5,
+    title: "Molecular Basis of Inheritance (DNA & Lac Operon)", unit: "Genetics and Evolution", weightage: "Highest Yield (NEET: ~6-8 Qs)",
+    ncertPage: "Chapter 5, NCERT Class 12",
+    formula: "DNA pitch = 3.4 nm (10 bp/turn); Chargaff: A+G = T+C; Meselson-Stahl 15N/14N semi-conservative replication; Lac operon: i gene produces repressor.",
+    question: "Explain the central dogma of molecular biology and name the enzyme responsible for reverse transcription.",
+    answer: "DNA → (Transcription) → mRNA → (Translation) → Protein. Reverse transcriptase (RNA-dependent DNA polymerase) carries out reverse transcription in retroviruses.",
+    feynman: "DNA is the architect's blueprint safely locked in the vault; mRNA is the photocopy sent to the construction site; ribosomes are the masons assembling the protein."
+  },
+  {
+    id: "ncert-bio12-5", classNum: 12, subject: "Biology", plantType: "sunflower", chapterNo: 9,
+    title: "Biotechnology: Principles and Processes", unit: "Biotechnology", weightage: "High Yield (NEET: ~4-5 Qs)",
+    ncertPage: "Chapter 9, NCERT Class 12",
+    formula: "PCR steps: Denaturation (94°C) → Annealing (54°C) → Extension (72°C via Taq polymerase); EcoRI cuts at 5'-GAATTC-3'.",
+    question: "What are the three steps of Polymerase Chain Reaction (PCR) and which thermostable enzyme is used?",
+    answer: "1. Denaturation (heat to separate strands). 2. Annealing (primers bind). 3. Extension (Taq polymerase from Thermus aquaticus synthesizes new strands).",
+    feynman: "PCR is a molecular photocopier: heat unzips the paper, primers mark where to copy, and a heat-resistant enzyme duplicates a billion pages in an hour."
+  },
+  {
+    id: "ncert-bio12-6", classNum: 12, subject: "Biology", plantType: "tree", chapterNo: 11,
+    title: "Organisms and Populations & Ecosystems", unit: "Ecology", weightage: "High Yield (NEET: ~4 Qs)",
+    ncertPage: "Chapter 11, NCERT Class 12",
+    formula: "Verhulst-Pearl Logistic Growth: dN/dt = rN((K - N)/K); Lindeman's 10% ecological energy transfer efficiency.",
+    question: "State the equation for logistic population growth and define the parameter 'K'.",
+    answer: "dN/dt = rN[(K - N)/K], where N is population size, r is intrinsic rate of natural increase, and K is the carrying capacity of the habitat.",
+    feynman: "A garden bed can only hold as many plants as its soil and sunlight allow; as population crowds near capacity K, growth slows down to zero."
+  },
+
+  // ─── CLASS 11 BIOLOGY ───
+  {
+    id: "ncert-bio11-1", classNum: 11, subject: "Biology", plantType: "tree", chapterNo: 8,
+    title: "Cell: The Unit of Life", unit: "Cell Structure and Function", weightage: "High Yield (NEET: ~4 Qs)",
+    ncertPage: "Chapter 8, NCERT Class 11",
+    formula: "Fluid mosaic model by Singer & Nicolson (1972); Prokaryotic ribosomes (70S = 50S + 30S), Eukaryotic ribosomes (80S = 60S + 40S).",
+    question: "What does the fluid mosaic model propose regarding the structure of the plasma membrane?",
+    answer: "Proteins are embedded as a quasi-fluid mosaic within a phospholipid bilayer, allowing lateral movement of proteins within the overall lipid sea.",
+    feynman: "Imagine an ocean of lipids with icebergs of protein floating and drifting smoothly across the surface."
+  },
+  {
+    id: "ncert-bio11-2", classNum: 11, subject: "Biology", plantType: "sunflower", chapterNo: 11,
+    title: "Photosynthesis in Higher Plants (C3, C4, Z-Scheme)", unit: "Plant Physiology", weightage: "High Yield (NEET: ~3-4 Qs)",
+    ncertPage: "Chapter 11, NCERT Class 11",
+    formula: "PS II (P680) & PS I (P700); Calvin Cycle: 6CO2 + 18ATP + 12NADPH → 1 Glucose; C4 Hatch-Slack pathway uses PEP carboxylase in mesophyll.",
+    question: "Why do C4 plants lack photorespiration and show higher photosynthetic efficiency?",
+    answer: "Kranz anatomy concentrates CO2 around RuBisCO in bundle sheath cells via the C4 dicarboxylic acid cycle, suppressing RuBisCO oxygenase activity.",
+    feynman: "C4 plants run a turbocharger: they use PEP carboxylase as an ultra-sensitive pump to pack CO2 directly into RuBisCO's room so oxygen can never sneak in."
+  },
+  {
+    id: "ncert-bio11-3", classNum: 11, subject: "Biology", plantType: "cactus", chapterNo: 12,
+    title: "Respiration in Plants (Glycolysis & Krebs)", unit: "Plant Physiology", weightage: "High Yield (NEET: ~3 Qs)",
+    ncertPage: "Chapter 12, NCERT Class 11",
+    formula: "Glycolysis (EMP): 1 Glucose → 2 Pyruvate + 2ATP + 2NADH; Link Reaction: Pyruvate → Acetyl-CoA; 1 NADH = 3 ATP, 1 FADH2 = 2 ATP.",
+    question: "Where does glycolysis take place in the cell, and does it require molecular oxygen?",
+    answer: "Glycolysis takes place in the cytoplasm of all living cells; it is an anaerobic process that does not require oxygen.",
+    feynman: "The universal molecular splitting machine: every living creature cracks 6-carbon glucose into two 3-carbon halves right in the cell soup without needing oxygen."
+  },
+  {
+    id: "ncert-bio11-4", classNum: 11, subject: "Biology", plantType: "blossom", chapterNo: 9,
+    title: "Biomolecules & Enzyme Kinetics", unit: "Chemical Constituents", weightage: "High Yield (NEET: ~3 Qs)",
+    ncertPage: "Chapter 9, NCERT Class 11",
+    formula: "Competitive inhibition: Km increases, Vmax unchanged; Non-competitive: Vmax decreases, Km unchanged; Peptide bond: -CO-NH- with loss of H2O.",
+    question: "How does a competitive inhibitor affect the Km (Michaelis constant) and Vmax of an enzymatic reaction?",
+    answer: "A competitive inhibitor increases apparent Km (decreases affinity) but leaves Vmax unchanged, because high substrate concentration overcomes inhibition.",
+    feynman: "A rival key fits loosely in the lock: if you dump millions of the real keys into the room, the lock works at full speed (Vmax), but finding it takes more effort (higher Km)."
+  },
+
+  // ─── CLASS 12 MATHEMATICS ───
+  {
+    id: "ncert-math12-1", classNum: 12, subject: "Mathematics", plantType: "sunflower", chapterNo: 3,
+    title: "Matrices & Determinants", unit: "Algebra", weightage: "Super High Yield (CBSE: ~10 Marks, JEE: ~2 Qs)",
+    ncertPage: "Chapters 3 & 4, NCERT Class 12",
+    formula: "A · adj(A) = |A| · I; A⁻¹ = (1/|A|) · adj(A); |adj(A)| = |A|^(n-1); |AB| = |A||B|.",
+    question: "State the condition for a square matrix A to be invertible and state the formula for |adj(A)| for an n×n matrix.",
+    answer: "Matrix A is invertible if and only if |A| ≠ 0 (non-singular). For an n×n matrix, |adj(A)| = |A|^(n-1).",
+    feynman: "Like unfolding an origami crane: if determinant is zero, space was squashed flat into zero volume, meaning no formula can ever unfold it back."
+  },
+  {
+    id: "ncert-math12-2", classNum: 12, subject: "Mathematics", plantType: "tree", chapterNo: 5,
+    title: "Continuity and Differentiability (MVT)", unit: "Calculus", weightage: "High Yield (CBSE: ~8 Marks, JEE: ~2 Qs)",
+    ncertPage: "Chapter 5, NCERT Class 12",
+    formula: "f'(c) = [f(b) - f(a)] / (b - a) (Lagrange's MVT); d/dx [u/v] = (v u' - u v') / v²; d/dx [a^x] = a^x ln a.",
+    question: "State the conditions and conclusion of Lagrange's Mean Value Theorem for a function f(x) on [a, b].",
+    answer: "If f is continuous on [a, b] and differentiable on (a, b), then there exists at least one point c ∈ (a, b) such that f'(c) = [f(b) - f(a)] / (b - a).",
+    feynman: "If your car trip averaged 60 km/h over two hours, your speedometer had to point exactly at 60 km/h at least once along the highway."
+  },
+  {
+    id: "ncert-math12-3", classNum: 12, subject: "Mathematics", plantType: "grape", chapterNo: 7,
+    title: "Integrals (Substitution, Parts & King's Property)", unit: "Calculus", weightage: "Highest Yield (CBSE: ~12 Marks, JEE: ~3 Qs)",
+    ncertPage: "Chapter 7, NCERT Class 12",
+    formula: "∫ u v dx = u ∫ v dx - ∫ [u' (∫ v dx)] dx; King's Property: ∫_0^a f(x)dx = ∫_0^a f(a-x)dx; ∫ dx/(x² + a²) = (1/a) arctan(x/a).",
+    question: "State King's Property for definite integrals and explain why it is useful for evaluating trigonometric integrals.",
+    answer: "∫_a^b f(x)dx = ∫_a^b f(a + b - x)dx. When applied to ratios like sin x / (sin x + cos x) from 0 to π/2, adding the two integrals cancels terms to leave 1.",
+    feynman: "Flipping a garden flowerbed horizontally doesn't change its total area: integrate from left to right or right to left, the accumulated harvest is identical."
+  },
+  {
+    id: "ncert-math12-4", classNum: 12, subject: "Mathematics", plantType: "cactus", chapterNo: 9,
+    title: "Differential Equations (Linear & Homogeneous)", unit: "Calculus", weightage: "High Yield (CBSE: ~6 Marks, JEE: ~1-2 Qs)",
+    ncertPage: "Chapter 9, NCERT Class 12",
+    formula: "Linear DE: dy/dx + P(x)y = Q(x); Integrating Factor I.F. = e^(∫ P dx); General solution: y · (I.F.) = ∫ Q · (I.F.) dx + C.",
+    question: "How do you solve a first-order linear differential equation of the form dy/dx + P(x)y = Q(x)?",
+    answer: "Multiply through by the integrating factor I.F. = e^(∫ P(x)dx); then integrate d/dx[y · I.F.] = Q(x) · I.F. to get y · I.F. = ∫ Q(x) · I.F. dx + C.",
+    feynman: "Multiplying by the integrating factor glues the terms together via the product rule, turning a messy differential equation into a clean derivative ready to be undone."
+  },
+  {
+    id: "ncert-math12-5", classNum: 12, subject: "Mathematics", plantType: "tree", chapterNo: 10,
+    title: "Vector Algebra & 3D Geometry", unit: "Vectors and 3D Geometry", weightage: "Super High Yield (CBSE: ~14 Marks, JEE: ~2-3 Qs)",
+    ncertPage: "Chapters 10 & 11, NCERT Class 12",
+    formula: "a · b = |a||b| cos θ; a × b = |a||b| sin θ n̂; Shortest distance between skew lines d = |(a2 - a1) · (b1 × b2)| / |b1 × b2|.",
+    question: "What is the formula for the shortest distance between two skew lines r = a1 + λ b1 and r = a2 + μ b2?",
+    answer: "d = |(a2 - a1) · (b1 × b2)| / |b1 × b2|. If d = 0, the lines intersect.",
+    feynman: "The cross product creates a flagpole perpendicular to both walking trails; the shortest distance is simply the shadow of the bridge connecting them projected onto that pole."
+  },
+  {
+    id: "ncert-math12-6", classNum: 12, subject: "Mathematics", plantType: "blossom", chapterNo: 13,
+    title: "Probability (Bayes' Theorem & Conditional)", unit: "Probability", weightage: "High Yield (CBSE: ~8 Marks, JEE: ~1-2 Qs)",
+    ncertPage: "Chapter 13, NCERT Class 12",
+    formula: "P(E_i|A) = [P(E_i)P(A|E_i)] / [Σ P(E_j)P(A|E_j)]; P(A ∩ B) = P(A) · P(B|A); Independent: P(A ∩ B) = P(A)P(B).",
+    question: "State Bayes' Theorem for finding the posterior probability P(E1|A) given mutually exclusive and exhaustive events E1, E2, ... En.",
+    answer: "P(E1|A) = [P(E1) · P(A|E1)] / [Σ_{k=1}^n P(Ek) · P(A|Ek)].",
+    feynman: "Updating your beliefs with evidence: start with your prior suspicion, multiply by how likely that evidence would be under your hypothesis, and divide by the total probability of seeing that evidence."
+  },
+
+  // ─── CLASS 11 MATHEMATICS ───
+  {
+    id: "ncert-math11-1", classNum: 11, subject: "Mathematics", plantType: "sunflower", chapterNo: 3,
+    title: "Trigonometric Functions & Identities", unit: "Trigonometry", weightage: "High Yield Foundation (JEE: ~2 Qs, CBSE: ~8 Marks)",
+    ncertPage: "Chapter 3, NCERT Class 11",
+    formula: "sin(A±B) = sin A cos B ± cos A sin B; cos 2A = cos²A - sin²A = 2cos²A - 1; tan(A+B) = (tan A + tan B)/(1 - tan A tan B).",
+    question: "Express cos 2x in terms of tan x, and write the formula for sin 3x.",
+    answer: "cos 2x = (1 - tan²x) / (1 + tan²x); sin 3x = 3 sin x - 4 sin³x.",
+    feynman: "Trigonometric transformations are like gears: changing angles inside the function smoothly scales and shifts frequencies without altering the underlying circle."
+  },
+  {
+    id: "ncert-math11-2", classNum: 11, subject: "Mathematics", plantType: "tree", chapterNo: 11,
+    title: "Conic Sections (Parabola, Ellipse, Hyperbola)", unit: "Coordinate Geometry", weightage: "Super High Yield (JEE: ~2-3 Qs, CBSE: ~8 Marks)",
+    ncertPage: "Chapter 11, NCERT Class 11",
+    formula: "Parabola: y² = 4ax (focus (a,0), directrix x = -a); Ellipse: x²/a² + y²/b² = 1 (e = √(1 - b²/a²)); Hyperbola: x²/a² - y²/b² = 1 (e > 1).",
+    question: "What is the relation between semi-major axis a, semi-minor axis b, and eccentricity e for an ellipse x²/a² + y²/b² = 1?",
+    answer: "b² = a²(1 - e²), or e = √(1 - b²/a²), where 0 < e < 1. The foci are at (±ae, 0).",
+    feynman: "Slice an ice cream cone at different angles: horizontal gives a circle, tilted gives an oval ellipse, parallel to the slope gives an open parabola, and steep cuts both cones as a hyperbola."
+  },
+  {
+    id: "ncert-math11-3", classNum: 11, subject: "Mathematics", plantType: "cactus", chapterNo: 13,
+    title: "Limits and Derivatives (Calculus Foundation)", unit: "Calculus", weightage: "Core Foundation (JEE: ~2 Qs, CBSE: ~6 Marks)",
+    ncertPage: "Chapter 13, NCERT Class 11",
+    formula: "lim_{x→0} (sin x / x) = 1; lim_{x→0} (e^x - 1)/x = 1; First principle: f'(x) = lim_{h→0} [f(x+h) - f(x)] / h.",
+    question: "Prove that lim_{x→0} (sin x / x) = 1 geometrically using the unit circle squeeze theorem.",
+    answer: "In the unit circle for 0 < x < π/2, area(Δ OAP) < area(sector OAP) < area(Δ OA T) yields sin x < x < tan x; dividing by sin x gives 1 < x/sin x < 1/cos x; by squeeze theorem as x → 0, limit is 1.",
+    feynman: "Zooming into a circle curve so closely that the arc and its chord become indistinguishable: at micro-scale, the bend turns completely straight!"
+  }
+];
+
+// =============================================================================
+// 1c. REVISION TROPHIES
+// =============================================================================
+
+const REVISION_TROPHIES = [
+  { id: "trophy-grape", icon: "🍇", title: "Royal Concord Cluster", desc: "Revise a grapevine chapter 5+ times.", check: s => s.chapters.some(c => getPlantType(c) === "grape" && c.revisions >= 5) },
+  { id: "trophy-oak", icon: "🌰", title: "Golden Oak Acorn", desc: "Grow a tree to stability S > 14 days.", check: s => s.chapters.some(c => getPlantType(c) === "tree" && c.stability >= 14) },
+  { id: "trophy-sunflower", icon: "🌻", title: "Solar Flare Bloom", desc: "Achieve ≥95% retention on a sunflower.", check: s => s.chapters.some(c => getPlantType(c) === "sunflower" && retention(c, s.simDays) >= 0.95) },
+  { id: "trophy-cactus", icon: "🌵", title: "Desert Pearl", desc: "Maintain a study streak of 7+ consecutive days.", check: s => s.streak >= 7 },
+  { id: "trophy-ncert", icon: "📚", title: "CBSE Bio-Maths Scholar", desc: "Plant 6 or more authentic NCERT chapters in your garden.", check: s => s.chapters.filter(c => c.id.startsWith("ncert-")).length >= 6 },
+  { id: "trophy-sprint", icon: "⚡", title: "NTA Sprint Master", desc: "Score +16 or higher in a NEET/JEE Formula Sprint.", check: () => parseInt(localStorage.getItem("mg_sprint_highscore") || "0") >= 16 }
+];
+
+// =============================================================================
 // 2. APP STATE
 // =============================================================================
 
@@ -634,6 +832,13 @@ function renderGarden() {
     const subClass = `sub-${ch.subject}`;
     const plantType = getPlantType(ch);
     const spec = speciesMeta(plantType);
+    const hasPollinators = r >= 0.70;
+    const pollinatorsHtml = hasPollinators ? `
+      <div class="pollinator-wrap">
+        <div class="pollinator bee" title="Honeybee pollinating this thriving chapter">🐝</div>
+        ${r >= 0.85 ? `<div class="pollinator butterfly" title="Butterfly visiting this healthy bloom">🦋</div>` : ""}
+        <div class="pollinator firefly" title="Firefly glowing in night garden">✨</div>
+      </div>` : "";
 
     return `<div class="plant-card ${w.cardClass} tier-${tier.tier}" data-id="${ch.id}">
       ${tier.show ? `<div class="tier-badge tier-${tier.tier}">${tier.label}</div>` : ""}
@@ -646,7 +851,7 @@ function renderGarden() {
         <span class="retention-badge ${w.retClass}">${pct >= 60 ? "🌱" : "🥀"} ${pct}%</span>
       </div>
       <h3 class="plant-title">${esc(ch.title)}</h3>
-      <div class="plant-visual">${plantSVG(ch, r, w)}</div>
+      <div class="plant-visual">${plantSVG(ch, r, w)}${pollinatorsHtml}</div>
       <div class="plant-stats">
         <div class="stat-item"><span class="stat-key">Stability S</span><span class="stat-num">${ch.stability.toFixed(1)}d</span></div>
         <div class="stat-item"><span class="stat-key">Half-life t½</span><span class="stat-num">${halfLife(ch.stability)}d</span></div>
@@ -808,24 +1013,17 @@ function setupTimeMachine() {
 }
 
 // =============================================================================
-// 8. AMBIENT SOUND ENGINE (Web Audio API — no files needed)
+// 8. AMBIENT SOUNDSCAPE ENGINE (Web Audio API — multi-nature synthesis)
 // =============================================================================
 
-let soundEnabled = false;
+let soundState = {
+  enabled: false,
+  type: "rain", // "rain" | "breeze" | "stream" | "off"
+  volume: 0.25
+};
 let soundNodes = [];
 let soundCtx = null;
-
-function toggleSound() {
-  soundEnabled = !soundEnabled;
-  const btn = document.getElementById("btn-toggle-sound");
-  if (soundEnabled) {
-    btn.textContent = "🔊";
-    startAmbientSound();
-  } else {
-    btn.textContent = "🔇";
-    stopAmbientSound();
-  }
-}
+let soundGainNode = null;
 
 function getAudioCtx() {
   if (!soundCtx) {
@@ -836,39 +1034,154 @@ function getAudioCtx() {
   return soundCtx;
 }
 
-function startAmbientSound() {
+function startAmbientSound(type = soundState.type) {
   const ctx = getAudioCtx();
   if (!ctx) return;
   stopAmbientSound();
 
-  // Gentle rain-like pink noise
-  const bufferSize = ctx.sampleRate * 2;
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-  let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
-  for (let i = 0; i < bufferSize; i++) {
-    const white = Math.random() * 2 - 1;
-    b0=.99886*b0+white*.0555179; b1=.99332*b1+white*.0750759;
-    b2=.96900*b2+white*.1538520; b3=.86650*b3+white*.3104856;
-    b4=.55000*b4+white*.5329522; b5=-.7616*b5-white*.0168980;
-    data[i]=(b0+b1+b2+b3+b4+b5+b6+white*.5362)*0.11;
-    b6=white*.115926;
+  if (type === "off") {
+    soundState.enabled = false;
+    updateSoundUI();
+    return;
   }
-  const src = ctx.createBufferSource();
-  src.buffer = buffer; src.loop = true;
 
-  const gain = ctx.createGain(); gain.gain.value = 0.06;
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass"; filter.frequency.value = 600;
+  soundState.enabled = true;
+  soundState.type = type;
 
-  src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
-  src.start();
-  soundNodes = [src, gain, filter];
+  const masterGain = ctx.createGain();
+  masterGain.gain.setValueAtTime(soundState.volume, ctx.currentTime);
+  masterGain.connect(ctx.destination);
+  soundGainNode = masterGain;
+
+  if (type === "rain") {
+    const bufferSize = ctx.sampleRate * 2;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      b0=.99886*b0+white*.0555179; b1=.99332*b1+white*.0750759;
+      b2=.96900*b2+white*.1538520; b3=.86650*b3+white*.3104856;
+      b4=.55000*b4+white*.5329522; b5=-.7616*b5-white*.0168980;
+      data[i]=(b0+b1+b2+b3+b4+b5+b6+white*.5362)*0.16;
+      b6=white*.115926;
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buffer; src.loop = true;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass"; filter.frequency.value = 650;
+
+    src.connect(filter); filter.connect(masterGain);
+    src.start();
+    soundNodes = [src, filter, masterGain];
+  } else if (type === "breeze") {
+    const bufferSize = ctx.sampleRate * 2;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.15;
+    const src = ctx.createBufferSource();
+    src.buffer = buffer; src.loop = true;
+
+    const bp = ctx.createBiquadFilter();
+    bp.type = "bandpass"; bp.frequency.value = 400; bp.Q.value = 1.8;
+
+    const lfo = ctx.createOscillator();
+    lfo.type = "sine"; lfo.frequency.value = 0.15;
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.value = 180;
+    lfo.connect(lfoGain); lfoGain.connect(bp.frequency);
+    lfo.start();
+
+    src.connect(bp); bp.connect(masterGain);
+    src.start();
+    soundNodes = [src, bp, lfo, lfoGain, masterGain];
+  } else if (type === "stream") {
+    const bufferSize = ctx.sampleRate * 2;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.12;
+    const src = ctx.createBufferSource();
+    src.buffer = buffer; src.loop = true;
+
+    const bp1 = ctx.createBiquadFilter();
+    bp1.type = "bandpass"; bp1.frequency.value = 520; bp1.Q.value = 3.5;
+    const bp2 = ctx.createBiquadFilter();
+    bp2.type = "bandpass"; bp2.frequency.value = 850; bp2.Q.value = 4.0;
+
+    src.connect(bp1); bp1.connect(masterGain);
+    src.connect(bp2); bp2.connect(masterGain);
+    src.start();
+    soundNodes = [src, bp1, bp2, masterGain];
+  }
+
+  updateSoundUI();
 }
 
 function stopAmbientSound() {
   soundNodes.forEach(n => { try { n.disconnect(); if (n.stop) n.stop(); } catch(e){} });
   soundNodes = [];
+  soundGainNode = null;
+  soundState.enabled = false;
+  updateSoundUI();
+}
+
+function updateSoundUI() {
+  const btn = document.getElementById("btn-sound-toggle");
+  const icon = document.getElementById("sound-icon");
+  const name = document.getElementById("sound-name");
+  if (!btn) return;
+
+  if (soundState.enabled) {
+    btn.classList.add("sound-active");
+    if (soundState.type === "rain")   { if (icon) icon.textContent = "🌧️"; if (name) name.textContent = "Rain Audio"; }
+    if (soundState.type === "breeze") { if (icon) icon.textContent = "🍃"; if (name) name.textContent = "Breeze Audio"; }
+    if (soundState.type === "stream") { if (icon) icon.textContent = "🌊"; if (name) name.textContent = "Stream Audio"; }
+  } else {
+    btn.classList.remove("sound-active");
+    if (icon) icon.textContent = "🎧";
+    if (name) name.textContent = "Focus Audio";
+  }
+
+  document.querySelectorAll(".sound-option").forEach(opt => {
+    opt.classList.toggle("active", opt.dataset.sound === (soundState.enabled ? soundState.type : "off"));
+  });
+}
+
+function setupSoundscapeControls() {
+  const btn = document.getElementById("btn-sound-toggle");
+  const dropdown = document.getElementById("sound-dropdown");
+  const vol = document.getElementById("sound-volume");
+
+  btn?.addEventListener("click", e => {
+    e.stopPropagation();
+    dropdown?.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", e => {
+    if (!e.target.closest("#soundscape-pill")) {
+      dropdown?.classList.add("hidden");
+    }
+  });
+
+  document.querySelectorAll(".sound-option").forEach(opt => {
+    opt.addEventListener("click", () => {
+      const type = opt.dataset.sound;
+      if (type === "off") {
+        stopAmbientSound();
+      } else {
+        startAmbientSound(type);
+      }
+      dropdown?.classList.add("hidden");
+    });
+  });
+
+  vol?.addEventListener("input", e => {
+    soundState.volume = parseFloat(e.target.value);
+    if (soundGainNode && soundCtx) {
+      soundGainNode.gain.setValueAtTime(soundState.volume, soundCtx.currentTime);
+    }
+  });
 }
 
 function playWaterSound() {
@@ -1832,6 +2145,7 @@ function updateSandboxDerived() {
 // =============================================================================
 
 function updateStreak() {
+  if (typeof recordDailyRevision === "function") recordDailyRevision();
   const todayStr = today();
   if (state.lastStudyDate === todayStr) return;
   const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
@@ -1843,7 +2157,8 @@ function updateStreak() {
   state.lastStudyDate = todayStr;
   localStorage.setItem("mg_streak", state.streak);
   localStorage.setItem("mg_last_study", todayStr);
-  document.getElementById("streak-count").textContent = state.streak;
+  const el = document.getElementById("streak-count");
+  if (el) el.textContent = state.streak;
 }
 
 // =============================================================================
@@ -1977,6 +2292,9 @@ function switchTab(id) {
   if (id === "pomodoro")   renderPomoPlant(0);
   if (id === "compare")    runCompare();
   if (id === "sandbox")    { if (!state.sandboxChart) initSandboxChart(); else { updateSandboxChart(); setTimeout(()=>state.sandboxChart.resize(),50); } }
+  if (id === "sprint")     initSprintView();
+  if (id === "ncert")      renderNCERTLibrary();
+  if (id === "trophies")   { renderTrophies(); renderHeatmap(); }
 }
 
 // =============================================================================
@@ -2395,6 +2713,465 @@ function esc(str) {
 }
 
 // =============================================================================
+// 26. NEET & JEE +4 / −1 FORMULA SPRINT ENGINE
+// =============================================================================
+
+let sprintState = {
+  running: false,
+  mode: "all",
+  timeLeft: 60,
+  timerInterval: null,
+  score: 0,
+  correct: 0,
+  wrong: 0,
+  skipped: 0,
+  currentIndex: 0,
+  questions: []
+};
+
+function getSprintPool(mode) {
+  let pool = [];
+  if (mode === "bio12") pool = NCERT_CURRICULUM.filter(c => c.classNum === 12 && c.subject === "Biology");
+  else if (mode === "math12") pool = NCERT_CURRICULUM.filter(c => c.classNum === 12 && c.subject === "Mathematics");
+  else if (mode === "bio11") pool = NCERT_CURRICULUM.filter(c => c.classNum === 11 && c.subject === "Biology");
+  else if (mode === "math11") pool = NCERT_CURRICULUM.filter(c => c.classNum === 11 && c.subject === "Mathematics");
+  else if (mode === "garden") pool = state.chapters.map(c => ({
+    title: c.title, subject: c.subject, formula: c.question, question: c.question, answer: c.answer, feynman: c.feynman, weightage: "From Active Garden"
+  }));
+  else pool = [...NCERT_CURRICULUM, ...DEMO_CHAPTERS.map(d => ({
+    title: d.title, subject: d.subject, formula: d.question, question: d.question, answer: d.answer, feynman: d.feynman, weightage: "High-Yield Foundation"
+  }))];
+
+  return [...pool].sort(() => Math.random() - 0.5);
+}
+
+function initSprintView() {
+  sprintState.questions = getSprintPool(sprintState.mode);
+  sprintState.currentIndex = 0;
+  renderSprintCard();
+  updateSprintScoreHUD();
+}
+
+function renderSprintCard() {
+  if (!sprintState.questions.length) {
+    document.getElementById("sprint-question").textContent = "No questions available for this filter.";
+    return;
+  }
+  const q = sprintState.questions[sprintState.currentIndex % sprintState.questions.length];
+  
+  const subEl = document.getElementById("sprint-subject");
+  const wtEl  = document.getElementById("sprint-weightage");
+  const qEl   = document.getElementById("sprint-question");
+  const fBox  = document.getElementById("sprint-formula");
+  const aEl   = document.getElementById("sprint-answer");
+  const feyEl = document.getElementById("sprint-feynman");
+
+  if (subEl) subEl.textContent = q.subject;
+  if (wtEl)  wtEl.textContent  = q.weightage || "🔥 High Yield";
+  if (qEl)   qEl.textContent   = q.title;
+  if (fBox)  fBox.textContent  = q.formula || q.question;
+  if (aEl)   aEl.textContent   = q.answer;
+  if (feyEl) feyEl.textContent = q.feynman ? `💡 Feynman Insight: ${q.feynman}` : "";
+
+  document.getElementById("sprint-answer-box")?.classList.add("hidden");
+  document.getElementById("btn-sprint-reveal")?.classList.remove("hidden");
+  document.getElementById("sprint-grade-btns")?.classList.add("hidden");
+}
+
+function revealSprintAnswer() {
+  document.getElementById("sprint-answer-box")?.classList.remove("hidden");
+  document.getElementById("btn-sprint-reveal")?.classList.add("hidden");
+  document.getElementById("sprint-grade-btns")?.classList.remove("hidden");
+}
+
+function gradeSprintQuestion(type) {
+  if (type === "correct") {
+    sprintState.score += 4;
+    sprintState.correct++;
+    playWaterSound();
+  } else if (type === "wrong") {
+    sprintState.score -= 1;
+    sprintState.wrong++;
+    playBuzzerSound();
+  } else {
+    sprintState.skipped++;
+  }
+
+  const high = parseInt(localStorage.getItem("mg_sprint_highscore") || "0");
+  if (sprintState.score > high) localStorage.setItem("mg_sprint_highscore", sprintState.score);
+
+  updateSprintScoreHUD();
+  sprintState.currentIndex++;
+  renderSprintCard();
+}
+
+function updateSprintScoreHUD() {
+  const scoreEl = document.getElementById("sprint-score");
+  const accEl   = document.getElementById("sprint-accuracy");
+  const negEl   = document.getElementById("sprint-negatives");
+
+  if (scoreEl) scoreEl.textContent = (sprintState.score > 0 ? "+" : "") + sprintState.score;
+  const attempted = sprintState.correct + sprintState.wrong;
+  const acc = attempted > 0 ? Math.round((sprintState.correct / attempted) * 100) : 0;
+  if (accEl) accEl.textContent = acc + "%";
+  if (negEl) negEl.textContent = "−" + sprintState.wrong;
+}
+
+function startSprintTimer() {
+  if (sprintState.running) return;
+  sprintState.running = true;
+  sprintState.timeLeft = 60;
+  sprintState.score = 0;
+  sprintState.correct = 0;
+  sprintState.wrong = 0;
+  sprintState.skipped = 0;
+  sprintState.currentIndex = 0;
+  sprintState.questions = getSprintPool(sprintState.mode);
+
+  renderSprintCard();
+  updateSprintScoreHUD();
+
+  const timerEl = document.getElementById("sprint-timer");
+  const startBtn = document.getElementById("btn-sprint-start");
+  if (startBtn) startBtn.textContent = "⏸ Running...";
+
+  clearInterval(sprintState.timerInterval);
+  sprintState.timerInterval = setInterval(() => {
+    sprintState.timeLeft--;
+    if (timerEl) timerEl.textContent = sprintState.timeLeft + "s";
+
+    if (sprintState.timeLeft <= 0) {
+      clearInterval(sprintState.timerInterval);
+      sprintState.running = false;
+      if (startBtn) startBtn.textContent = "⚡ Start 60s Sprint";
+      finishSprint();
+    }
+  }, 1000);
+}
+
+function finishSprint() {
+  playGrowthChime();
+  confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+  const attempted = sprintState.correct + sprintState.wrong;
+  const acc = attempted > 0 ? Math.round((sprintState.correct / attempted) * 100) : 0;
+  alert(`🏁 Sprint Completed!\n\nNTA Score: ${sprintState.score}\nCorrect (+4): ${sprintState.correct}\nWrong (−1): ${sprintState.wrong}\nSkipped: ${sprintState.skipped}\nAccuracy: ${acc}%\n\nKeep negative marks to zero to boost your percentile!`);
+}
+
+function resetSprint() {
+  clearInterval(sprintState.timerInterval);
+  sprintState.running = false;
+  sprintState.timeLeft = 60;
+  sprintState.score = 0;
+  sprintState.correct = 0;
+  sprintState.wrong = 0;
+  sprintState.skipped = 0;
+  sprintState.currentIndex = 0;
+  const timerEl = document.getElementById("sprint-timer");
+  const startBtn = document.getElementById("btn-sprint-start");
+  if (timerEl) timerEl.textContent = "60s";
+  if (startBtn) startBtn.textContent = "⚡ Start 60s Sprint";
+  initSprintView();
+}
+
+function playBuzzerSound() {
+  try {
+    const ctx = getAudioCtx(); if (!ctx) return;
+    const osc = ctx.createOscillator(); const g = ctx.createGain();
+    osc.type = "sawtooth"; osc.frequency.value = 160;
+    g.gain.setValueAtTime(0.08, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + 0.26);
+  } catch(e){}
+}
+
+function setupSprintControls() {
+  document.querySelectorAll("[data-sprint-mode]").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("[data-sprint-mode]").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      sprintState.mode = chip.dataset.sprintMode;
+      initSprintView();
+    });
+  });
+
+  document.getElementById("btn-sprint-start")?.addEventListener("click", () => {
+    if (sprintState.running) {
+      clearInterval(sprintState.timerInterval);
+      sprintState.running = false;
+      const startBtn = document.getElementById("btn-sprint-start");
+      if (startBtn) startBtn.textContent = "⚡ Resume Sprint";
+    } else {
+      startSprintTimer();
+    }
+  });
+
+  document.getElementById("btn-sprint-reset")?.addEventListener("click", resetSprint);
+  document.getElementById("btn-sprint-reveal")?.addEventListener("click", revealSprintAnswer);
+
+  document.getElementById("btn-grade-correct")?.addEventListener("click", () => gradeSprintQuestion("correct"));
+  document.getElementById("btn-grade-wrong")?.addEventListener("click", () => gradeSprintQuestion("wrong"));
+  document.getElementById("btn-grade-unattempted")?.addEventListener("click", () => gradeSprintQuestion("skip"));
+}
+
+// =============================================================================
+// 27. CBSE NCERT CLASS 11 & 12 CURRICULUM BROWSER
+// =============================================================================
+
+let ncertFilter = "all";
+
+function renderNCERTLibrary() {
+  const grid = document.getElementById("ncert-cards-grid");
+  const countEl = document.getElementById("ncert-total-count");
+  if (!grid) return;
+
+  if (countEl) countEl.textContent = NCERT_CURRICULUM.length;
+
+  const filtered = NCERT_CURRICULUM.filter(item => {
+    if (ncertFilter === "bio12")  return item.classNum === 12 && item.subject === "Biology";
+    if (ncertFilter === "math12") return item.classNum === 12 && item.subject === "Mathematics";
+    if (ncertFilter === "bio11")  return item.classNum === 11 && item.subject === "Biology";
+    if (ncertFilter === "math11") return item.classNum === 11 && item.subject === "Mathematics";
+    return true;
+  });
+
+  grid.innerHTML = filtered.map(item => {
+    const isPlanted = state.chapters.some(c => c.id === item.id || c.title.toLowerCase() === item.title.toLowerCase());
+    const spec = speciesMeta(item.plantType);
+    const badgeClass = item.subject === "Biology" ? "bio" : "math";
+
+    return `
+      <div class="ncert-card">
+        <div>
+          <div class="ncert-card-hdr">
+            <span class="ncert-badge ${badgeClass}">Class ${item.classNum} ${item.subject}</span>
+            <span class="species-badge species-${item.plantType}">${spec.icon} ${spec.name}</span>
+          </div>
+          <h4 class="ncert-card-title">${esc(item.title)}</h4>
+          <p class="muted" style="font-size:.78rem;margin-bottom:.5rem">${esc(item.unit)} • ${esc(item.weightage)}</p>
+          <div class="ncert-card-formula">${esc(item.formula)}</div>
+        </div>
+        <div class="ncert-card-actions">
+          <span class="muted" style="font-size:.75rem">${esc(item.ncertPage)}</span>
+          ${isPlanted ? `
+            <span style="font-size:.82rem;font-weight:700;color:var(--green-l)">✓ In Garden</span>
+          ` : `
+            <button class="btn btn-primary btn-sm" onclick="plantNCERTChapter('${item.id}')">🌱 Plant in Garden</button>
+          `}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function plantNCERTChapter(id) {
+  const item = NCERT_CURRICULUM.find(c => c.id === id);
+  if (!item) return;
+
+  if (state.chapters.some(c => c.id === id)) {
+    alert("This chapter is already planted in your garden!");
+    return;
+  }
+
+  const s0 = 2.4;
+  state.chapters.unshift({
+    id: item.id,
+    title: item.title,
+    subject: item.subject,
+    plantType: item.plantType,
+    dateStudied: today(),
+    lastWatered: today(),
+    revisions: 0,
+    difficulty: 2,
+    stability: s0,
+    question: item.question,
+    answer: item.answer,
+    feynman: item.feynman
+  });
+
+  saveChapters();
+  renderGarden();
+  renderNCERTLibrary();
+  playWaterSound();
+  confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+  alert(`🌱 Planted "${item.title}" into your garden! Water it regularly to build permanent memory stability.`);
+}
+
+function plantAllNCERTUnit(filterType) {
+  const toPlant = NCERT_CURRICULUM.filter(item => {
+    if (filterType === "bio12")  return item.classNum === 12 && item.subject === "Biology";
+    if (filterType === "math12") return item.classNum === 12 && item.subject === "Mathematics";
+    return false;
+  });
+
+  let count = 0;
+  toPlant.forEach(item => {
+    if (!state.chapters.some(c => c.id === item.id)) {
+      state.chapters.push({
+        id: item.id,
+        title: item.title,
+        subject: item.subject,
+        plantType: item.plantType,
+        dateStudied: today(),
+        lastWatered: today(),
+        revisions: 0,
+        difficulty: 2,
+        stability: 2.4,
+        question: item.question,
+        answer: item.answer,
+        feynman: item.feynman
+      });
+      count++;
+    }
+  });
+
+  if (count > 0) {
+    saveChapters();
+    renderGarden();
+    renderNCERTLibrary();
+    playGrowthChime();
+    confetti({ particleCount: 90, spread: 80, origin: { y: 0.5 } });
+    alert(`🌿 Successfully planted ${count} NCERT chapters into your garden!`);
+  } else {
+    alert("All these chapters are already growing in your garden!");
+  }
+}
+
+function setupNCERTControls() {
+  document.querySelectorAll("[data-ncert-filter]").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("[data-ncert-filter]").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      ncertFilter = chip.dataset.ncertFilter;
+      renderNCERTLibrary();
+    });
+  });
+
+  document.getElementById("btn-plant-all-ncert12bio")?.addEventListener("click", () => plantAllNCERTUnit("bio12"));
+  document.getElementById("btn-plant-all-ncert12math")?.addEventListener("click", () => plantAllNCERTUnit("math12"));
+}
+
+// =============================================================================
+// 28. HARVEST TROPHIES, 365-DAY HEATMAP & SHAREABLE PROGRESS CARD
+// =============================================================================
+
+function recordDailyRevision() {
+  const t = today();
+  let act = {};
+  try {
+    act = JSON.parse(localStorage.getItem("mg_daily_activity") || "{}");
+  } catch(e){}
+  act[t] = (act[t] || 0) + 1;
+  localStorage.setItem("mg_daily_activity", JSON.stringify(act));
+}
+
+function getDailyActivity() {
+  try {
+    const act = JSON.parse(localStorage.getItem("mg_daily_activity") || "{}");
+    if (Object.keys(act).length === 0) {
+      act[daysAgo(1)] = 3;
+      act[daysAgo(2)] = 2;
+      act[daysAgo(3)] = 4;
+      act[daysAgo(5)] = 1;
+      act[today()] = 2;
+    }
+    return act;
+  } catch(e) {
+    return {};
+  }
+}
+
+function renderHeatmap() {
+  const grid = document.getElementById("revision-heatmap-grid");
+  if (!grid) return;
+
+  const act = getDailyActivity();
+  const cells = [];
+  const totalDays = 52 * 7;
+
+  for (let i = totalDays - 1; i >= 0; i--) {
+    const dStr = daysAgo(i);
+    const count = act[dStr] || 0;
+    let lvl = "";
+    if (count >= 4) lvl = "lvl-4";
+    else if (count === 3) lvl = "lvl-3";
+    else if (count === 2) lvl = "lvl-2";
+    else if (count === 1) lvl = "lvl-1";
+
+    cells.push(`<div class="heatmap-cell ${lvl}" title="${dStr}: ${count} revisions"></div>`);
+  }
+
+  grid.innerHTML = cells.join("");
+}
+
+function renderTrophies() {
+  const shelf = document.getElementById("trophy-shelf");
+  if (!shelf) return;
+
+  shelf.innerHTML = REVISION_TROPHIES.map(t => {
+    const unlocked = t.check(state);
+    return `
+      <div class="trophy-card ${unlocked ? "unlocked" : "locked"}">
+        <div class="trophy-icon">${t.icon}</div>
+        <div class="trophy-info">
+          <h4>${esc(t.title)}</h4>
+          <p>${esc(t.desc)}</p>
+          <span style="font-size:.72rem;font-weight:700;color:${unlocked ? "var(--green-l)" : "var(--text-3)"};display:block;margin-top:.3rem">
+            ${unlocked ? "✓ UNLOCKED" : "🔒 LOCKED"}
+          </span>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function openShareCard() {
+  const modal = document.getElementById("modal-share-card");
+  if (!modal) return;
+
+  let totalRet = 0, totalRev = 0;
+  state.chapters.forEach(c => {
+    totalRet += retention(c, state.simDays);
+    totalRev += c.revisions || 0;
+  });
+  const avgHealth = state.chapters.length ? Math.round((totalRet / state.chapters.length) * 100) : 100;
+
+  document.getElementById("share-card-health").textContent = avgHealth + "%";
+  document.getElementById("share-card-plants").textContent = state.chapters.length;
+  document.getElementById("share-card-streak").textContent = state.streak + "d";
+  document.getElementById("share-card-revisions").textContent = totalRev;
+  document.getElementById("share-card-date").textContent = new Date().toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" });
+
+  modal.classList.remove("hidden");
+}
+
+function setupShareCardActions() {
+  document.getElementById("btn-open-share-card")?.addEventListener("click", openShareCard);
+
+  document.getElementById("btn-copy-card-text")?.addEventListener("click", () => {
+    let totalRet = 0, totalRev = 0;
+    state.chapters.forEach(c => { totalRet += retention(c, state.simDays); totalRev += c.revisions || 0; });
+    const avgHealth = state.chapters.length ? Math.round((totalRet / state.chapters.length) * 100) : 100;
+
+    const summary = `🌿 *My Memory Garden Study Progress*
+📅 Date: ${today()}
+🔥 Day Streak: ${state.streak} days
+🌱 Active Plants: ${state.chapters.length} chapters
+💚 Garden Health: ${avgHealth}%
+💧 Total Revisions: ${totalRev}
+✨ Crafted by Lujain • https://memory-garden-zeta.vercel.app`;
+
+    navigator.clipboard.writeText(summary).then(() => {
+      alert("📋 Copied summary to clipboard! Share it in your study group or WhatsApp.");
+    });
+  });
+
+  document.getElementById("btn-print-card")?.addEventListener("click", () => {
+    window.print();
+  });
+}
+
+// =============================================================================
 // 25. BOOT
 // =============================================================================
 
@@ -2416,6 +3193,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setupExamPlanner();
   setupSandbox();
   setupWaterBucket();
+  setupSoundscapeControls();
+  setupSprintControls();
+  setupNCERTControls();
+  setupShareCardActions();
 
   // Update dynamic elements
   renderGarden();
@@ -2428,5 +3209,5 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCircadianTimeline(state.chronotype);
   }
 
-  console.log("🌱 Memory Garden v2.0 — All systems online.");
+  console.log("🌱 Memory Garden v2.5 (CBSE Bio-Maths Edition) — All systems online.");
 });

@@ -183,7 +183,23 @@
       <span class="stat-label">Need Water</span>
     </div>
     <div class="nav-actions">
-      <button class="btn btn-ghost btn-sm" id="btn-toggle-sound" title="Toggle ambient soundscape">🔇</button>
+      <!-- Ambient Soundscape Selector -->
+      <div class="soundscape-pill" id="soundscape-pill">
+        <button class="btn-sound-toggle" id="btn-sound-toggle" title="Focus Soundscape (Rain, Breeze, Stream)">
+          <span id="sound-icon">🎧</span>
+          <span id="sound-name" class="sound-name">Focus Audio</span>
+        </button>
+        <div class="sound-dropdown hidden" id="sound-dropdown">
+          <div class="sound-option active" data-sound="rain">🌧️ Monsoon Rain</div>
+          <div class="sound-option" data-sound="breeze">🍃 Forest Breeze</div>
+          <div class="sound-option" data-sound="stream">🌊 Zen Stream</div>
+          <div class="sound-option" data-sound="off">🔇 Mute Audio</div>
+          <div class="sound-vol-row">
+            <span>Vol</span>
+            <input type="range" id="sound-volume" min="0" max="1" step="0.05" value="0.25">
+          </div>
+        </div>
+      </div>
       <button class="btn btn-ghost btn-sm" id="btn-toggle-theme" title="Toggle light/dark theme">☀️</button>
       <button class="btn btn-ghost btn-sm" id="btn-open-pitch">🧠 Science</button>
       <button class="btn btn-ghost btn-sm" id="btn-export-csv">📥 Export</button>
@@ -227,6 +243,9 @@
   <!-- Tab nav -->
   <nav class="tabs">
     <button class="tab active" data-tab="garden">🌿 Garden <span id="plant-count-badge" class="count-badge">0</span></button>
+    <button class="tab" data-tab="sprint">⚡ Formula Sprint (+4/−1)</button>
+    <button class="tab" data-tab="ncert">📚 NCERT 11 &amp; 12 Bio-Maths</button>
+    <button class="tab" data-tab="trophies">🏆 Trophies &amp; Heatmap</button>
     <button class="tab" data-tab="analytics">📈 Ebbinghaus Lab</button>
     <button class="tab" data-tab="pomodoro">⏱️ Focus Timer</button>
     <button class="tab" data-tab="compare">⚖️ Cramming vs Spaced</button>
@@ -630,6 +649,150 @@
     </div>
   </section>
 
+  <!-- ─── TAB: FORMULA SPRINT (+4 / -1) ─── -->
+  <section class="tab-panel" id="panel-sprint">
+    <div class="sprint-layout">
+      <div class="sprint-header-card">
+        <div>
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+            <span style="font-size:1.8rem">⚡</span>
+            <h2 style="font-size:1.4rem;font-weight:800;color:var(--text);margin:0">NEET &amp; JEE +4 / −1 Formula Sprint</h2>
+          </div>
+          <p class="muted" style="font-size:.88rem;margin:0">Test rapid recall under real NTA exam marking pressure (+4 correct, −1 negative marking, 0 unattempted).</p>
+        </div>
+        <div class="sprint-score-hud">
+          <div class="sprint-stat-pill stat-timer" id="sprint-timer-pill">
+            <span class="val" id="sprint-timer">60s</span>
+            <span class="lbl">Countdown</span>
+          </div>
+          <div class="sprint-stat-pill score-positive" id="sprint-score-pill">
+            <span class="val" id="sprint-score">0</span>
+            <span class="lbl">NTA Score</span>
+          </div>
+          <div class="sprint-stat-pill">
+            <span class="val" id="sprint-accuracy">0%</span>
+            <span class="lbl">Accuracy</span>
+          </div>
+          <div class="sprint-stat-pill score-negative">
+            <span class="val" id="sprint-negatives">0</span>
+            <span class="lbl">−1 Marks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sprint-controls" style="display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="chip active" data-sprint-mode="all">All High-Yield</button>
+          <button class="chip" data-sprint-mode="bio12">🧬 Class 12 Bio (NEET)</button>
+          <button class="chip" data-sprint-mode="math12">📐 Class 12 Maths (JEE)</button>
+          <button class="chip" data-sprint-mode="bio11">🌱 Class 11 Bio</button>
+          <button class="chip" data-sprint-mode="math11">📐 Class 11 Maths</button>
+          <button class="chip" data-sprint-mode="garden">🌿 My Active Garden</button>
+        </div>
+        <div style="display:flex;gap:.5rem">
+          <button class="btn btn-ghost btn-sm" id="btn-sprint-reset">↺ Reset</button>
+          <button class="btn btn-primary btn-sm" id="btn-sprint-start">⚡ Start 60s Sprint</button>
+        </div>
+      </div>
+
+      <div class="sprint-arena" id="sprint-arena">
+        <div class="sprint-card-content">
+          <div class="sprint-meta-row">
+            <span class="sprint-q-subject" id="sprint-subject">Biology</span>
+            <span class="sprint-q-weightage" id="sprint-weightage">🔥 Super High Yield</span>
+          </div>
+          <h3 class="sprint-q-title" id="sprint-question">Loading formula sprint question...</h3>
+          <div class="sprint-formula-box" id="sprint-formula">Formula / Principle will appear here</div>
+          
+          <div class="sprint-answer-box hidden" id="sprint-answer-box">
+            <strong style="color:var(--green-l);font-size:.92rem;display:block;margin-bottom:.4rem">✓ NCERT Core Fact &amp; Formula:</strong>
+            <p id="sprint-answer" style="font-size:.9rem;color:var(--text);line-height:1.55;margin:0"></p>
+            <p class="sprint-feynman-note" id="sprint-feynman"></p>
+          </div>
+        </div>
+
+        <div class="sprint-actions">
+          <button class="btn btn-ghost" id="btn-sprint-reveal" style="flex:1;min-width:180px">👁️ Reveal Answer &amp; Key Formula</button>
+          <div class="sprint-grade-btns hidden" id="sprint-grade-btns" style="display:flex;gap:.75rem;flex:2;flex-wrap:wrap">
+            <button class="btn-grade btn-grade-plus4" id="btn-grade-correct">✓ Correct (+4)</button>
+            <button class="btn-grade btn-grade-minus1" id="btn-grade-wrong">✗ Wrong (−1)</button>
+            <button class="btn-grade btn-grade-skip" id="btn-grade-unattempted">○ Skip (0)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: NCERT 11 & 12 BIO-MATHS LIBRARY ─── -->
+  <section class="tab-panel" id="panel-ncert">
+    <div class="ncert-layout">
+      <div class="ncert-header-banner">
+        <div>
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
+            <span style="font-size:1.8rem">📚</span>
+            <h2 style="font-size:1.4rem;font-weight:800;color:var(--text);margin:0">CBSE NCERT Class 11 &amp; 12 Bio-Maths Curriculum</h2>
+          </div>
+          <p class="muted" style="font-size:.88rem;margin:0">Authentic NCERT chapter repository with formulas, key reactions, and 1-click planting into your living memory garden.</p>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm" id="btn-plant-all-ncert12bio">🌱 Plant All Class 12 Bio</button>
+          <button class="btn btn-ghost btn-sm" id="btn-plant-all-ncert12math">📐 Plant All Class 12 Maths</button>
+        </div>
+      </div>
+
+      <div class="ncert-filter-row">
+        <button class="chip active" data-ncert-filter="all">All Chapters (<span id="ncert-total-count">0</span>)</button>
+        <button class="chip" data-ncert-filter="bio12">🧬 Class 12 Biology</button>
+        <button class="chip" data-ncert-filter="math12">📐 Class 12 Mathematics</button>
+        <button class="chip" data-ncert-filter="bio11">🌱 Class 11 Biology</button>
+        <button class="chip" data-ncert-filter="math11">📐 Class 11 Mathematics</button>
+      </div>
+
+      <div class="ncert-grid" id="ncert-cards-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB: TROPHIES & 365-DAY HEATMAP ─── -->
+  <section class="tab-panel" id="panel-trophies">
+    <div class="trophies-layout">
+      <div class="heatmap-card">
+        <div class="heatmap-hdr">
+          <div>
+            <h3 style="font-size:1.25rem;font-weight:800;color:var(--text);margin:0">🗓️ 365-Day Revision Activity Heatmap</h3>
+            <p class="muted" style="font-size:.82rem;margin:.25rem 0 0">Daily study consistency tracker — each green block represents revisions completed on that day.</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <span class="muted" style="font-size:.78rem">Less</span>
+            <div style="display:flex;gap:3px">
+              <span class="heatmap-cell"></span>
+              <span class="heatmap-cell lvl-1"></span>
+              <span class="heatmap-cell lvl-2"></span>
+              <span class="heatmap-cell lvl-3"></span>
+              <span class="heatmap-cell lvl-4"></span>
+            </div>
+            <span class="muted" style="font-size:.78rem">More</span>
+            <button class="btn btn-primary btn-sm" id="btn-open-share-card">🏆 Progress Snapshot Card</button>
+          </div>
+        </div>
+        <div class="heatmap-grid-wrap">
+          <div class="heatmap-grid" id="revision-heatmap-grid">
+            <!-- 52 columns × 7 days generated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1.25rem;font-weight:800;color:var(--text);margin-bottom:.8rem">🏆 Botanical Harvest Trophy Room</h3>
+        <p class="muted" style="font-size:.85rem;margin-bottom:1.2rem">Earn trophies by retaining concepts, building long-term memory stability, and completing daily revision streaks.</p>
+        <div class="trophy-shelf" id="trophy-shelf">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── REGIONAL & EDUCATIONAL GUIDE: TAMIL NADU & ALL-INDIA ─── -->
   <section class="seo-regional-section" id="tn-student-guide">
     <div class="card seo-card">
@@ -784,6 +947,67 @@
         <button type="submit" class="btn btn-primary">Plant in Garden 🌱</button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Modal: Shareable Progress Card -->
+<div class="modal-overlay hidden" id="modal-share-card">
+  <div class="modal-card modal-lg">
+    <div class="modal-hdr">
+      <h3>🏆 My Memory Garden Progress Snapshot</h3>
+      <button class="modal-x" data-close="modal-share-card">&times;</button>
+    </div>
+    <div class="modal-body" style="padding:1.5rem">
+      <div class="shareable-card-frame" id="shareable-card-frame">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:.8rem">
+          <div>
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
+              <span style="font-size:1.8rem">🌱</span>
+              <h2 style="font-size:1.5rem;font-weight:800;margin:0;letter-spacing:-.02em;color:#fff">Memory Garden</h2>
+            </div>
+            <p style="font-size:.82rem;color:#94a3b8;margin:0">CBSE Class 11–12 Bio-Maths &amp; NEET/JEE Active Recall Engine</p>
+          </div>
+          <div style="text-align:right">
+            <span style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#38bdf8;font-weight:700">Official Study Record</span>
+            <div style="font-size:.85rem;font-weight:700;color:#e2e8f0;margin-top:.15rem" id="share-card-date">Nov 2026</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:1.5rem">
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
+            <span style="font-size:.72rem;color:#94a3b8;text-transform:uppercase;font-weight:700;display:block">Garden Health</span>
+            <span style="font-size:1.8rem;font-weight:900;color:#4ade80" id="share-card-health">100%</span>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
+            <span style="font-size:.72rem;color:#94a3b8;text-transform:uppercase;font-weight:700;display:block">Active Plants</span>
+            <span style="font-size:1.8rem;font-weight:900;color:#38bdf8" id="share-card-plants">0</span>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
+            <span style="font-size:.72rem;color:#94a3b8;text-transform:uppercase;font-weight:700;display:block">Study Streak</span>
+            <span style="font-size:1.8rem;font-weight:900;color:#fbbf24" id="share-card-streak">0d</span>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
+            <span style="font-size:.72rem;color:#94a3b8;text-transform:uppercase;font-weight:700;display:block">Total Revisions</span>
+            <span style="font-size:1.8rem;font-weight:900;color:#c084fc" id="share-card-revisions">0</span>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <span style="font-size:1.2rem">✨</span>
+            <span style="font-size:.85rem;color:#cbd5e1">Platform crafted &amp; built by <strong>Lujain</strong></span>
+          </div>
+          <span style="font-family:var(--mono);font-size:.75rem;color:#64748b">memory-garden-zeta.vercel.app</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ftr" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <button class="btn btn-ghost" data-close="modal-share-card">Close</button>
+      <div style="display:flex;gap:.6rem">
+        <button class="btn btn-ghost" id="btn-copy-card-text">📋 Copy WhatsApp Summary</button>
+        <button class="btn btn-primary" id="btn-print-card">🖨️ Print / Save Snapshot</button>
+      </div>
+    </div>
   </div>
 </div>
 
