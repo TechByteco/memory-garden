@@ -3339,7 +3339,891 @@ const DEFAULT_ACADEMIC_TASKS = [
 ];
 
 // Official NCERT E-Books Catalog with Real NCERT Text & Golden Lines
-const NCERT_EBOOKS_CATALOG = [
+
+// =============================================================================
+// ADDITIONAL NCERT E-BOOKS (CHEMISTRY, BIOLOGY, PHYSICS, ENGLISH 11 & 12)
+// =============================================================================
+
+const ADDITIONAL_NCERT_EBOOKS = [
+  // Chemistry 12
+  {
+    id: "ncert_c12_ch01",
+    code: "lech101",
+    classLevel: "12",
+    subject: "Chemistry",
+    category: "12-chem",
+    chNumber: "Chapter 1",
+    title: "Solutions (Liquid & Solid)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lech1=1-5",
+    topics: "Types of Solutions, Raoult's Law (Ideal & Non-ideal), Colligative Properties (RLVP, Elevation in BP, Depression in FP, Osmotic Pressure), Van 't Hoff Factor.",
+    synopsis: "Solutions are homogeneous mixtures of two or more components. In a binary solution, the component present in larger quantity is solvent. Raoult's law states that for a solution of volatile liquids, the partial vapour pressure of each component is directly proportional to its mole fraction in solution.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Henry's law constant KH is a function of the nature of the gas. Higher the value of KH at a given pressure, the lower is the solubility of the gas in the liquid.'",
+      "NCERT Golden Line 2: 'Solutions which show large positive deviations from Raoult's law form minimum boiling azeotropes (e.g. 95% ethanol in water). Solutions showing negative deviations form maximum boiling azeotropes (e.g. 68% nitric acid in water).' (NEET 2021, 2023)"
+    ],
+    formulas: [
+      "Raoult's Law: p1 = x1 p1°",
+      "Elevation in Boiling Point: ΔTb = i Kb m",
+      "Depression in Freezing Point: ΔTf = i Kf m",
+      "Osmotic Pressure: Π = i C R T = i (n2 / V) R T"
+    ],
+    intextQuestions: [
+      "Q: Why are aquatic species more comfortable in cold waters rather than in warm waters? Ans: Because gas solubility increases with decrease in temperature (KH decreases). Hence cold water contains more dissolved oxygen than warm water."
+    ]
+  },
+  {
+    id: "ncert_c12_ch05",
+    code: "lech105",
+    classLevel: "12",
+    subject: "Chemistry",
+    category: "12-chem",
+    chNumber: "Chapter 5",
+    title: "Coordination Compounds",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lech1=5-5",
+    topics: "Werner's Theory, Ligands & Coordination Number, IUPAC Nomenclature, Isomerism (Geometrical, Optical, Linkage, Coordination), Valence Bond Theory, Crystal Field Theory (CFT).",
+    synopsis: "Coordination compounds are the backbone of modern inorganic and bio-inorganic chemistry. Hemoglobin is a coordination compound of iron; chlorophyll of magnesium; vitamin B12 of cobalt. Alfred Werner postulated primary (ionisable) and secondary (non-ionisable) valencies.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'According to Crystal Field Theory, in an octahedral crystal field, the degenerated d-orbitals split into two sets: lower energy triply degenerate t2g (dxy, dyz, dzx) and higher energy doubly degenerate eg (dx²-y², dz²).' (NEET 2020, 2022)",
+      "NCERT Golden Line 2: 'Spectrochemical series is an experimentally determined series of ligands in order of increasing field strength: I⁻ < Br⁻ < SCN⁻ < Cl⁻ < S²⁻ < F⁻ < OH⁻ < C2O4²⁻ < H2O < NCS⁻ < EDTA⁴⁻ < NH3 < en < CN⁻ < CO.'"
+    ],
+    formulas: [
+      "Crystal Field Splitting in Octahedral: Δo; Tetrahedral: Δt = (4/9) Δo",
+      "Magnetic Moment (spin-only): μ = √[n(n + 2)] Bohr Magnetons (BM), where n = number of unpaired electrons"
+    ],
+    intextQuestions: [
+      "Q: Why is [Ni(CO)4] diamagnetic whereas [NiCl4]²⁻ is paramagnetic? Ans: CO is a strong field ligand that forces pairing of 3d electrons in Ni(0) giving dsp² or sp³ configuration with zero unpaired electrons (diamagnetic). Cl⁻ is a weak field ligand, leaving two unpaired electrons in Ni(II) (paramagnetic)."
+    ]
+  },
+  // English Core 12 - Flamingo
+  {
+    id: "ncert_e12_fl01",
+    code: "lefl101",
+    classLevel: "12",
+    subject: "English",
+    category: "12-eng",
+    chNumber: "Flamingo Ch 1",
+    title: "The Last Lesson (Alphonse Daudet)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lefl1=1-8",
+    topics: "Franco-Prussian War (1870), Order from Berlin banning French in Alsace and Lorraine, M. Hamel's 40 years of service, Franz's realization of linguistic value, Patriotism and linguistic chauvinism.",
+    synopsis: "Set during the Franco-Prussian War in which France was defeated by Prussia led by Bismarck. The French districts of Alsace and Lorraine passed into Prussian hands. The order came from Berlin that only German would be taught in the schools of Alsace and Lorraine. It depicts the sudden shock and deep remorse felt by students and villagers on realizing the irreplaceable value of their mother tongue.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'When a people are enslaved, as long as they hold fast to their language it is as if they had the key to their prison.' (M. Hamel's profound declaration to his class).",
+      "NCERT Golden Line 2: 'Vive La France!' (Long Live France!) — written on the blackboard in as large letters as he could by M. Hamel before leaning his head against the wall.",
+      "CBSE Exam Theme: Linguistic chauvinism, procrastination in education ('Bah! I've plenty of time. I'll learn it tomorrow'), and the awakening of national consciousness."
+    ],
+    formulas: [
+      "CBSE Literature 5-Mark Value Points: Character transformation of Franz from negligent student to respectful learner; dignity of M. Hamel in his Sunday best green coat and frilled shirt; villagers sitting quietly in the back benches honoring French heritage."
+    ],
+    intextQuestions: [
+      "Q: What did Franz notice that was unusual about the school that day? Ans: Instead of the usual noisy bustle heard out in the street, everything was as quiet as Sunday morning. M. Hamel was wearing his ceremonial green coat and embroidered black silk cap, and the village elders (old Hauser, the former mayor, the former postmaster) were sitting quietly on the back benches."
+    ]
+  },
+  {
+    id: "ncert_e12_fl02",
+    code: "lefl102",
+    classLevel: "12",
+    subject: "English",
+    category: "12-eng",
+    chNumber: "Flamingo Ch 2",
+    title: "Lost Spring: Stories of Stolen Childhood (Anees Jung)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lefl1=2-8",
+    topics: "Seemapuri Ragpickers & Saheb-e-Alam ('Lord of the Universe'), Firozabad Glass Bangle Industry & Mukesh, Systemic Poverty, Exploitation by Sahukars, Policemen, Bureaucrats & Politicians.",
+    synopsis: "Anees Jung analyses the grinding poverty and traditions which condemn thousands of innocent Indian children to a life of perpetual exploitation. Part 1 depicts Saheb-e-Alam, a young ragpicker from Dhaka who searches for gold in the garbage heaps of Seemapuri. Part 2 portrays Mukesh of Firozabad who dares to dream of becoming a motor mechanic despite the vicious circle of the glass bangle industry.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Garbage to them is gold. It is their daily bread, a roof over their heads, even if it is a leaking roof. For children, it is wrapped in wonder; for elders, it is a means of survival.'",
+      "NCERT Golden Line 2: 'Together they have imposed the baggage on the child that he cannot put down. Before he is aware, he accepts it as naturally as his father. To dare is not part of his growing up.' (Anees Jung on the nexus of sahukars and policemen in Firozabad)."
+    ],
+    formulas: [
+      "CBSE Contrast Analysis: Saheb loses his freedom when he takes a job at the tea stall carrying a heavy steel canister ('The steel canister seems heavier than the plastic bag'); Mukesh retains his spirit of defiance and agency."
+    ],
+    intextQuestions: [
+      "Q: What is the irony in the name 'Saheb-e-Alam'? Ans: 'Saheb-e-Alam' means 'Lord of the Universe'. The biting irony is that in reality, he is an impoverished, barefoot ragpicker wandering the filthy alleys of Delhi without even a pair of chappals."
+    ]
+  },
+  {
+    id: "ncert_e12_fl09",
+    code: "lefl109",
+    classLevel: "12",
+    subject: "English",
+    category: "12-eng",
+    chNumber: "Flamingo Poem 1",
+    title: "My Mother at Sixty-Six (Kamala Das)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lefl1=9-14",
+    topics: "Poem on Aging, Drive from home to Cochin airport, Contrast between youthful vitality outside and elderly frail mother inside, Late winter's moon simile, Familiar ache of childhood fear.",
+    synopsis: "Kamala Das captures the complex subtleties of human relationships in lyrical verse. While driving to Cochin airport with her mother beside her, she notices her mother dozing with open mouth, her face ashen like that of a corpse. To divert her mind, she looks outside at young trees sprinting and merry children spilling out of their homes.",
+    goldenLines: [
+      "NCERT Golden Line 1: '...looked but soon put that thought away, and looked out at Young Trees sprinting, the merry children spilling out of their homes...'",
+      "NCERT Golden Line 2: '...as a late winter's moon and felt that old familiar ache, my childhood's fear, but all I said was, see you soon, Amma, all I did was smile and smile and smile...'"
+    ],
+    formulas: [
+      "Poetic Devices: (1) Simile: 'face ashen like that of a corpse', 'as a late winter's moon'. (2) Personification: 'Young Trees sprinting'. (3) Metaphor: 'merry children spilling'. (4) Repetition: 'smile and smile and smile'."
+    ],
+    intextQuestions: [
+      "Q: Why has the mother been compared to the 'late winter's moon'? Ans: The late winter's moon looks dim, hazy, pale, and lacks brightness and vitality due to mist and fog. Similarly, the poet's 66-year-old mother has lost her youthful radiance, glow, and energy due to advanced aging."
+    ]
+  },
+  // English 12 - Vistas
+  {
+    id: "ncert_e12_vt02",
+    code: "levt102",
+    classLevel: "12",
+    subject: "English",
+    category: "12-eng",
+    chNumber: "Vistas Ch 2",
+    title: "The Tiger King (Kalki)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?levt1=2-6",
+    topics: "Maharaja of Pratibandapuram (Sir Jilani Jung Jung Bahadur), Astrologer's prophecy (death from hundredth tiger), Vow to hunt 100 tigers, British officer's wife diamond rings bribe, Climax with wooden toy tiger.",
+    synopsis: "A biting political satire by Kalki on the vanity, arrogance, and ruthless exploitation of power by rulers. At the age of 10 days, the infant prince astonishes everyone by asking the astrologers the manner of his death. Told that he will be killed by a tiger, he vows to kill 100 tigers, only to succumb to an infection caused by a tiny wooden sliver from a cheap toy tiger bought for his son.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Let tigers beware!' — spoken by the ten-day-old prince of Pratibandapuram.",
+      "NCERT Golden Line 2: 'In this manner the hundredth tiger took its final revenge upon the Tiger King.' (The ultimate dramatic irony in English literature)."
+    ],
+    formulas: [
+      "CBSE Analysis Theme: Satire on bureaucratic sycophancy (Dewan arranging old tiger from Madras People's Park); wildlife conservation; inevitability of fate."
+    ],
+    intextQuestions: [
+      "Q: What did the Maharaja do when he stood in danger of losing his kingdom due to refusing a British high-ranking officer permission to hunt tigers? Ans: He sent fifty expensive diamond rings from a famous British jeweller in Calcutta to the British officer's wife ('the good lady') expecting her to choose one or two. She kept all fifty, costing the Maharaja 3 lakh rupees, but his throne was saved."
+    ]
+  },
+  // Physics 12 - Electrostatics
+  {
+    id: "ncert_p12_ch01",
+    code: "leph101",
+    classLevel: "12",
+    subject: "Physics",
+    category: "12-phys",
+    chNumber: "Chapter 1",
+    title: "Electric Charges and Fields",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?leph1=1-8",
+    topics: "Coulomb's Law, Principle of Superposition, Electric Field Lines, Electric Dipole & Torque in Uniform Field, Gauss's Law & Applications (Infinite Wire, Infinite Sheet, Thin Spherical Shell).",
+    synopsis: "Electrostatics deals with the study of forces, fields, and potentials arising from static charges. Coulomb's inverse square law describes the force between two point charges in vacuum: F = (1/4πε₀)(q1 q2 / r²). Gauss's law equates the total electric flux through a closed surface to Q_enclosed / ε₀.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Electric field inside a uniformly charged thin spherical shell is identically zero everywhere. Outside the shell, the electric field is as if the entire charge were concentrated at the center.'",
+      "NCERT Golden Line 2: 'Electric field lines never cross each other because if they did, the field at the point of intersection would have two different directions, which is physically impossible.' (CBSE 2-Marker)"
+    ],
+    formulas: [
+      "Electric Dipole on Axial Line: E_axial = 2kp / r³ (r >> 2a)",
+      "Electric Dipole on Equatorial Line: E_eq = -kp / r³",
+      "Torque on Dipole: τ = p × E; Potential Energy: U = -p · E"
+    ],
+    intextQuestions: [
+      "Q: Why does a charged comb attract small bits of paper? Ans: The electric field of the charged comb polarizes the neutral bits of paper, inducing opposite charges near the comb and like charges away. The attractive force on the nearer induced charge exceeds the repulsive force on the farther charge."
+    ]
+  },
+  // Biology 12 - Human Reproduction
+  {
+    id: "ncert_b12_ch03",
+    code: "lebo103",
+    classLevel: "12",
+    subject: "Biology",
+    category: "12-bio",
+    chNumber: "Chapter 3",
+    title: "Human Reproduction",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lebo1=3-13",
+    topics: "Male & Female Reproductive Systems, Microscopic Anatomy of Testis & Ovary, Spermatogenesis & Oogenesis, Menstrual Cycle (FSH, LH, Estrogen, Progesterone), Fertilisation & Implantation, Pregnancy & Parturition.",
+    synopsis: "Humans are sexually reproducing and viviparous. The reproductive events in humans include gametogenesis, insemination, fertilisation leading to formation of zygote, blastocyst development and implantation in the uterine wall, gestation, and parturition.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'LH surge: Rapid secretion of LH leading to its maximum level during the mid-cycle (around 14th day) induces rupture of Graafian follicle and thereby release of ovum (ovulation).' (NEET 2020, 2023)",
+      "NCERT Golden Line 2: 'The secretions of acrosome (hyaluronidase & acrosin) help the sperm enter into the cytoplasm of the ovum through the zona pellucida and plasma membrane. Entry of sperm induces completion of meiotic division II of secondary oocyte.'"
+    ],
+    formulas: [
+      "Spermatogonium (2n) --> Primary Spermatocyte (2n) --> 2 Secondary Spermatocytes (n) --> 4 Spermatids (n) --> 4 Spermatozoa (n)",
+      "Oogonium (2n) --> Primary Oocyte (2n) --> 1 Secondary Oocyte (n) + 1st Polar Body --> 1 Ovum (n) + 2nd Polar Body"
+    ],
+    intextQuestions: [
+      "Q: Mention the functions of Sertoli cells and Leydig cells. Ans: Sertoli cells provide nutrition to the developing germ cells (spermatozoa). Leydig (interstitial) cells synthesize and secrete testicular hormones called androgens (testosterone)."
+    ]
+  }
+];
+
+// Open-Source NCERT Solutions Expansion (including English literature & writing skills)
+const ADDITIONAL_NCERT_SOLUTIONS = [
+  {
+    id: "sol_eng_01",
+    classLevel: "12",
+    subject: "English",
+    type: "textbook",
+    chapter: "The Last Lesson (Flamingo)",
+    qNumber: "Thinking About Text Q1",
+    question: "What changes did the order from Berlin cause in school that day in Alsace?",
+    steps: [
+      "<strong>Step 1: Environmental & Atmosphere Changes:</strong> The school was unusually quiet, like a Sunday morning. The customary hustle and bustle of opening desks and reciting lessons in unison was completely absent.",
+      "<strong>Step 2: Change in Teacher's Deportment:</strong> M. Hamel was dressed in his solemn festive Sunday attire — his beautiful green coat, ruffled shirt, and embroidered black silk cap that he only wore on inspection and prize days.",
+      "<strong>Step 3: Presence of Village Elders:</strong> The village elders (old Hauser with his primer, former mayor, former postmaster) occupied the empty back benches to pay respect to M. Hamel's 40 years of devoted service and show solidarity with their mother tongue.",
+      "<strong>Step 4: Shift in Student Mindset:</strong> Franz, who had dreaded French and participles, suddenly developed an acute love and reverence for his books, realizing with guilt how much time he had wasted."
+    ],
+    answer: "The order from Berlin brought a heavy silence over the school, transformed M. Hamel into a dignified and gentle patriot, filled the classroom with repentant village elders, and awakened a fierce love for the French language among the students.",
+    markingScheme: "1 Mark for school atmosphere + 1 Mark for M. Hamel's dress + 1 Mark for village elders + 1 Mark for Franz's emotional transformation. Total: 4 Marks (CBSE Board Standard)."
+  },
+  {
+    id: "sol_eng_02",
+    classLevel: "12",
+    subject: "English",
+    type: "exemplar",
+    chapter: "Lost Spring (Flamingo)",
+    qNumber: "CBSE Board HOTS Q4",
+    question: "How is Mukesh's attitude to his situation different from that of his family and the community in Firozabad?",
+    steps: [
+      "<strong>Step 1: Community Mindset of Resignation:</strong> The bangle-making community in Firozabad has accepted their impoverished destiny as 'karam' (fate) or God-given lineage. Mukesh's grandmother believes that their caste destiny is unalterable.",
+      "<strong>Step 2: Vicious Circle & Paralysis of Will:</strong> Years of mind-numbing toil have killed all initiative and ability to dream among the youth. They fear police harassment and sahukars if they organize a cooperative.",
+      "<strong>Step 3: Mukesh's Defiance and Dream:</strong> Mukesh dares to break the ancestral mold. He insists: 'I will be a motor mechanic. I will learn to drive a car.'",
+      "<strong>Step 4: Pragmatic Determination:</strong> When asked if he dreams of flying a plane, he looks down and says no — his dream is grounded in practical reality (he is content with cars, as few planes fly over Firozabad)."
+    ],
+    answer: "While his family and peers are paralyzed by fatalism and systemic exploitation, Mukesh exhibits independent agency, courage, and a spark of rebellion by aspiring to become a motor mechanic rather than surrender to the hereditary glass furnace.",
+    markingScheme: "1.5 Marks for contrast with fatalistic family + 1.5 Marks for Mukesh's specific mechanic ambition + 1 Mark for analysis of reality vs fantasy. Total: 4 Marks."
+  },
+  {
+    id: "sol_eng_03",
+    classLevel: "12",
+    subject: "English",
+    type: "textbook",
+    chapter: "Writing Skills: Notice Writing",
+    qNumber: "CBSE 5-Mark Question",
+    question: "You are Ananya/Arjun, Secretary of the Science Club of Delhi Public School, Chennai. Draft a formal notice in not more than 50 words inviting students of Classes 11 and 12 for the Annual Inter-School Science Exhibition.",
+    steps: [
+      "<strong>Step 1: Layout Requirements (Box Mandatory):</strong> Notice must be enclosed within a neat rectangular box.",
+      "<strong>Step 2: Standard Format Breakdown:</strong>",
+      "• Name of Institution: DELHI PUBLIC SCHOOL, CHENNAI (Bold, Centered)",
+      "• Word 'NOTICE' (Centered, All Caps)",
+      "• Date of Issue: 18 November 2026 (Left aligned)",
+      "• Heading: ANNUAL INTER-SCHOOL SCIENCE EXHIBITION (Centered)",
+      "<strong>Step 3: Content (50 Words Target):</strong> Must specify Date, Time, Venue, Eligibility, Submission deadline for models, and Teacher coordinator.",
+      "<strong>Step 4: Sign-off:</strong> Name and Designation (Ananya / Arjun, Secretary - Science Club)."
+    ],
+    answer: "[BOX CONTAINER]\nDELHI PUBLIC SCHOOL, CHENNAI\nNOTICE\n18 November 2026\nANNUAL INTER-SCHOOL SCIENCE EXHIBITION\nThis is to notify all students of Classes XI and XII that the Science Club is organizing the Annual Inter-School Science Exhibition on 5 December 2026 from 9:00 AM to 3:00 PM in the School Auditorium. Interested students must register working science models/innovations with the undersigned by 28 November 2026. Attractive trophies and certificates await winners.\n\nArjun\n(ARJUN)\nSecretary, Science Club",
+    markingScheme: "Format (Box, Institution, Date, Title, Sign-off): 1 Mark | Content (Date, Time, Venue, Purpose): 2 Marks | Accuracy & Fluency (Within 50 words): 1 Mark. Total: 4 Marks."
+  },
+  {
+    id: "sol_chem_02",
+    classLevel: "12",
+    subject: "Chemistry",
+    type: "textbook",
+    chapter: "Solutions",
+    qNumber: "Exercise 1.20",
+    question: "A 5% solution (by mass) of cane sugar (C12H22O11) in water has a freezing point of 271 K. Calculate the freezing point of a 5% solution (by mass) of glucose (C6H12O6) in water if freezing point of pure water is 273.15 K.",
+    steps: [
+      "<strong>Step 1: Cane Sugar Solution Data:</strong>",
+      "Molar mass of cane sugar = 342 g/mol. Mass of sugar w2 = 5 g. Mass of solvent w1 = 95 g = 0.095 kg.",
+      "Moles of sugar = 5 / 342 = 0.0146 mol. Molality m1 = 0.0146 / 0.095 = 0.1537 mol/kg.",
+      "ΔTf(sugar) = 273.15 K - 271 K = 2.15 K.",
+      "<strong>Step 2: Calculate Cryoscopic Constant Kf:</strong>",
+      "ΔTf = Kf × m  ==>  Kf = ΔTf / m1 = 2.15 / 0.1537 = 13.988 K kg/mol.",
+      "<strong>Step 3: Glucose Solution Data:</strong>",
+      "Molar mass of glucose = 180 g/mol. Mass of glucose w2 = 5 g. Mass of water w1 = 95 g.",
+      "Molality m2 = (5 / 180) / 0.095 = 0.02778 / 0.095 = 0.2924 mol/kg.",
+      "<strong>Step 4: Calculate Freezing Point of Glucose Solution:</strong>",
+      "ΔTf(glucose) = Kf × m2 = 13.988 × 0.2924 = 4.09 K.",
+      "Tf(glucose) = T°f - ΔTf = 273.15 K - 4.09 K = 269.06 K."
+    ],
+    answer: "The freezing point of the 5% glucose solution is 269.06 K.",
+    markingScheme: "1 Mark for finding molality & Kf from cane sugar + 1 Mark for glucose molality + 1 Mark for final freezing point 269.06 K. Total: 3 Marks."
+  }
+];
+
+// =============================================================================
+// TOPPER'S HANDWRITTEN REVISION NOTES & MIND MAPS
+// =============================================================================
+
+const HANDWRITTEN_NOTES_CATALOG = [
+  {
+    id: "hand_b12_01",
+    subject: "Biology",
+    classLevel: "12",
+    title: "Molecular Genetics & Central Dogma Flow Sheet",
+    author: "NEET All-India Ranker Notes",
+    sheetColor: "yellow",
+    content: `
+      <div class="note-meta-hdr">
+        <span class="note-subject-tag bio">Class 12 Biology</span>
+        <span style="font-size: .8rem; color: #64748b;">NEET High-Yield • 32 Marks</span>
+      </div>
+      <h3 class="note-title-hand">DNA Replication, Transcription &amp; Lac Operon <span class="hl-yellow">Cheat Sheet</span></h3>
+      <div class="note-body-hand">
+        <p><strong>1. Central Dogma (Francis Crick, 1958):</strong></p>
+        <p style="font-size: 1.35rem; color: #0369a1; text-align: center;">
+          DNA ──[Transcription]──> mRNA ──[Translation]──> Protein
+        </p>
+        <p><em>Reverse Transcription:</em> RNA ──[Reverse Transcriptase (Temin &amp; Baltimore)]──> DNA (in Retroviruses like HIV).</p>
+
+        <div class="hand-sticky">
+          ⚡ <strong>NEET Must-Remember Trap:</strong> DNA-dependent DNA polymerase synthesizes ONLY in 5' ➔ 3' direction!
+          Leading strand = Continuous. Lagging strand = Discontinuous (Okazaki fragments joined by DNA Ligase).
+        </div>
+
+        <p><strong>2. Lac Operon (Jacob &amp; Monod, 1961):</strong></p>
+        <ul>
+          <li><strong>Regulator gene (i):</strong> Synthesizes active Repressor protein constitutively.</li>
+          <li><strong>Inducer:</strong> <span class="hl-cyan">Allolactose / Lactose</span> binds repressor, inactivating it.</li>
+          <li><strong>Structural Genes:</strong>
+            <ul>
+              <li><strong>z gene:</strong> β-galactosidase (Lactose ➔ Galactose + Glucose)</li>
+              <li><strong>y gene:</strong> Permease (increases membrane permeability to β-galactosides)</li>
+              <li><strong>a gene:</strong> Transacetylase (transfers acetyl group to β-galactosides)</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="hand-diagram-box">
+          <strong>Operon Switch States:</strong><br>
+          • <em>No Lactose (OFF):</em> Repressor binds Operator (O) ➔ RNA Pol blocked ➔ No Transcription.<br>
+          • <em>Lactose Present (ON):</em> Lactose binds Repressor ➔ Repressor releases Operator ➔ Transcription proceeds!
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "hand_c12_01",
+    subject: "Chemistry",
+    classLevel: "12",
+    title: "Organic Name Reactions & Curly Arrow Mechanisms",
+    author: "CBSE 100/100 Chemistry Notes",
+    sheetColor: "cyan",
+    content: `
+      <div class="note-meta-hdr">
+        <span class="note-subject-tag chem">Class 12 Chemistry</span>
+        <span style="font-size: .8rem; color: #64748b;">Organic Master Sheet</span>
+      </div>
+      <h3 class="note-title-hand">Top 6 Name Reactions &amp; <span class="hl-cyan">Conversion Shortcuts</span></h3>
+      <div class="note-body-hand">
+        <p><strong>1. Aldol Condensation:</strong> Aldehydes/ketones with <span class="hl-yellow">at least one α-H</span> + dil. NaOH.</p>
+        <p style="color: #7e22ce;">2 CH3-CHO ──[dil. NaOH]──> CH3-CH(OH)-CH2-CHO (β-hydroxyaldehyde) ──[Δ, -H2O]──> CH3-CH=CH-CHO (But-2-enal)</p>
+
+        <p><strong>2. Cannizzaro Reaction:</strong> Aldehydes <span class="hl-pink">WITHOUT α-H</span> (HCHO, PhCHO) + conc. 50% KOH.</p>
+        <p style="color: #7e22ce;">2 HCHO + conc. KOH ──> CH3OH (Reduction) + HCOOK (Oxidation). Disproportionation!</p>
+
+        <div class="hand-sticky">
+          🔥 <strong>Topper Memory Trick:</strong> 'Aldol needs Alpha-H; Cannizzaro Cannot have Alpha-H!'
+        </div>
+
+        <p><strong>3. Sandmeyer vs Gattermann:</strong></p>
+        <ul>
+          <li>Aniline ──[NaNO2 + HCl, 0-5°C]──> Ph-N2⁺Cl⁻ (Benzene Diazonium Chloride)</li>
+          <li><em>Sandmeyer:</em> Cu2Cl2 / HCl ➔ Chlorobenzene (Higher yield).</li>
+          <li><em>Gattermann:</em> Cu powder / HCl ➔ Chlorobenzene (Lower yield).</li>
+        </ul>
+
+        <p><strong>4. Reimer-Tiemann Reaction:</strong> Phenol + CHCl3 + aq. NaOH ──> Salicylaldehyde (ortho major). Electrophile is <span class="hl-yellow">:CCl2 (Dichlorocarbene)</span>!</p>
+      </div>
+    `
+  },
+  {
+    id: "hand_p12_01",
+    subject: "Physics",
+    classLevel: "12",
+    title: "Electrodynamics & Optics Derivation Blueprint",
+    author: "JEE Advanced Physics Topper",
+    sheetColor: "yellow",
+    content: `
+      <div class="note-meta-hdr">
+        <span class="note-subject-tag phys">Class 12 Physics</span>
+        <span style="font-size: .8rem; color: #64748b;">Core 5-Marker Derivations</span>
+      </div>
+      <h3 class="note-title-hand">Lens Maker, Kirchhoff &amp; <span class="hl-yellow">Photoelectric Slopes</span></h3>
+      <div class="note-body-hand">
+        <p><strong>1. Lens Maker's Formula Derivation:</strong></p>
+        <p>Refraction at 1st surface (radius R1): n2/v1 - n1/u = (n2 - n1)/R1 ... (1)</p>
+        <p>Refraction at 2nd surface (radius R2): n1/v - n2/v1 = (n1 - n2)/R2 ... (2)</p>
+        <p>Adding (1) and (2) with medium 1 = air (n1 = 1, n2 = n):</p>
+        <p style="font-size: 1.35rem; color: #b45309; text-align: center;">
+          1/v - 1/u = 1/f = (n - 1) [ 1/R1 - 1/R2 ]
+        </p>
+
+        <div class="hand-diagram-box">
+          <strong>Sign Convention Golden Rules:</strong><br>
+          • Convex lens: R1 > 0 (+), R2 < 0 (-) ➔ f is always POSITIVE.<br>
+          • Concave lens: R1 < 0 (-), R2 > 0 (+) ➔ f is always NEGATIVE.<br>
+          • Lens submerged in liquid of index n_liq > n_glass: Lens REVERSES nature (convex becomes diverging!).
+        </div>
+
+        <p><strong>2. Photoelectric Graphs:</strong></p>
+        <ul>
+          <li>V0 (Stopping Potential) vs ν (Frequency): Straight line with <span class="hl-cyan">slope = h/e</span>. Universal constant for ALL metals!</li>
+          <li>X-intercept = ν0 (Threshold frequency). Y-intercept = -Φ0/e (Work function).</li>
+        </ul>
+      </div>
+    `
+  },
+  {
+    id: "hand_e12_01",
+    subject: "English",
+    classLevel: "12",
+    title: "Flamingo & Vistas Character Sketches & Writing Templates",
+    author: "CBSE English 98% Scorer Notes",
+    sheetColor: "pink",
+    content: `
+      <div class="note-meta-hdr">
+        <span class="note-subject-tag eng">Class 12 English</span>
+        <span style="font-size: .8rem; color: #64748b;">Board Literature &amp; Writing</span>
+      </div>
+      <h3 class="note-title-hand">Core Literature Themes &amp; <span class="hl-pink">Notice / Letter Templates</span></h3>
+      <div class="note-body-hand">
+        <p><strong>1. Key Literature Characters &amp; Themes:</strong></p>
+        <ul>
+          <li><strong>M. Hamel (The Last Lesson):</strong> Devoted teacher, strict ruler, sudden dignity in grief, emblem of French cultural pride.</li>
+          <li><strong>Saheb vs Mukesh (Lost Spring):</strong> Saheb surrenders autonomy for regular tea-stall wage (steel canister burden); Mukesh maintains dignity by aspiring to become a mechanic.</li>
+          <li><strong>Tiger King (Vistas):</strong> Vain Maharaja blind to ecological harmony, bribing British officers with 50 diamond rings, killed by a toy sliver. Satire on political arrogance.</li>
+        </ul>
+
+        <div class="hand-sticky">
+          📝 <strong>CBSE Formal Letter to Editor 5-Mark Layout:</strong><br>
+          1. Sender's Address ➔ 2. Date ➔ 3. The Editor, Name of Newspaper, City ➔ 4. Subject: Concise (under 6 words) ➔ 5. Sir/Madam ➔ 6. Opening Line: <em>'Through the esteemed columns of your widely circulated daily, I wish to draw the attention of the authorities concerned towards...'</em>
+        </div>
+      </div>
+    `
+  }
+];
+
+// =============================================================================
+// MASTER ACADEMIC CALENDAR & TIME ALLOTMENT CONTROLLER
+// =============================================================================
+
+let academicCalendarEvents = [];
+let currentCalDate = new Date(); // Tracks viewing month
+let selectedCalDate = new Date().toISOString().split('T')[0]; // Tracks clicked day
+
+const DEFAULT_CALENDAR_EVENTS = [
+  {
+    id: "cal_ev_cbse_prac",
+    date: "2027-02-01",
+    title: "CBSE 12th Board Practical Examinations",
+    subject: "General",
+    category: "exam",
+    duration: 180,
+    priority: "high",
+    notes: "Physics, Chemistry & Biology lab practicals, viva, and project files."
+  },
+  {
+    id: "cal_ev_cbse_theory",
+    date: "2027-02-15",
+    title: "CBSE Class 12 Board Theory Exams Commence",
+    subject: "General",
+    category: "exam",
+    duration: 180,
+    priority: "high",
+    notes: "Main board examination period begins."
+  },
+  {
+    id: "cal_ev_jee_session1",
+    date: "2027-01-24",
+    title: "JEE Main 2027 Session 1 Examination",
+    subject: "General",
+    category: "exam",
+    duration: 180,
+    priority: "high",
+    notes: "NTA Computer Based Test."
+  },
+  {
+    id: "cal_ev_neet",
+    date: "2027-05-02",
+    title: "NEET-UG 2027 Medical Entrance",
+    subject: "General",
+    category: "exam",
+    duration: 200,
+    priority: "high",
+    notes: "720 Marks pen & paper test across Physics, Chemistry, Biology."
+  },
+  // Today's sample allotments
+  {
+    id: "cal_ev_today_1",
+    date: new Date().toISOString().split('T')[0],
+    title: "Physics: Current Electricity & Kirchhoff Practice",
+    subject: "Physics",
+    category: "timelimit",
+    duration: 90,
+    priority: "high",
+    notes: "Solve 15 bridge problems and potentiometer derivations."
+  },
+  {
+    id: "cal_ev_today_2",
+    date: new Date().toISOString().split('T')[0],
+    title: "Biology: Genetics Pedigree & Hardy Weinberg",
+    subject: "Biology",
+    category: "revision",
+    duration: 60,
+    priority: "high",
+    notes: "Spaced revision drill on dihybrid crosses."
+  },
+  {
+    id: "cal_ev_today_3",
+    date: new Date().toISOString().split('T')[0],
+    title: "English: The Last Lesson & Notice Writing",
+    subject: "English",
+    category: "timelimit",
+    duration: 45,
+    priority: "med",
+    notes: "Read M. Hamel's speech & draft 50-word formal notice."
+  }
+];
+
+function loadCalendarEvents() {
+  const saved = localStorage.getItem("mg_academic_calendar_events");
+  if (saved) {
+    try {
+      academicCalendarEvents = JSON.parse(saved);
+    } catch(e) {
+      console.warn("Failed to parse calendar events, using defaults.");
+      academicCalendarEvents = [...DEFAULT_CALENDAR_EVENTS];
+    }
+  } else {
+    academicCalendarEvents = [...DEFAULT_CALENDAR_EVENTS];
+    saveCalendarEvents();
+  }
+}
+
+function saveCalendarEvents() {
+  localStorage.setItem("mg_academic_calendar_events", JSON.stringify(academicCalendarEvents));
+}
+
+function renderAcademicCalendar() {
+  const grid = document.getElementById("calendar-days-grid");
+  const monthTitle = document.getElementById("cal-month-year-title");
+  if (!grid || !monthTitle) return;
+
+  const year = currentCalDate.getFullYear();
+  const month = currentCalDate.getMonth();
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  monthTitle.textContent = `${monthNames[month]} ${year}`;
+
+  // Update countdown timers
+  updateExamCountdowns();
+
+  // Calendar Day Math
+  const firstDayIndex = new Date(year, month, 1).getDay(); // 0 = Sun
+  const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+  const prevLastDate = new Date(year, month, 0).getDate();
+
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  let cellsHtml = "";
+
+  // 1. Padding days from previous month
+  for (let i = firstDayIndex; i > 0; i--) {
+    const dayNum = prevLastDate - i + 1;
+    const prevMonthDate = new Date(year, month - 1, dayNum);
+    const dateStr = prevMonthDate.toISOString().split('T')[0];
+    cellsHtml += generateCalendarCellHtml(dateStr, dayNum, true);
+  }
+
+  // 2. Days of current month
+  for (let i = 1; i <= lastDateOfMonth; i++) {
+    const currentDate = new Date(year, month, i);
+    // Correct timezone string format YYYY-MM-DD
+    const padM = String(month + 1).padStart(2, '0');
+    const padD = String(i).padStart(2, '0');
+    const dateStr = `${year}-${padM}-${padD}`;
+    cellsHtml += generateCalendarCellHtml(dateStr, i, false);
+  }
+
+  // 3. Padding days for next month to complete 42 or 35 cells
+  const totalRendered = firstDayIndex + lastDateOfMonth;
+  const nextDays = totalRendered <= 35 ? (35 - totalRendered) : (42 - totalRendered);
+  for (let i = 1; i <= nextDays; i++) {
+    const nextMonthDate = new Date(year, month + 1, i);
+    const dateStr = nextMonthDate.toISOString().split('T')[0];
+    cellsHtml += generateCalendarCellHtml(dateStr, i, true);
+  }
+
+  grid.innerHTML = cellsHtml;
+
+  // Render agenda for the currently selected date
+  renderCalendarAgenda(selectedCalDate);
+}
+
+function generateCalendarCellHtml(dateStr, dayNum, isOtherMonth) {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const isToday = dateStr === todayStr;
+  const isSelected = dateStr === selectedCalDate;
+
+  // Filter events for this date
+  const events = academicCalendarEvents.filter(e => e.date === dateStr);
+
+  let eventsHtml = "";
+  events.slice(0, 2).forEach(ev => {
+    const categoryClass = ev.category === "exam" ? "exam" :
+                          ev.category === "revision" ? "revision" : "timelimit";
+    eventsHtml += `<div class="cal-event-pill ${categoryClass}" title="${escapeHtml(ev.title)} (${ev.duration}m)">${escapeHtml(ev.title)}</div>`;
+  });
+
+  if (events.length > 2) {
+    eventsHtml += `<div style="font-size: .6rem; color: #94a3b8; font-weight: 700; margin-top: 1px;">+${events.length - 2} more</div>`;
+  }
+
+  const otherClass = isOtherMonth ? "cal-other-month" : "";
+  const todayClass = isToday ? "cal-today" : "";
+  const selectedClass = isSelected ? "cal-selected" : "";
+
+  return `
+    <div class="cal-day-cell ${otherClass} ${todayClass} ${selectedClass}" 
+         onclick="handleCalendarDayClick('${dateStr}')" 
+         data-date="${dateStr}">
+      <span class="cal-day-num">${dayNum}</span>
+      <div class="cal-cell-events">
+        ${eventsHtml}
+      </div>
+    </div>
+  `;
+}
+
+function handleCalendarDayClick(dateStr) {
+  selectedCalDate = dateStr;
+  renderAcademicCalendar();
+  // Open the allotment modal pre-filled with this date!
+  openDateSchedulerModal(dateStr);
+}
+
+function updateExamCountdowns() {
+  const now = new Date();
+  
+  // CBSE 12th Board: Feb 15, 2027
+  const cbseDate = new Date("2027-02-15");
+  const diffCbse = Math.max(0, Math.ceil((cbseDate - now) / (1000 * 60 * 60 * 24)));
+  const cbseEl = document.getElementById("countdown-cbse-days");
+  if (cbseEl) cbseEl.textContent = diffCbse;
+
+  // JEE Main: Jan 24, 2027
+  const jeeDate = new Date("2027-01-24");
+  const diffJee = Math.max(0, Math.ceil((jeeDate - now) / (1000 * 60 * 60 * 24)));
+  const jeeEl = document.getElementById("countdown-jee-days");
+  if (jeeEl) jeeEl.textContent = diffJee;
+
+  // NEET: May 02, 2027
+  const neetDate = new Date("2027-05-02");
+  const diffNeet = Math.max(0, Math.ceil((neetDate - now) / (1000 * 60 * 60 * 24)));
+  const neetEl = document.getElementById("countdown-neet-days");
+  if (neetEl) neetEl.textContent = diffNeet;
+}
+
+function renderCalendarAgenda(dateStr) {
+  const list = document.getElementById("agenda-events-list");
+  const titleEl = document.getElementById("agenda-selected-date-str");
+  const totalHoursEl = document.getElementById("agenda-total-hours");
+  if (!list || !titleEl) return;
+
+  const dateObj = new Date(dateStr + "T00:00:00");
+  const dateFormatted = dateObj.toLocaleDateString("en-US", { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  titleEl.textContent = dateFormatted;
+
+  const events = academicCalendarEvents.filter(e => e.date === dateStr);
+
+  if (events.length === 0) {
+    list.innerHTML = `
+      <div style="padding: 1.5rem; text-align: center; color: var(--hub-muted); font-size: .85rem; font-style: italic;">
+        No study slots or exams allotted for this date.<br>Click below to allot time limits!
+      </div>
+    `;
+    if (totalHoursEl) totalHoursEl.textContent = "0h Planned";
+    return;
+  }
+
+  let totalMinutes = 0;
+  list.innerHTML = events.map(ev => {
+    totalMinutes += (ev.duration || 0);
+    const categoryIcon = ev.category === "exam" ? "🚨" :
+                         ev.category === "revision" ? "🔄" : "⏱️";
+
+    return `
+      <div class="agenda-item">
+        <div style="flex: 1;">
+          <h5 class="agenda-item-title">${categoryIcon} ${escapeHtml(ev.title)}</h5>
+          <div class="agenda-item-meta">
+            <span style="font-weight: 700; color: #60a5fa;">${ev.subject}</span>
+            <span>•</span>
+            <span style="color: #38bdf8;">${ev.duration} min limit</span>
+            ${ev.priority === 'high' ? '<span style="color: #fbbf24; font-weight: 700;">[Tier 1]</span>' : ''}
+          </div>
+          ${ev.notes ? `<div style="font-size: .75rem; color: var(--hub-muted); margin-top: 3px;">${escapeHtml(ev.notes)}</div>` : ''}
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="deleteCalendarEvent('${ev.id}')" title="Delete slot" style="padding: 2px 6px; color: #ef4444;">
+          &times;
+        </button>
+      </div>
+    `;
+  }).join("");
+
+  const hoursPlanned = (totalMinutes / 60).toFixed(1);
+  if (totalHoursEl) totalHoursEl.textContent = `${hoursPlanned}h Planned`;
+}
+
+function openDateSchedulerModal(dateStr) {
+  const targetDateInput = document.getElementById("allot-target-date");
+  const displayDate = document.getElementById("modal-allot-date-display");
+  const existingList = document.getElementById("modal-allot-existing-list");
+
+  if (targetDateInput) targetDateInput.value = dateStr;
+  if (displayDate) {
+    const d = new Date(dateStr + "T00:00:00");
+    displayDate.textContent = `Date: ${d.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+  }
+
+  if (existingList) {
+    const events = academicCalendarEvents.filter(e => e.date === dateStr);
+    if (events.length === 0) {
+      existingList.innerHTML = `<span style="font-size: .78rem; color: var(--hub-muted); font-style: italic;">No time limits allotted yet for this day.</span>`;
+    } else {
+      existingList.innerHTML = events.map(ev => {
+        return `
+          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--hub-card); padding: 4px 8px; border-radius: 4px; font-size: .78rem;">
+            <span><strong>[${ev.subject}]</strong> ${escapeHtml(ev.title)} (${ev.duration}m)</span>
+            <button type="button" onclick="deleteCalendarEvent('${ev.id}')" style="background:none; border:none; color:#ef4444; cursor:pointer;">&times;</button>
+          </div>
+        `;
+      }).join("");
+    }
+  }
+
+  openModal("modal-calendar-date-allot");
+}
+
+function deleteCalendarEvent(eventId) {
+  academicCalendarEvents = academicCalendarEvents.filter(e => e.id !== eventId);
+  saveCalendarEvents();
+  renderAcademicCalendar();
+  showNotification("Study slot / date removed from calendar.");
+}
+
+function setupCalendarListeners() {
+  const btnPrev = document.getElementById("btn-cal-prev");
+  const btnNext = document.getElementById("btn-cal-next");
+  const btnToday = document.getElementById("btn-cal-today");
+  const btnAllotNew = document.getElementById("btn-cal-allot-new");
+  const btnAgendaAdd = document.getElementById("btn-agenda-add-slot");
+  const navCalBtn = document.getElementById("btn-nav-calendar");
+  const formAllot = document.getElementById("form-calendar-allot");
+
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      currentCalDate.setMonth(currentCalDate.getMonth() - 1);
+      renderAcademicCalendar();
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      currentCalDate.setMonth(currentCalDate.getMonth() + 1);
+      renderAcademicCalendar();
+    });
+  }
+
+  if (btnToday) {
+    btnToday.addEventListener("click", () => {
+      currentCalDate = new Date();
+      selectedCalDate = new Date().toISOString().split('T')[0];
+      renderAcademicCalendar();
+    });
+  }
+
+  if (btnAllotNew || btnAgendaAdd) {
+    const handler = () => openDateSchedulerModal(selectedCalDate);
+    if (btnAllotNew) btnAllotNew.addEventListener("click", handler);
+    if (btnAgendaAdd) btnAgendaAdd.addEventListener("click", handler);
+  }
+
+  if (navCalBtn) {
+    navCalBtn.addEventListener("click", () => {
+      setAppMode("academic");
+      switchAcademicTab("calendar");
+    });
+  }
+
+  if (formAllot) {
+    formAllot.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const dateVal = document.getElementById("allot-target-date").value || selectedCalDate;
+      const subject = document.getElementById("allot-subject").value;
+      const category = document.getElementById("allot-category").value;
+      const title = document.getElementById("allot-title").value.trim();
+      const duration = parseInt(document.getElementById("allot-duration").value, 10) || 60;
+      const priority = document.getElementById("allot-priority").value;
+      const notes = document.getElementById("allot-notes").value.trim();
+
+      if (!title || !dateVal) return;
+
+      const newEvent = {
+        id: "cal_ev_" + Date.now(),
+        date: dateVal,
+        title,
+        subject,
+        category,
+        duration,
+        priority,
+        notes: notes || undefined
+      };
+
+      academicCalendarEvents.push(newEvent);
+      saveCalendarEvents();
+      renderAcademicCalendar();
+
+      formAllot.reset();
+      closeModal("modal-calendar-date-allot");
+      showNotification(`📅 Allotted ${duration} mins for "${title}" on ${dateVal}!`);
+    });
+  }
+}
+
+// =============================================================================
+// TOPPER'S HANDWRITTEN REVISION NOTES CONTROLLER
+// =============================================================================
+
+function renderHandwrittenNotes() {
+  const grid = document.getElementById("handwritten-cards-grid");
+  if (!grid) return;
+
+  const searchVal = (document.getElementById("hand-search-input")?.value || "").toLowerCase().trim();
+  const subjectVal = document.getElementById("hand-filter-subject")?.value || "all";
+  const classVal = document.getElementById("hand-filter-class")?.value || "all";
+
+  const filteredNotes = HANDWRITTEN_NOTES_CATALOG.filter(note => {
+    if (subjectVal !== "all" && note.subject !== subjectVal) return false;
+    if (classVal !== "all" && note.classLevel !== classVal) return false;
+    if (searchVal) {
+      const matchText = `${note.title} ${note.subject} ${note.author}`.toLowerCase();
+      if (!matchText.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  if (filteredNotes.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 2.5rem; text-align: center; color: var(--hub-muted);">
+        No handwritten notes found matching your criteria.
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filteredNotes.map(note => {
+    return `
+      <div class="notebook-sheet">
+        ${note.content}
+        <div class="note-footer-actions">
+          <span style="font-size: .75rem; color: #64748b; font-style: italic;">Verified • ${note.author}</span>
+          <button class="btn-print-note" onclick="window.print()">
+            🖨️ Print Sheet
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function setupHandwrittenFilterListeners() {
+  const searchInput = document.getElementById("hand-search-input");
+  const subjSelect = document.getElementById("hand-filter-subject");
+  const classSelect = document.getElementById("hand-filter-class");
+
+  [searchInput, subjSelect, classSelect].forEach(el => {
+    if (el) {
+      el.addEventListener("input", renderHandwrittenNotes);
+      el.addEventListener("change", renderHandwrittenNotes);
+    }
+  });
+}
+
+const NCERT_EBOOKS_CATALOG = [...ADDITIONAL_NCERT_EBOOKS, 
   {
     id: "ncert_b12_ch06",
     code: "lebo106",
@@ -3635,7 +4519,7 @@ const NCERT_EBOOKS_CATALOG = [
 ];
 
 // Worked NCERT Solutions & Exemplar Bank
-const NCERT_SOLUTIONS_CATALOG = [
+const NCERT_SOLUTIONS_CATALOG = [...ADDITIONAL_NCERT_SOLUTIONS, 
   {
     id: "sol_b12_01",
     classLevel: "12",
@@ -4892,6 +5776,7 @@ function setupAcademicEnlistModal() {
 // Master Initializer for Academic Pro Hub
 function initAcademicProHub() {
   loadAcademicTasks();
+  loadCalendarEvents();
   setupAcademicModeSwitcher();
   setupAcademicNavTabs();
   setupTaskforceFilterListeners();
@@ -4900,6 +5785,12 @@ function initAcademicProHub() {
   setupFormulaVaultListeners();
   setupDeepWorkStation();
   setupAcademicEnlistModal();
+  setupCalendarListeners();
+  setupHandwrittenFilterListeners();
+
+  // Render subviews
+  renderAcademicCalendar();
+  renderHandwrittenNotes();
 
   // Restore saved app mode (default to 'garden' or saved)
   const savedMode = localStorage.getItem("mg_app_mode") || "garden";

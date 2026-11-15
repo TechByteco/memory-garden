@@ -133,7 +133,7 @@
   <!-- Fonts & Libraries -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <!-- KaTeX for crisp mathematical & chemical formulas rendering -->
@@ -216,6 +216,7 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-ghost btn-sm" id="btn-nav-calendar" title="Open Master Academic Calendar & Time Allotment Station">📅 Calendar</button>
       <button class="btn btn-ghost btn-sm" id="btn-toggle-theme" title="Toggle light/dark theme">☀️</button>
       <button class="btn btn-ghost btn-sm" id="btn-open-pitch">🧠 Science</button>
       <button class="btn btn-ghost btn-sm" id="btn-export-csv">📥 Export</button>
@@ -975,6 +976,12 @@
       <button class="acad-tab-btn" data-acad-tab="formulas">
         <span>⚡</span> High-Yield Formula Vault
       </button>
+      <button class="acad-tab-btn" data-acad-tab="calendar">
+        <span>📅</span> Academic Calendar &amp; Allotment
+      </button>
+      <button class="acad-tab-btn" data-acad-tab="handwritten">
+        <span>✍️</span> Handwritten Notes &amp; Mind Maps
+      </button>
       <button class="acad-tab-btn" data-acad-tab="deepwork">
         <span>⏱️</span> Deep-Work Focus Station
       </button>
@@ -1275,6 +1282,127 @@
             <li><strong>Golden Lines:</strong> Mark every direct NCERT statement appearing in past 5-year NEET papers.</li>
             <li><strong>Hydration &amp; Eye Rest:</strong> Take a strict 10-minute non-screen break after each block.</li>
           </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SUBVIEW 7: MASTER ACADEMIC CALENDAR & TIME ALLOTMENT ─── -->
+    <div class="acad-subview hidden" id="acad-subview-calendar">
+      <!-- Exam Countdown Bar -->
+      <div class="exam-countdown-bar">
+        <div class="countdown-card board-cbse">
+          <div class="countdown-info">
+            <h4>CBSE 12th Board Exams</h4>
+            <span>Official Theory Exams Start</span>
+          </div>
+          <div>
+            <div class="countdown-timer-val" id="countdown-cbse-days">--</div>
+            <div class="countdown-timer-lbl">Days Left</div>
+          </div>
+        </div>
+        <div class="countdown-card exam-jee">
+          <div class="countdown-info">
+            <h4>JEE Main Session 1</h4>
+            <span>NTA Engineering Entrance</span>
+          </div>
+          <div>
+            <div class="countdown-timer-val" id="countdown-jee-days">--</div>
+            <div class="countdown-timer-lbl">Days Left</div>
+          </div>
+        </div>
+        <div class="countdown-card exam-neet">
+          <div class="countdown-info">
+            <h4>NEET-UG Exam</h4>
+            <span>Medical Entrance (720M)</span>
+          </div>
+          <div>
+            <div class="countdown-timer-val" id="countdown-neet-days">--</div>
+            <div class="countdown-timer-lbl">Days Left</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Calendar Layout -->
+      <div class="calendar-layout">
+        <!-- Calendar Grid Panel -->
+        <div class="calendar-main-panel">
+          <div class="calendar-nav-hdr">
+            <h3 class="cal-month-title">
+              <span id="cal-month-year-title">November 2026</span>
+            </h3>
+            <div class="cal-nav-btn-grp">
+              <button class="btn-cal-nav" id="btn-cal-prev" title="Previous Month">&lt;</button>
+              <button class="btn-cal-nav" id="btn-cal-today">Today</button>
+              <button class="btn-cal-nav" id="btn-cal-next" title="Next Month">&gt;</button>
+              <button class="btn btn-primary btn-sm" id="btn-cal-allot-new" style="margin-left: 8px;">➕ Allot Time Limit</button>
+            </div>
+          </div>
+
+          <!-- Day of week headers -->
+          <div class="calendar-week-days">
+            <div class="cal-day-header weekend">Sun</div>
+            <div class="cal-day-header">Mon</div>
+            <div class="cal-day-header">Tue</div>
+            <div class="cal-day-header">Wed</div>
+            <div class="cal-day-header">Thu</div>
+            <div class="cal-day-header">Fri</div>
+            <div class="cal-day-header weekend">Sat</div>
+          </div>
+
+          <!-- 42-cell Month Days Grid (Rendered dynamically) -->
+          <div class="calendar-days-grid" id="calendar-days-grid">
+            <!-- Rendered by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Sidebar Agenda for Selected Date -->
+        <div class="calendar-side-panel">
+          <div class="agenda-hdr">
+            <div>
+              <h4 class="agenda-date-title" id="agenda-selected-date-str">Today's Agenda</h4>
+              <span style="font-size: .75rem; color: var(--hub-muted);">Click any date on calendar to view / allot</span>
+            </div>
+            <span class="agenda-total-hours" id="agenda-total-hours">0h Planned</span>
+          </div>
+
+          <div class="agenda-list" id="agenda-events-list">
+            <!-- Rendered by JavaScript -->
+          </div>
+
+          <button class="btn btn-primary" id="btn-agenda-add-slot" style="margin-top: 1.25rem; width: 100%;">
+            ➕ Allot Time Limit for This Date
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SUBVIEW 8: TOPPER'S HANDWRITTEN REVISION NOTES ─── -->
+    <div class="acad-subview hidden" id="acad-subview-handwritten">
+      <div class="acad-filter-toolbar">
+        <div class="acad-filter-group">
+          <input type="text" class="acad-input-search" id="hand-search-input" placeholder="🔍 Search handwritten notes or mind maps...">
+          <select class="acad-select" id="hand-filter-subject">
+            <option value="all">All Subjects</option>
+            <option value="Biology">🌱 Biology</option>
+            <option value="Chemistry">🧪 Chemistry</option>
+            <option value="Physics">⚡ Physics</option>
+            <option value="English">📖 English (Flamingo &amp; Vistas)</option>
+            <option value="Mathematics">📐 Mathematics</option>
+          </select>
+          <select class="acad-select" id="hand-filter-class">
+            <option value="all">All Classes</option>
+            <option value="12">Class 12</option>
+            <option value="11">Class 11</option>
+          </select>
+        </div>
+        <button class="btn btn-ghost" onclick="window.print()" style="border: 1px solid var(--hub-border);">
+          🖨️ Print / Save PDF ↗
+        </button>
+      </div>
+
+      <div class="handwritten-hub-wrap">
+        <div class="handwritten-grid" id="handwritten-cards-grid">
+          <!-- Rendered dynamically by JavaScript -->
         </div>
       </div>
     </div>
@@ -1743,6 +1871,93 @@
       <div class="modal-ftr">
         <button type="button" class="btn btn-ghost" data-close="modal-enlist-task">Cancel</button>
         <button type="submit" class="btn btn-primary">Enlist into Taskforce ⚡</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     INTERACTIVE CALENDAR DATE ALLOTMENT MODAL
+     ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="modal-calendar-date-allot" role="dialog" aria-modal="true" aria-label="Allot Time Limit or Important Date">
+  <div class="modal-card" style="max-width: 580px;">
+    <div class="modal-hdr">
+      <div>
+        <h3 style="margin: 0; font-size: 1.15rem;">📅 Allot Time Limit / Important Date</h3>
+        <span style="font-size: .8rem; color: #60a5fa;" id="modal-allot-date-display">Date: 2026-11-18</span>
+      </div>
+      <button class="modal-x" data-close="modal-calendar-date-allot">&times;</button>
+    </div>
+    <form id="form-calendar-allot" class="modal-body">
+      <input type="hidden" id="allot-target-date" value="">
+      
+      <div class="allotment-form-grid">
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="allot-subject" class="form-select" required>
+            <option value="Biology">🌱 Biology</option>
+            <option value="Chemistry">🧪 Chemistry</option>
+            <option value="Physics">⚡ Physics</option>
+            <option value="English">📖 English Core</option>
+            <option value="Mathematics">📐 Mathematics</option>
+            <option value="General">🎯 General / Mock Exam</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Allotment Category</label>
+          <select id="allot-category" class="form-select" required>
+            <option value="timelimit" selected>⏱️ Time-Boxed Study Limit</option>
+            <option value="exam">🚨 Important Exam / Test Date</option>
+            <option value="revision">🔄 Spaced Revision Cadence</option>
+            <option value="homework">📝 Assignment / Lab Practical</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Activity / Chapter Title</label>
+        <input type="text" id="allot-title" class="form-input" placeholder="e.g. Ray Optics 25 Numericals + Lens Maker Derivation" required>
+      </div>
+
+      <div class="allotment-form-grid">
+        <div class="form-group">
+          <label>Allotted Time Limit</label>
+          <select id="allot-duration" class="form-select" required>
+            <option value="30">30 Minutes (Quick Quiz)</option>
+            <option value="45">45 Minutes</option>
+            <option value="60" selected>1 Hour (Standard Block)</option>
+            <option value="90">1.5 Hours (Deep Revision)</option>
+            <option value="120">2 Hours (Heavy Numericals)</option>
+            <option value="180">3 Hours (Full Mock Paper)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="allot-priority" class="form-select">
+            <option value="high" selected>Tier 1 — High Priority</option>
+            <option value="med">Tier 2 — Standard</option>
+            <option value="low">Tier 3 — Leisure Review</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Target Goals / Key Topics to Cover</label>
+        <input type="text" id="allot-notes" class="form-input" placeholder="e.g. Solve HCV Q1-15, memorize sign convention, revise prism formula">
+      </div>
+
+      <!-- Current schedule list for this date -->
+      <div style="margin-top: 1rem; border-top: 1px dashed var(--hub-border); padding-top: .75rem;">
+        <label style="font-size: .8rem; font-weight: 700; color: var(--hub-muted); display: block; margin-bottom: 6px;">Already Scheduled for This Day:</label>
+        <div id="modal-allot-existing-list" style="max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div class="modal-ftr">
+        <button type="button" class="btn btn-ghost" data-close="modal-calendar-date-allot">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save to Calendar 📅</button>
       </div>
     </form>
   </div>
