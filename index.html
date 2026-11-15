@@ -1116,34 +1116,54 @@
         </div>
       </div>
 
-      <!-- Quick Catalog Cards Grid below reader -->
-      <div style="margin-top: 2rem;">
-        <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .85rem;">
-          📚 Browse All Official NCERT Books (Quick Access Cards &amp; Official Portal Links)
-        </h4>
-        <div class="acad-filter-toolbar">
-          <div class="acad-filter-group">
-            <input type="text" class="acad-input-search" id="ebook-search-input" placeholder="🔍 Filter quick book cards...">
-            <select class="acad-select" id="ebook-filter-category">
-              <option value="all">All Official E-Books</option>
-              <option value="12-chem">Class 12 Chemistry (lech1/2)</option>
-              <option value="12-bio">Class 12 Biology (lebo1)</option>
-              <option value="12-phys">Class 12 Physics (leph1/2)</option>
-              <option value="12-eng">Class 12 English (Flamingo/Vistas)</option>
-              <option value="12-math">Class 12 Mathematics (lemh1/2)</option>
-              <option value="11-chem">Class 11 Chemistry (kech1/2)</option>
-              <option value="11-bio">Class 11 Biology (kebo1)</option>
-              <option value="11-phys">Class 11 Physics (keph1/2)</option>
-              <option value="11-math">Class 11 Mathematics (kemh1)</option>
-            </select>
+      <!-- ─── OFFLINE NCERT TEXTBOOK VOLUMES (SEPARATE BOOK BLOCKS) ─── -->
+      <div class="offline-books-section" id="offline-books-section">
+        <!-- Offline Library Banner -->
+        <div class="offline-library-banner">
+          <div>
+            <h3 class="offline-banner-title">
+              <span>📚 Complete NCERT Offline Textbook Library (Class 11 &amp; 12)</span>
+            </h3>
+            <p class="offline-banner-sub">
+              Access every official textbook as a separate, self-contained offline volume. Download complete offline bundles (.html) to study anywhere with zero internet, or read instantly in the embedded reader.
+            </p>
           </div>
-          <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="border: 1px solid var(--hub-border);">
-            🌐 Open NCERT.nic.in Portal ↗
-          </a>
+          <div style="display: flex; gap: .6rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="btn-download-all-offline-bundle" style="background: linear-gradient(135deg, #059669, #10b981); border: none;">
+              ⬇️ Download All 12 Books Bundle
+            </button>
+            <button class="btn btn-ghost" id="btn-cache-all-books" style="border: 1px solid var(--hub-border);">
+              💾 Cache All for Offline Mode
+            </button>
+          </div>
         </div>
 
-        <div class="ebooks-grid" id="ebooks-cards-grid">
-          <!-- Rendered dynamically by JavaScript -->
+        <!-- Filter Toolbar -->
+        <div class="acad-filter-toolbar">
+          <div class="acad-filter-group">
+            <input type="text" class="acad-input-search" id="offline-vol-search" placeholder="🔍 Search book title, subject, or code...">
+            <select class="acad-select" id="offline-vol-filter-subject">
+              <option value="all">All Subjects</option>
+              <option value="Chemistry">🧪 Chemistry (Part I &amp; II)</option>
+              <option value="Biology">🌱 Biology</option>
+              <option value="Physics">⚡ Physics (Part I &amp; II)</option>
+              <option value="English">📖 English (Flamingo / Vistas / Hornbill / Snapshots)</option>
+              <option value="Mathematics">📐 Mathematics (Part I &amp; II)</option>
+            </select>
+            <select class="acad-select" id="offline-vol-filter-class">
+              <option value="all">All Classes</option>
+              <option value="12">Class 12 (Board &amp; Competitive)</option>
+              <option value="11">Class 11 (Foundations)</option>
+            </select>
+          </div>
+          <span style="font-size: .8rem; color: #34d399; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+            <span>🟢</span> 12 Complete Volumes Indexed
+          </span>
+        </div>
+
+        <!-- Distinct Separate Book Volume Blocks Grid -->
+        <div class="offline-books-grid" id="offline-books-grid">
+          <!-- Rendered dynamically as separate tactile book blocks -->
         </div>
       </div>
 

@@ -3401,3 +3401,276 @@ html[data-theme="light"] .academic-pro-hub {
   margin-bottom: .4rem;
   text-transform: uppercase;
 }
+
+
+/* =============================================================================
+   OFFLINE NCERT TEXTBOOK VOLUMES & SEPARATE BOOK BLOCKS
+   Complete offline reading, standalone bundle download, and chapter indexing
+   ============================================================================= */
+
+.offline-books-section {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.offline-library-banner {
+  background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(59,130,246,.12));
+  border: 1px solid rgba(16,185,129,.35);
+  border-radius: var(--r-xl);
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+.offline-banner-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.offline-banner-sub {
+  font-size: .88rem;
+  color: var(--hub-muted);
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+/* Offline Books Grid */
+.offline-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Individual Book Volume Block */
+.book-volume-block {
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: var(--r-xl);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.book-volume-block:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99,102,241,.5);
+  box-shadow: 0 16px 45px rgba(0,0,0,.35);
+}
+
+/* Color Accents by Subject */
+.book-volume-block.vol-chem { border-top: 4px solid #c084fc; }
+.book-volume-block.vol-bio { border-top: 4px solid #10b981; }
+.book-volume-block.vol-phys { border-top: 4px solid #f59e0b; }
+.book-volume-block.vol-eng { border-top: 4px solid #f43f5e; }
+.book-volume-block.vol-math { border-top: 4px solid #38bdf8; }
+
+.book-vol-hdr {
+  display: flex;
+  gap: 1.15rem;
+  margin-bottom: 1rem;
+}
+.book-3d-cover {
+  width: 70px;
+  height: 98px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow: 4px 6px 15px rgba(0,0,0,.4), inset -2px 0 6px rgba(0,0,0,.3);
+  position: relative;
+  border: 1px solid rgba(255,255,255,.15);
+}
+.book-3d-cover.chem { background: linear-gradient(135deg, #4c1d95, #7e22ce); }
+.book-3d-cover.bio { background: linear-gradient(135deg, #064e3b, #059669); }
+.book-3d-cover.phys { background: linear-gradient(135deg, #78350f, #d97706); }
+.book-3d-cover.eng { background: linear-gradient(135deg, #881337, #e11d48); }
+.book-3d-cover.math { background: linear-gradient(135deg, #0c4a6e, #0284c7); }
+
+.cover-ncert-tag {
+  font-size: .55rem;
+  font-weight: 800;
+  color: #fbbf24;
+  letter-spacing: .06em;
+}
+.cover-icon-center { font-size: 1.6rem; }
+.cover-code-btm {
+  font-size: .55rem;
+  font-family: var(--mono);
+  color: rgba(255,255,255,.8);
+}
+
+.book-vol-meta {
+  flex: 1;
+}
+.book-vol-pill-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.book-offline-badge {
+  background: rgba(16,185,129,.18);
+  color: #34d399;
+  border: 1px solid rgba(16,185,129,.35);
+  font-size: .65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: .02em;
+}
+.book-vol-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--hub-text);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+.book-vol-edition {
+  font-size: .75rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.book-vol-summary {
+  font-size: .8rem;
+  color: var(--hub-muted);
+  line-height: 1.5;
+  margin: .85rem 0 1rem 0;
+  background: var(--hub-card);
+  padding: .75rem .9rem;
+  border-radius: var(--r-sm);
+  border-left: 2px solid rgba(99,102,241,.4);
+}
+
+/* Action Buttons inside Book Block */
+.book-vol-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+.book-action-row-primary {
+  display: flex;
+  gap: .5rem;
+}
+.btn-book-read {
+  flex: 1;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  border: none;
+  padding: .6rem 1rem;
+  border-radius: var(--r-sm);
+  font-family: var(--font);
+  font-size: .84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all .2s ease;
+  box-shadow: 0 3px 12px rgba(37,99,235,.35);
+}
+.btn-book-read:hover {
+  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+  transform: translateY(-1px);
+}
+
+.btn-book-download {
+  flex: 1;
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  border: none;
+  padding: .6rem 1rem;
+  border-radius: var(--r-sm);
+  font-family: var(--font);
+  font-size: .84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all .2s ease;
+  box-shadow: 0 3px 12px rgba(16,185,129,.35);
+}
+.btn-book-download:hover {
+  background: linear-gradient(135deg, #047857, #059669);
+  transform: translateY(-1px);
+}
+
+.book-action-row-secondary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-book-drawer-toggle {
+  background: transparent;
+  border: none;
+  color: #60a5fa;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-book-drawer-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Collapsible Chapter Index Drawer inside Book Block */
+.book-chapter-drawer {
+  margin-top: .85rem;
+  padding-top: .85rem;
+  border-top: 1px dashed rgba(255,255,255,.1);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.book-chapter-drawer.hidden { display: none !important; }
+.drawer-ch-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--hub-card);
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: .76rem;
+  color: var(--hub-text);
+  gap: 6px;
+}
+.drawer-ch-item:hover {
+  background: rgba(255,255,255,.06);
+}
+.drawer-ch-link {
+  color: #93c5fd;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.drawer-ch-link:hover { text-decoration: underline; }
