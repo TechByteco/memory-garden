@@ -3171,6 +3171,1742 @@ function setupShareCardActions() {
   });
 }
 
+
+// =============================================================================
+// 24. ACADEMIC PRO COMMAND CENTER (CBSE CLASS 11 & 12 • NEET • JEE)
+// Dedicated Plant-Free Workspace, Spaced Revision Taskforce,
+// Official NCERT E-Books Reader, Worked Solutions & Exam Prep Bank
+// =============================================================================
+
+// Default High-Yield Syllabus Modules for Class 11 & 12 CBSE, NEET & JEE
+const DEFAULT_ACADEMIC_TASKS = [
+  {
+    id: "acad_b12_01",
+    subject: "Biology",
+    classLevel: "12",
+    targetExam: "NEET",
+    title: "Molecular Basis of Inheritance (DNA Replication, Transcription, Lac Operon)",
+    initialDate: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0],
+    stage: 1, // R1
+    lastRevised: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now()).toISOString().split('T')[0], // Due Today!
+    priority: "high",
+    notes: "High-yield (8-10 NEET Qs): Meselson-Stahl N15/N14 density gradient, tRNA cloverleaf model, lac operon allolactose inducer."
+  },
+  {
+    id: "acad_m12_01",
+    subject: "Mathematics",
+    classLevel: "12",
+    targetExam: "JEE",
+    title: "Calculus: Integrals & Definite Integrals (King's Property & By-Parts)",
+    initialDate: new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0],
+    stage: 2, // R2
+    lastRevised: new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now()).toISOString().split('T')[0], // Due Today!
+    priority: "high",
+    notes: "CBSE 6-marker & JEE standard: King's rule ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a-x)dx, reduction formulas, and partial fractions."
+  },
+  {
+    id: "acad_p12_01",
+    subject: "Physics",
+    classLevel: "12",
+    targetExam: "JEE",
+    title: "Current Electricity: Kirchhoff's Laws & Potentiometer Sensitivity",
+    initialDate: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0],
+    stage: 1, // R1
+    lastRevised: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Kirchhoff junction rule (charge conservation) & loop rule (energy conservation). Drift velocity vd = eEτ/m."
+  },
+  {
+    id: "acad_c12_01",
+    subject: "Chemistry",
+    classLevel: "12",
+    targetExam: "NEET",
+    title: "Electrochemistry: Nernst Equation, Kohlrausch Law & Faraday's Laws",
+    initialDate: new Date(Date.now() - 8 * 86400000).toISOString().split('T')[0],
+    stage: 2, // R2
+    lastRevised: new Date(Date.now() - 8 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0], // Overdue!
+    priority: "high",
+    notes: "Ecell = E°cell - (0.0591/n) log Q at 298K. Λ°m for weak electrolytes via Kohlrausch limiting molar conductivities."
+  },
+  {
+    id: "acad_b12_02",
+    subject: "Biology",
+    classLevel: "12",
+    targetExam: "NEET",
+    title: "Principles of Inheritance and Variation (Mendelian Genetics & Linkage)",
+    initialDate: new Date(Date.now() - 14 * 86400000).toISOString().split('T')[0],
+    stage: 3, // R3
+    lastRevised: new Date(Date.now() - 14 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Morgan's Drosophila linkage experiments, recombination frequency map units, pedigree analysis autosomal recessive vs sex-linked."
+  },
+  {
+    id: "acad_m12_02",
+    subject: "Mathematics",
+    classLevel: "12",
+    targetExam: "CBSE",
+    title: "Vectors & Three Dimensional Geometry (Shortest Distance Between Skew Lines)",
+    initialDate: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0],
+    stage: 1, // R1
+    lastRevised: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 3 * 86400000).toISOString().split('T')[0],
+    priority: "med",
+    notes: "Shortest distance d = |(a2 - a1) · (b1 × b2)| / |b1 × b2|. Coplanarity condition [a2-a1, b1, b2] = 0."
+  },
+  {
+    id: "acad_p12_02",
+    subject: "Physics",
+    classLevel: "12",
+    targetExam: "NEET",
+    title: "Ray Optics & Optical Instruments (Lens Maker Formula, Prism & Microscope)",
+    initialDate: new Date(Date.now() - 28 * 86400000).toISOString().split('T')[0],
+    stage: 4, // Mastered
+    lastRevised: new Date(Date.now() - 10 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 20 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "1/f = (μ - 1)(1/R1 - 1/R2). Minimum deviation δm = 2i - A. Compound microscope magnifying power m = (L/fo)(1 + D/fe)."
+  },
+  {
+    id: "acad_c12_02",
+    subject: "Chemistry",
+    classLevel: "12",
+    targetExam: "JEE",
+    title: "Aldehydes, Ketones and Carboxylic Acids (Aldol, Cannizzaro & Tollens)",
+    initialDate: new Date(Date.now() - 6 * 86400000).toISOString().split('T')[0],
+    stage: 2, // R2
+    lastRevised: new Date(Date.now() - 6 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 1 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Aldol with α-H, Cannizzaro disproportionation without α-H. Nucleophilic addition reactivity: HCHO > RCHO > RCOR."
+  },
+  {
+    id: "acad_b11_01",
+    subject: "Biology",
+    classLevel: "11",
+    targetExam: "NEET",
+    title: "Cell: The Unit of Life (Endomembrane System, Mitochondria & Ribosomes)",
+    initialDate: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0],
+    stage: 0, // R0
+    lastRevised: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now()).toISOString().split('T')[0], // Due Today!
+    priority: "med",
+    notes: "70S vs 80S ribosomes, fluid mosaic model (Singer-Nicolson 1972), 9+2 vs 9+0 microtubule axoneme arrangement."
+  },
+  {
+    id: "acad_m11_01",
+    subject: "Mathematics",
+    classLevel: "11",
+    targetExam: "JEE",
+    title: "Conic Sections: Parabola, Ellipse & Hyperbola (Standard Forms & Eccentricity)",
+    initialDate: new Date(Date.now() - 10 * 86400000).toISOString().split('T')[0],
+    stage: 2, // R2
+    lastRevised: new Date(Date.now() - 10 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 4 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Eccentricity e = c/a. Parabola y²=4ax tangent y=mx+a/m. Ellipse x²/a²+y²/b²=1 (b²=a²(1-e²)). Directrix and focal properties."
+  },
+  {
+    id: "acad_p11_01",
+    subject: "Physics",
+    classLevel: "11",
+    targetExam: "JEE",
+    title: "Laws of Motion & Friction (Free Body Diagrams, Banking of Roads)",
+    initialDate: new Date(Date.now() - 5 * 86400000).toISOString().split('T')[0],
+    stage: 1, // R1
+    lastRevised: new Date(Date.now() - 5 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Optimum banking speed v = √(rg tan θ). Max safe speed with friction v = √[rg (μ + tan θ)/(1 - μ tan θ)]. Impulse J = Δp."
+  },
+  {
+    id: "acad_c11_01",
+    subject: "Chemistry",
+    classLevel: "11",
+    targetExam: "NEET",
+    title: "Chemical Bonding & Molecular Structure (VSEPR, Hybridisation & MOT)",
+    initialDate: new Date(Date.now() - 12 * 86400000).toISOString().split('T')[0],
+    stage: 3, // R3
+    lastRevised: new Date(Date.now() - 12 * 86400000).toISOString().split('T')[0],
+    nextDue: new Date(Date.now() + 4 * 86400000).toISOString().split('T')[0],
+    priority: "high",
+    notes: "Bond order = 1/2(Nb - Na). O2 paramagnetic due to 2 unpaired electrons in π*2px, π*2py. Dipole moments: NH3 (1.47D) > NF3 (0.24D)."
+  }
+];
+
+// Official NCERT E-Books Catalog with Real NCERT Text & Golden Lines
+const NCERT_EBOOKS_CATALOG = [
+  {
+    id: "ncert_b12_ch06",
+    code: "lebo106",
+    classLevel: "12",
+    subject: "Biology",
+    category: "12-bio",
+    chNumber: "Chapter 6",
+    title: "Molecular Basis of Inheritance",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lebo1=6-13",
+    topics: "The DNA Structure, Central Dogma, Packaging of DNA Helix, Griffith & Avery Experiments, Meselson-Stahl, Genetic Code, Lac Operon, Human Genome Project.",
+    synopsis: "Deoxyribonucleic acid (DNA) and ribonucleic acid (RNA) are the two types of nucleic acids found in living systems. DNA acts as the genetic material in most organisms, whereas RNA acts as genetic material in some viruses (e.g., Tobacco Mosaic Virus, QB bacteriophage). A nitrogenous base is linked to the pentose sugar through an N-glycosidic linkage to form a nucleoside.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'DNA is a long polymer of deoxyribonucleotides. The length of DNA is usually defined as number of nucleotides (or base pairs).' Bacteriophage φ174 has 5386 nucleotides; Bacteriophage lambda has 48502 base pairs; E. coli has 4.6 × 10⁶ bp, and human haploid genome has 3.3 × 10⁹ bp.",
+      "NCERT Golden Line 2: 'Meselson and Stahl grew E. coli in a medium containing ¹⁵NH₄Cl as the only nitrogen source for many generations. ¹⁵N is not a radioactive isotope; it is separated purely on CsCl density gradient centrifugation.'",
+      "NCERT Golden Line 3: 'The genetic code is degenerate: some amino acids are coded by more than one codon. The code is nearly universal; for example, from bacteria to human UUU codes for Phenylalanine (some exceptions in mitochondrial codons).' (NEET 2021, 2023)"
+    ],
+    formulas: [
+      "Total length of DNA = (Total number of base pairs) × (Distance between two consecutive base pairs) = 6.6 × 10⁹ bp × 0.34 × 10⁻⁹ m/bp ≈ 2.2 metres.",
+      "Chargaff's Rule: In double-stranded DNA, [A] = [T] and [G] = [C]; therefore, [A] + [G] = [T] + [C] (Purines = Pyrimidines)."
+    ],
+    intextQuestions: [
+      "Q: Can you recall the two chemical differences between DNA and RNA? Ans: RNA contains ribose sugar (2'-OH) and Uracil, whereas DNA contains 2'-deoxyribose (lacks 2'-OH) and Thymine (5-methyl uracil). The 2'-OH group makes RNA labile and easily degradable."
+    ]
+  },
+  {
+    id: "ncert_m12_ch07",
+    code: "lemh107",
+    classLevel: "12",
+    subject: "Mathematics",
+    category: "12-math",
+    chNumber: "Chapter 7",
+    title: "Integrals (Calculus)",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lemh1=7-13",
+    topics: "Integration as inverse process of differentiation, Methods of Integration (Substitution, Partial Fractions, By Parts), Definite Integrals & Fundamental Theorem of Calculus, Properties of Definite Integrals.",
+    synopsis: "Just as subtraction is inverse of addition, integration is the reverse process of differentiation. Let d/dx [F(x)] = f(x). Then we write ∫ f(x) dx = F(x) + C, where C is arbitrary constant of integration. Integrals arise both as antiderivatives and as the limit of Riemann sums representing the area under a curve.",
+    goldenLines: [
+      "NCERT Golden Line / Property P4 (King's Property): ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a - x) dx. This single property solves over 70% of CBSE board definite integrals and JEE Main area symmetry questions.",
+      "Property P7: ∫₀²ᵃ f(x) dx = 2∫₀ᵃ f(x) dx if f(2a - x) = f(x), and 0 if f(2a - x) = -f(x).",
+      "Integration by Parts: ∫ u·v dx = u ∫ v dx - ∫ [u' (∫ v dx)] dx. ILATE order: Inverse, Logarithmic, Algebraic, Trigonometric, Exponential."
+    ],
+    formulas: [
+      "∫ dx / (x² + a²) = (1/a) arctan(x/a) + C",
+      "∫ dx / √(a² - x²) = arcsin(x/a) + C",
+      "∫ eˣ [f(x) + f'(x)] dx = eˣ f(x) + C"
+    ],
+    intextQuestions: [
+      "Q: Evaluate ∫ eˣ (sin x + cos x) dx. Ans: Let f(x) = sin x. Then f'(x) = cos x. Applying ∫ eˣ[f(x) + f'(x)]dx, the integral is directly eˣ sin x + C."
+    ]
+  },
+  {
+    id: "ncert_p12_ch03",
+    code: "leph103",
+    classLevel: "12",
+    subject: "Physics",
+    category: "12-phys",
+    chNumber: "Chapter 3",
+    title: "Current Electricity",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?leph1=3-8",
+    topics: "Electric Current, Drift Velocity & Ohm's Law, Temperature Dependence of Resistivity, Internal Resistance of Cell, Cells in Series & Parallel, Kirchhoff's Rules, Wheatstone Bridge.",
+    synopsis: "Charges in motion constitute an electric current. By convention, direction of current is taken as direction of flow of positive charge. Current density j = I/A = n e vd. Ohm's law states V = IR where resistance R = ρL/A. Microscopic Ohm's law: j = σE.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'The drift velocity vd is typically of the order of a few millimetres per second (10⁻⁴ m/s), yet an electric bulb glows almost instantaneously because the electric field propagates along the conductor at the speed of light.'",
+      "NCERT Golden Line 2: 'Kirchhoff's first rule (Junction Rule) is based on conservation of charge. Kirchhoff's second rule (Loop Rule) is based on conservation of energy.' (NEET 2020, 2022)"
+    ],
+    formulas: [
+      "Drift Velocity: vd = -eEτ / m",
+      "Resistivity: ρ = m / (n e² τ)",
+      "Internal Resistance: r = R (E/V - 1)",
+      "Balanced Wheatstone Bridge: P/Q = R/S"
+    ],
+    intextQuestions: [
+      "Q: Why are alloys like manganin and constantan used for making standard resistance coils? Ans: Because they have very high resistivity and nearly negligible (extremely low) temperature coefficient of resistance."
+    ]
+  },
+  {
+    id: "ncert_c12_ch02",
+    code: "lech102",
+    classLevel: "12",
+    subject: "Chemistry",
+    category: "12-chem",
+    chNumber: "Chapter 2",
+    title: "Electrochemistry",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lech1=2-9",
+    topics: "Electrochemical Cells, Galvanic Cells & Nernst Equation, Conductance of Electrolytic Solutions, Kohlrausch's Law, Electrolysis & Faraday's Laws, Batteries & Fuel Cells, Corrosion.",
+    synopsis: "Electrochemistry is the study of production of electricity from energy released during spontaneous chemical reactions and the use of electrical energy to bring about non-spontaneous chemical transformations. The standard electrode potential E° is measured with respect to the Standard Hydrogen Electrode (SHE = 0.00 V).",
+    goldenLines: [
+      "NCERT Golden Line 1: 'ΔrG° = -n F E°cell. A cell reaction is thermodynamically spontaneous only when E°cell is positive (making ΔrG° negative).' (NEET 2021)",
+      "NCERT Golden Line 2: 'Molar conductivity Λm increases with decrease in concentration (dilution) for both strong and weak electrolytes, but conductivity κ always decreases upon dilution because number of ions per unit volume decreases.'"
+    ],
+    formulas: [
+      "Nernst Equation: Ecell = E°cell - (2.303 RT / nF) log Q = E°cell - (0.0591 / n) log Q at 298 K",
+      "Kohlrausch Law: Λ°m (AxBy) = x λ°m (Aʸ⁺) + y λ°m (Bˣ⁻)",
+      "Faraday's First Law: m = Z I t = (M / nF) I t"
+    ],
+    intextQuestions: [
+      "Q: Why does conductivity of a solution decrease with dilution? Ans: Conductivity κ is the conductance of 1 cm³ (unit volume) of solution. On dilution, the number of current-carrying ions per unit volume decreases, hence κ decreases."
+    ]
+  },
+  {
+    id: "ncert_b12_ch05",
+    code: "lebo105",
+    classLevel: "12",
+    subject: "Biology",
+    category: "12-bio",
+    chNumber: "Chapter 5",
+    title: "Principles of Inheritance and Variation",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lebo1=5-13",
+    topics: "Mendel's Laws of Inheritance, Incomplete Dominance, Codominance & Multiple Alleles, Chromosomal Theory of Inheritance, Linkage and Recombination, Sex Determination, Mendelian & Chromosomal Disorders.",
+    synopsis: "Genetics is the subject that deals with the inheritance, as well as the variation of characters from parents to offspring. Gregor Mendel conducted hybridization experiments on garden peas (Pisum sativum) for seven years (1856-1863) and proposed the laws of inheritance in living organisms.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Sutton and Boveri noted that the behaviour of chromosomes was parallel to the behaviour of genes and used chromosome movement to explain Mendel's laws.'",
+      "NCERT Golden Line 2: 'Morgan attributed the difference in recombination frequency between white-miniature and yellow-white genes in Drosophila to linkage. Alfred Sturtevant used the frequency of recombination between gene pairs on the same chromosome as a measure of distance between genes.' (NEET 2019, 2023)"
+    ],
+    formulas: [
+      "Monohybrid Phenotypic Ratio = 3:1; Genotypic Ratio = 1:2:1",
+      "Dihybrid Phenotypic Ratio = 9:3:3:1",
+      "Recombination Frequency (%) = (Total Recombinants / Total Progeny) × 100% (1% recombination = 1 map unit / centimorgan)"
+    ],
+    intextQuestions: [
+      "Q: Mention the type of allele interaction in human ABO blood grouping. Ans: Codominance (IA and IB are equally expressed in IAIB producing AB blood group) and Multiple Allelism (three alleles IA, IB, i present in population)."
+    ]
+  },
+  {
+    id: "ncert_m12_ch10",
+    code: "lemh202",
+    classLevel: "12",
+    subject: "Mathematics",
+    category: "12-math",
+    chNumber: "Chapter 10",
+    title: "Vector Algebra",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lemh2=4-7",
+    topics: "Types of Vectors, Direction Cosines & Ratios, Scalar (Dot) Product, Vector (Cross) Product, Projection of a Vector.",
+    synopsis: "A quantity that has magnitude as well as direction is called a vector. The position vector of a point P(x, y, z) with respect to origin is given by r = x i + y j + z k. Dot product produces a scalar (work, projection), while cross product produces a perpendicular vector (torque, area).",
+    goldenLines: [
+      "NCERT Core Theorem: Two non-zero vectors a and b are perpendicular if and only if a · b = 0.",
+      "Two non-zero vectors a and b are collinear if and only if a × b = 0.",
+      "Area of parallelogram with adjacent vectors a and b is |a × b|. Area of triangle = (1/2)|a × b|."
+    ],
+    formulas: [
+      "Dot Product: a · b = |a||b| cos θ",
+      "Cross Product: a × b = |a||b| sin θ n̂",
+      "Projection of a on b: proj = (a · b) / |b|"
+    ],
+    intextQuestions: [
+      "Q: Find the projection of vector a = 2i + 3j + 2k on b = i + 2j + k. Ans: a · b = (2)(1) + (3)(2) + (2)(1) = 10. |b| = √(1 + 4 + 1) = √6. Projection = 10 / √6."
+    ]
+  },
+  {
+    id: "ncert_p12_ch09",
+    code: "leph201",
+    classLevel: "12",
+    subject: "Physics",
+    category: "12-phys",
+    chNumber: "Chapter 9",
+    title: "Ray Optics and Optical Instruments",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?leph2=1-6",
+    topics: "Refraction at Spherical Surfaces, Lens Maker's Formula, Combination of Thin Lenses, Refraction through a Prism, Dispersion, Optical Instruments (Microscopes & Telescopes).",
+    synopsis: "Light travels along straight lines in homogeneous media. Snell's law governs refraction at boundary: n1 sin i = n2 sin r. Total internal reflection occurs when angle of incidence in denser medium exceeds critical angle θc = arcsin(1/n).",
+    goldenLines: [
+      "NCERT Golden Line 1: 'For a thin prism, deviation δ ≈ (n - 1) A. The angle of minimum deviation δm occurs when the ray passes symmetrically through the prism (r1 = r2 = A/2 and i = e).' (CBSE 5-Marker, NEET 2021)",
+      "NCERT Golden Line 2: 'In an astronomical telescope in normal adjustment, length of tube L = fo + fe and magnifying power m = -fo / fe. To increase resolving power, the objective aperture must be as large as possible.'"
+    ],
+    formulas: [
+      "Spherical Refraction: n2/v - n1/u = (n2 - n1)/R",
+      "Lens Maker Formula: 1/f = (n - 1) [1/R1 - 1/R2]",
+      "Prism Formula: n = sin[(A + δm)/2] / sin(A/2)"
+    ],
+    intextQuestions: [
+      "Q: A convex lens of refractive index 1.5 is immersed in water (n = 1.33). How does its focal length change? Ans: Since relative refractive index n_rel = 1.5/1.33 = 1.13 is much smaller than in air (1.5), (n_rel - 1) decreases by ~4 times, so focal length increases by ~4 times."
+    ]
+  },
+  {
+    id: "ncert_c12_ch08",
+    code: "lech202",
+    classLevel: "12",
+    subject: "Chemistry",
+    category: "12-chem",
+    chNumber: "Chapter 8",
+    title: "Aldehydes, Ketones and Carboxylic Acids",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?lech2=2-5",
+    topics: "Nomenclature & Nature of Carbonyl Group, Preparation of Aldehydes & Ketones (Rosenmund, Gatterman-Koch, Ozonolysis), Nucleophilic Addition Reactions, Acidity of Carboxylic Acids.",
+    synopsis: "Carbonyl compounds containing >C=O group are central in organic synthesis. Due to electronegativity difference between carbon and oxygen, the carbonyl carbon is electrophilic (sp² hybridized, planar) and readily undergoes nucleophilic addition.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Aldol condensation is given only by aldehydes and ketones containing at least one α-hydrogen in the presence of dilute alkali (dil. NaOH) forming β-hydroxy aldehydes.'",
+      "NCERT Golden Line 2: 'Cannizzaro reaction is a disproportionation (self oxidation-reduction) undergone by aldehydes lacking α-hydrogen (HCHO, PhCHO) on heating with concentrated alkali (50% KOH).' (NEET 2022)"
+    ],
+    formulas: [
+      "Rosenmund Reduction: RCOCl + H2 --[Pd/BaSO4, S/quinoline]--> RCHO + HCl",
+      "Tollens' Test: RCHO + 2[Ag(NH3)2]⁺ + 3OH⁻ --> RCOO⁻ + 2Ag↓ (Silver Mirror) + 4NH3 + 2H2O",
+      "Fehling's Test: RCHO + 2Cu²⁺ + 5OH⁻ --> RCOO⁻ + Cu2O↓ (Red ppt) + 3H2O"
+    ],
+    intextQuestions: [
+      "Q: Why is propanal more reactive towards nucleophilic addition than propanone? Ans: Propanone has two electron-donating methyl (+I) groups that reduce the electrophilicity of carbonyl carbon, and cause greater steric hindrance compared to propanal which has only one ethyl group."
+    ]
+  },
+  {
+    id: "ncert_b11_ch08",
+    code: "kebo108",
+    classLevel: "11",
+    subject: "Biology",
+    category: "11-bio",
+    chNumber: "Chapter 8",
+    title: "Cell: The Unit of Life",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?kebo1=8-19",
+    topics: "Cell Theory, Prokaryotic vs Eukaryotic Cells, Cell Envelope, Endomembrane System (ER, Golgi, Lysosomes, Vacuoles), Mitochondria, Plastids, Ribosomes, Cytoskeleton, Cilia and Flagella, Nucleus.",
+    synopsis: "All organisms are composed of cells. Unicellular organisms are capable of independent existence and performing essential functions of life. Cell is the fundamental structural and functional unit of all living organisms. Anton Von Leeuwenhoek first saw and described a live cell; Robert Brown discovered the nucleus.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Rudolf Virchow (1855) first explained that cells divided and new cells are formed from pre-existing cells (Omnis cellula-e cellula). He modified the hypothesis of Schleiden and Schwann to give cell theory its final shape.' (NEET 2019, 2021)",
+      "NCERT Golden Line 2: 'The endomembrane system includes endoplasmic reticulum (ER), golgi complex, lysosomes and vacuoles. Mitochondria, chloroplasts and peroxisomes are NOT considered as part of endomembrane system because their functions are not coordinated with the components above.'"
+    ],
+    formulas: [
+      "Ribosome Subunits: Prokaryotes = 70S (50S + 30S); Eukaryotes = 80S (60S + 40S). 'S' represents Svedberg unit (sedimentation coefficient, indirect measure of density and size)."
+    ],
+    intextQuestions: [
+      "Q: Which cell organelle is known as the protein factory and lacks any membrane? Ans: Ribosomes (composed of ribonucleic acid and proteins, discovered by George Palade in 1953)."
+    ]
+  },
+  {
+    id: "ncert_m11_ch03",
+    code: "kemh103",
+    classLevel: "11",
+    subject: "Mathematics",
+    category: "11-math",
+    chNumber: "Chapter 3",
+    title: "Trigonometric Functions",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?kemh1=3-14",
+    topics: "Angles (Degrees & Radians), Trigonometric Functions of Sum and Difference of Two Angles, Multiple and Submultiple Angles.",
+    synopsis: "Trigonometry deals with the measurement of angles and problems relating to triangles. Radian measure θ = l/r where l is arc length and r is radius. π radians = 180°. Trigonometric functions extend to real numbers as periodic functions.",
+    goldenLines: [
+      "NCERT Fundamental Identity: cos(x + y) = cos x cos y - sin x sin y",
+      "sin(x + y) = sin x cos y + cos x sin y",
+      "tan(x + y) = (tan x + tan y) / (1 - tan x tan y)",
+      "Double Angle: cos 2x = cos²x - sin²x = 2cos²x - 1 = 1 - 2sin²x = (1 - tan²x)/(1 + tan²x)"
+    ],
+    formulas: [
+      "Transformation: 2 sin A cos B = sin(A + B) + sin(A - B)",
+      "2 cos A sin B = sin(A + B) - sin(A - B)",
+      "2 cos A cos B = cos(A + B) + cos(A - B)",
+      "2 sin A sin B = cos(A - B) - cos(A + B)"
+    ],
+    intextQuestions: [
+      "Q: Find the value of sin 15°. Ans: sin 15° = sin(45° - 30°) = sin 45° cos 30° - cos 45° sin 30° = (1/√2)(√3/2) - (1/√2)(1/2) = (√3 - 1)/(2√2)."
+    ]
+  },
+  {
+    id: "ncert_p11_ch05",
+    code: "keph105",
+    classLevel: "11",
+    subject: "Physics",
+    category: "11-phys",
+    chNumber: "Chapter 5",
+    title: "Laws of Motion",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?keph1=5-8",
+    topics: "Aristotle's Fallacy & Newton's First Law (Inertia), Momentum & Second Law, Impulse & Third Law, Conservation of Linear Momentum, Equilibrium of a Particle, Friction, Circular Motion & Banking.",
+    synopsis: "Dynamics is the study of motion of objects and the forces causing the motion. Newton's second law is the fundamental law of motion: F = dp/dt = m(dv/dt) = ma (for constant mass). First and third laws can be deduced from the second law.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'Forces always occur in pairs. Action and reaction forces act simultaneously on different bodies, never on the same body; hence they never cancel each other.'",
+      "NCERT Golden Line 2: 'Static friction fs is a self-adjusting force with maximum value (limiting friction) fs,max = μs N. Once motion starts, kinetic friction fk = μk N is slightly less than limiting friction (μk < μs).'"
+    ],
+    formulas: [
+      "Impulse: J = ∫ F dt = Δp = p_final - p_initial",
+      "Banking Angle (without friction): tan θ = v² / (rg)",
+      "Maximum speed on banked road with friction: v_max = √[rg (tan θ + μs) / (1 - μs tan θ)]"
+    ],
+    intextQuestions: [
+      "Q: A horse cannot pull a cart and run in empty space. Why? Ans: Because to accelerate forward, the horse must push the ground backward so that the ground exerts an equal and opposite forward reaction force (Newton's 3rd Law). In empty space, there is no reaction force."
+    ]
+  },
+  {
+    id: "ncert_c11_ch04",
+    code: "kech104",
+    classLevel: "11",
+    subject: "Chemistry",
+    category: "11-chem",
+    chNumber: "Chapter 4",
+    title: "Chemical Bonding and Molecular Structure",
+    officialPdfUrl: "https://ncert.nic.in/textbook.php?kech1=4-7",
+    topics: "Kossel-Lewis Approach, Octet Rule & Limitations, Ionic & Covalent Bonds, Dipole Moment, VSEPR Theory, Valence Bond Theory (Hybridisation), Molecular Orbital Theory (MOT).",
+    synopsis: "The attractive force which holds various constituents (atoms, ions) together in different chemical species is called a chemical bond. Atoms combine either by transfer of valence electrons (ionic) or by sharing of valence electrons (covalent) to attain a stable octet configuration.",
+    goldenLines: [
+      "NCERT Golden Line 1: 'According to VSEPR theory, the repulsive interaction of electron pairs decreases in the order: Lone pair - Lone pair > Lone pair - Bond pair > Bond pair - Bond pair. Lone pairs occupy more space around the central atom than bonding pairs.' (NEET 2020, 2022)",
+      "NCERT Golden Line 2: 'In O2 and F2 molecules, the filling order of molecular orbitals is: σ1s < σ*1s < σ2s < σ*2s < σ2pz < (π2px = π2py) < (π*2px = π*2py) < σ*2pz. For B2, C2, N2, the π2px and π2py orbitals are lower in energy than σ2pz.'"
+    ],
+    formulas: [
+      "Bond Order = 1/2 [Nb - Na]",
+      "Dipole Moment μ = q × d (expressed in Debye units, 1 D = 3.33564 × 10⁻³⁰ C·m)",
+      "Formal Charge = [Total valence e⁻] - [Non-bonding e⁻] - 1/2 [Bonding e⁻]"
+    ],
+    intextQuestions: [
+      "Q: Although both CO2 and H2O are triatomic molecules, the dipole moment of CO2 is zero whereas that of H2O is 1.85 D. Why? Ans: CO2 has a linear geometry (O=C=O) where the two equal C=O bond dipole moments cancel each other out. H2O has a bent / V-shaped geometry due to two lone pairs on oxygen, so bond dipoles do not cancel."
+    ]
+  }
+];
+
+// Worked NCERT Solutions & Exemplar Bank
+const NCERT_SOLUTIONS_CATALOG = [
+  {
+    id: "sol_b12_01",
+    classLevel: "12",
+    subject: "Biology",
+    type: "textbook",
+    chapter: "Principles of Inheritance and Variation",
+    qNumber: "Exercise Question 8",
+    question: "A cross between a normal vision man and a colour-blind woman produces children. What will be the genotype and phenotype of the male and female offspring?",
+    steps: [
+      "<strong>Step 1: Identify Mode of Inheritance:</strong> Red-green colour blindness is an X-linked recessive genetic disorder. Let Xᶜ represent the mutant colour-blind allele and X⁺ represent the normal dominant allele.",
+      "<strong>Step 2: Assign Parental Genotypes:</strong> The colour-blind woman is homozygous recessive: XᶜXᶜ. The normal vision man has normal hemizygous genotype: X⁺Y.",
+      "<strong>Step 3: Gamete Formation & Punnett Square:</strong> Mother produces all Xᶜ gametes. Father produces 50% X⁺ and 50% Y gametes.",
+      "<strong>Step 4: Offspring Genotype Determination:</strong>",
+      "• Female offspring: X⁺ (from father) + Xᶜ (from mother) = X⁺Xᶜ (100% Carrier females).",
+      "• Male offspring: Y (from father) + Xᶜ (from mother) = XᶜY (100% Colour-blind males)."
+    ],
+    answer: "100% of the daughters will have normal vision but will be genetic carriers (X⁺Xᶜ). 100% of the sons will be colour-blind (XᶜY). This demonstrates criss-cross inheritance from mother to son.",
+    markingScheme: "1 Mark for parent genotypes + 1 Mark for Punnett square cross + 1 Mark for concluding daughter & son phenotypes. Total: 3 Marks (CBSE Board Standard)."
+  },
+  {
+    id: "sol_m12_01",
+    classLevel: "12",
+    subject: "Mathematics",
+    type: "textbook",
+    chapter: "Integrals",
+    qNumber: "Exercise 7.11 Question 2",
+    question: "Evaluate the definite integral: I = ∫₀^(π/2) [√sin x / (√sin x + √cos x)] dx",
+    steps: [
+      "<strong>Step 1: State the Given Integral:</strong>",
+      "Let I = ∫₀^(π/2) [√sin x / (√sin x + √cos x)] dx  --- (Equation 1)",
+      "<strong>Step 2: Apply King's Property:</strong>",
+      "Using Property P4: ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a - x) dx, where a = π/2.",
+      "Replace x with (π/2 - x):",
+      "sin(π/2 - x) = cos x  and  cos(π/2 - x) = sin x.",
+      "Therefore, I = ∫₀^(π/2) [√cos x / (√cos x + √sin x)] dx  --- (Equation 2)",
+      "<strong>Step 3: Add Equations (1) and (2):</strong>",
+      "2I = ∫₀^(π/2) [(√sin x + √cos x) / (√sin x + √cos x)] dx",
+      "2I = ∫₀^(π/2) 1 dx",
+      "2I = [x]₀^(π/2) = π/2 - 0 = π/2",
+      "<strong>Step 4: Solve for I:</strong>",
+      "I = (1/2) × (π/2) = π/4"
+    ],
+    answer: "The exact value of the integral is I = π/4.",
+    markingScheme: "1 Mark for writing Property P4 statement + 1.5 Marks for substituting and setting up 2I + 0.5 Mark for final answer π/4. Total: 3 Marks."
+  },
+  {
+    id: "sol_p12_01",
+    classLevel: "12",
+    subject: "Physics",
+    type: "exemplar",
+    chapter: "Current Electricity",
+    qNumber: "NCERT Exemplar Problem 3.7",
+    question: "In a Wheatstone bridge network, four resistances P = 100 Ω, Q = 10 Ω, R = 5 Ω and S = 0.5 Ω are connected. A battery of 10 V is connected across the bridge. Find the current drawn from the battery and check if the bridge is balanced.",
+    steps: [
+      "<strong>Step 1: Check Wheatstone Balance Condition:</strong>",
+      "Condition for bridge balance is P / Q = R / S.",
+      "P / Q = 100 / 10 = 10.",
+      "R / S = 5 / 0.5 = 10.",
+      "Since P/Q = R/S = 10, the bridge is perfectly balanced! No current flows through the central galvanometer branch (Ig = 0).",
+      "<strong>Step 2: Calculate Equivalent Resistance Req:</strong>",
+      "Branch ABC has (P + Q) in series = 100 + 10 = 110 Ω.",
+      "Branch ADC has (R + S) in series = 5 + 0.5 = 5.5 Ω.",
+      "These two parallel branches give Req = (110 × 5.5) / (110 + 5.5) = 605 / 115.5 = 5.238 Ω.",
+      "<strong>Step 3: Calculate Total Current:</strong>",
+      "Total current from 10 V battery: I = V / Req = 10 / 5.238 ≈ 1.91 A."
+    ],
+    answer: "The bridge is balanced because P/Q = R/S = 10. The equivalent resistance is 5.24 Ω and current drawn from the battery is 1.91 A.",
+    markingScheme: "1 Mark for proving P/Q = R/S balance + 1 Mark for branch series resistances + 1 Mark for Req and final current I. Total: 3 Marks."
+  },
+  {
+    id: "sol_c12_01",
+    classLevel: "12",
+    subject: "Chemistry",
+    type: "textbook",
+    chapter: "Electrochemistry",
+    qNumber: "In-Text Exercise 2.4",
+    question: "Calculate the potential of a hydrogen electrode in contact with a solution whose pH is 10 at 298 K.",
+    steps: [
+      "<strong>Step 1: Formulate Electrode Half-Cell Reaction:</strong>",
+      "H⁺(aq) + e⁻ --> 1/2 H2(g) (1 bar)",
+      "Here, number of electrons transferred n = 1.",
+      "<strong>Step 2: Determine [H⁺] from Given pH:</strong>",
+      "pH = -log [H⁺] = 10  ==>  [H⁺] = 10⁻¹⁰ M.",
+      "<strong>Step 3: Apply Nernst Equation:</strong>",
+      "E(H⁺/H2) = E°(H⁺/H2) - (0.0591 / n) log [1 / [H⁺]]",
+      "Since E° for standard hydrogen electrode is 0.00 V by definition:",
+      "E = 0 - (0.0591 / 1) log [1 / 10⁻¹⁰]",
+      "E = -0.0591 × log (10¹⁰)",
+      "E = -0.0591 × 10 = -0.591 V"
+    ],
+    answer: "Electrode potential of the hydrogen electrode at pH 10 is -0.591 V.",
+    markingScheme: "0.5 Mark for electrode reaction + 0.5 Mark for [H⁺] = 10⁻¹⁰ M + 1 Mark for correct substitution in Nernst equation. Total: 2 Marks."
+  }
+];
+
+// Verified Previous Year Questions (PYQs 2020-2024)
+const PYQ_ARCHIVE = [
+  {
+    exam: "NEET-UG 2023",
+    subject: "Biology",
+    topic: "Genetics & Molecular Biology",
+    qText: "Which one of the following statements is NOT correct regarding the genetic code?",
+    options: [
+      "A. The code is nearly universal",
+      "B. One codon codes for only one amino acid, hence it is unambiguous",
+      "C. Some amino acids are coded by more than one codon, hence it is degenerate",
+      "D. The codon AUG codes for Methionine and also acts as a stop codon"
+    ],
+    correctOption: "D",
+    explanation: "AUG has dual functions: it codes for Methionine (Met) AND acts as the INITIATOR (start) codon, NOT a stop codon. The stop/termination codons are UAA (ochre), UAG (amber), and UGA (opal)."
+  },
+  {
+    exam: "JEE Main 2024",
+    subject: "Mathematics",
+    topic: "Calculus (Integrals)",
+    qText: "If ∫ (2x¹² + 5x⁹) / (x⁵ + x³ + 1)³ dx = (x¹⁰) / (2(x⁵ + x³ + 1)²) + C, find the value of the integral using power adjustment.",
+    options: [
+      "A. x⁵ / (2(x⁵ + x³ + 1)²) + C",
+      "B. x¹⁰ / (2(x⁵ + x³ + 1)²) + C",
+      "C. (2x⁵ - 1) / (x⁵ + x³ + 1)² + C",
+      "D. x¹⁵ / (x⁵ + x³ + 1)³ + C"
+    ],
+    correctOption: "B",
+    explanation: "Divide numerator and denominator by x¹⁵. Numerator becomes (2x⁻³ + 5x⁻⁶) dx. Denominator becomes (1 + x⁻² + x⁻⁵)³. Let t = 1 + x⁻² + x⁻⁵, then dt = (-2x⁻³ - 5x⁻⁶) dx. Integral becomes -∫ t⁻³ dt = t⁻²/2 = x¹⁰ / [2(x⁵ + x³ + 1)²] + C."
+  },
+  {
+    exam: "NEET-UG 2022",
+    subject: "Physics",
+    topic: "Current Electricity",
+    qText: "As the temperature increases, the electrical resistance of:",
+    options: [
+      "A. Increases for both conductors and semiconductors",
+      "B. Decreases for both conductors and semiconductors",
+      "C. Increases for conductors but decreases for semiconductors",
+      "D. Decreases for conductors but increases for semiconductors"
+    ],
+    correctOption: "C",
+    explanation: "In metals (conductors), thermal vibrations increase carrier scattering, reducing relaxation time τ, so resistance increases. In semiconductors, thermal energy breaks covalent bonds creating more free electron-hole pairs, so resistivity decreases exponentially (negative temperature coefficient of resistance)."
+  },
+  {
+    exam: "JEE Main 2023",
+    subject: "Chemistry",
+    topic: "Electrochemistry",
+    qText: "For the cell reaction 2Fe³⁺(aq) + 2I⁻(aq) --> 2Fe²⁺(aq) + I2(s), the value of E°cell is 0.236 V at 298 K. The equilibrium constant of the cell reaction is:",
+    options: [
+      "A. 9.6 × 10⁷",
+      "B. 1.0 × 10⁸",
+      "C. 9.6 × 10⁶",
+      "D. 1.0 × 10⁴"
+    ],
+    correctOption: "A",
+    explanation: "n = 2 electrons transferred. E°cell = (0.0591 / n) log Kc  ==>  0.236 = (0.0591 / 2) log Kc  ==>  log Kc = (0.236 × 2) / 0.0591 ≈ 7.986. Kc = 10^7.986 ≈ 9.68 × 10⁷."
+  }
+];
+
+// High-Yield Formula Vault
+const FORMULA_VAULT_DATA = [
+  {
+    subject: "Physics",
+    classLevel: "12",
+    category: "Electrostatics",
+    title: "Gauss's Law & Electric Flux",
+    formula: "\\Phi_E = \\oint \\vec{E} \\cdot d\\vec{A} = \\frac{Q_{\\text{enclosed}}}{\\varepsilon_0}",
+    condition: "Valid for any closed Gaussian surface of arbitrary shape in vacuum/air.",
+    trick: "For infinite wire: E = λ/(2πε₀r). For infinite sheet: E = σ/(2ε₀) (independent of distance!)."
+  },
+  {
+    subject: "Physics",
+    classLevel: "12",
+    category: "Magnetism",
+    title: "Biot-Savart Law & Circular Coil Field",
+    formula: "B = \\frac{\\mu_0 N I R^2}{2(R^2 + x^2)^{3/2}} \\quad \\to \\quad B_{\\text{center}} = \\frac{\\mu_0 N I}{2R}",
+    condition: "Steady current flowing in a circular loop of radius R with N turns.",
+    trick: "At center x=0, B is maximum. At x = R/√2, rate of change of field is minimum (Helmholtz coil spacing)."
+  },
+  {
+    subject: "Physics",
+    classLevel: "12",
+    category: "Modern Physics",
+    title: "Einstein's Photoelectric Equation",
+    formula: "h\\nu = \\Phi_0 + K_{\\max} = h\\nu_0 + e V_0",
+    condition: "Photon of frequency ν incident on photosensitive metal with work function Φ₀.",
+    trick: "Stopping potential V0 vs frequency ν graph slope is h/e (universal constant), x-intercept is threshold frequency ν₀."
+  },
+  {
+    subject: "Chemistry",
+    classLevel: "12",
+    category: "Physical Chem",
+    title: "First Order Reaction Integrated Rate Law",
+    formula: "k = \\frac{2.303}{t} \\log_{10} \\left(\\frac{[A]_0}{[A]_t}\\right), \\quad t_{1/2} = \\frac{0.693}{k}",
+    condition: "Rate depends on concentration of single reactant to power 1. Unit of k is s⁻¹.",
+    trick: "Half-life t1/2 is strictly independent of initial concentration. Time for 99.9% completion = 10 × t1/2."
+  },
+  {
+    subject: "Chemistry",
+    classLevel: "12",
+    category: "Solutions",
+    title: "Colligative Properties & Van 't Hoff Factor",
+    formula: "\\Delta T_b = i K_b m, \\quad \\Delta T_f = i K_f m, \\quad \\Pi = i C R T",
+    condition: "Dilute solutions. For dissociation: i = 1 + (n - 1)α. For association: i = 1 + (1/n - 1)α.",
+    trick: "For NaCl: i ≈ 2; for BaCl2: i ≈ 3; for K4[Fe(CN)6]: i ≈ 5. Highest boiling point = highest value of (i × m)."
+  },
+  {
+    subject: "Mathematics",
+    classLevel: "12",
+    category: "Calculus",
+    title: "Derivative of Inverse Trig Functions",
+    formula: "\\frac{d}{dx}[\\arcsin x] = \\frac{1}{\\sqrt{1 - x^2}}, \\quad \\frac{d}{dx}[\\arctan x] = \\frac{1}{1 + x^2}",
+    condition: "|x| < 1 for arcsin x; all real x for arctan x.",
+    trick: "d/dx [arccos x] = -d/dx [arcsin x] and d/dx [arccot x] = -d/dx [arctan x]."
+  },
+  {
+    subject: "Mathematics",
+    classLevel: "12",
+    category: "3D Geometry",
+    title: "Shortest Distance Between Skew Lines",
+    formula: "d = \\frac{|(\\vec{a}_2 - \\vec{a}_1) \\cdot (\\vec{b}_1 \\times \\vec{b}_2)|}{|\\vec{b}_1 \\times \\vec{b}_2|}",
+    condition: "Lines r = a1 + λ b1 and r = a2 + μ b2 are non-parallel, non-intersecting skew lines.",
+    trick: "If d = 0, the lines intersect and are coplanar: (a2 - a1) · (b1 × b2) = 0."
+  },
+  {
+    subject: "Biology",
+    classLevel: "12",
+    category: "Genetics",
+    title: "Hardy-Weinberg Equilibrium Principle",
+    formula: "p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1",
+    condition: "Large population, random mating, no mutation, no gene flow, no natural selection.",
+    trick: "q² = frequency of homozygous recessive phenotype. Calculate q first: q = √(q²), then p = 1 - q, heterozygous = 2pq."
+  }
+];
+
+const SPATIAL_INTERVALS = [1, 4, 7, 16, 30];
+
+// Academic Pro Controller State
+let academicTasks = [];
+let deepWorkTimer = {
+  seconds: 3000,
+  initialSeconds: 3000,
+  isRunning: false,
+  intervalId: null,
+  activeTargetId: null
+};
+
+// =============================================================================
+// CONTROLLER: Setup & Event Handlers
+// =============================================================================
+
+function loadAcademicTasks() {
+  const saved = localStorage.getItem("mg_academic_tasks");
+  if (saved) {
+    try {
+      academicTasks = JSON.parse(saved);
+    } catch(e) {
+      console.warn("Failed to parse saved academic tasks, using defaults.");
+      academicTasks = [...DEFAULT_ACADEMIC_TASKS];
+    }
+  } else {
+    academicTasks = [...DEFAULT_ACADEMIC_TASKS];
+    saveAcademicTasks();
+  }
+}
+
+function saveAcademicTasks() {
+  localStorage.setItem("mg_academic_tasks", JSON.stringify(academicTasks));
+}
+
+// Mode Switcher: Garden Mode vs Academic Pro Command
+function setAppMode(mode) {
+  const gardenLayout = document.getElementById("garden-main-layout");
+  const academicHub = document.getElementById("academic-pro-hub");
+  const btnSegGarden = document.getElementById("btn-seg-garden");
+  const btnSegAcademic = document.getElementById("btn-seg-academic");
+  const timeMachineBar = document.querySelector(".time-machine-bar");
+  const waterBucketLayer = document.getElementById("water-bucket-layer");
+
+  if (!gardenLayout || !academicHub) return;
+
+  if (mode === "academic") {
+    gardenLayout.classList.add("hidden");
+    academicHub.classList.remove("hidden");
+    if (timeMachineBar) timeMachineBar.style.display = "none";
+    if (waterBucketLayer) waterBucketLayer.style.display = "none";
+
+    btnSegAcademic.classList.add("active");
+    btnSegGarden.classList.remove("active");
+
+    // Render Academic Pro Hub
+    renderAcademicTaskforce();
+    renderAcademicEbooks();
+    renderAcademicSolutions();
+    renderPYQs();
+    renderFormulaVault();
+    updateDeepWorkTargetDropdown();
+
+    localStorage.setItem("mg_app_mode", "academic");
+  } else {
+    academicHub.classList.add("hidden");
+    gardenLayout.classList.remove("hidden");
+    if (timeMachineBar) timeMachineBar.style.display = "";
+    if (waterBucketLayer) waterBucketLayer.style.display = "";
+
+    btnSegGarden.classList.add("active");
+    btnSegAcademic.classList.remove("active");
+
+    renderGarden();
+    localStorage.setItem("mg_app_mode", "garden");
+  }
+}
+
+function setupAcademicModeSwitcher() {
+  const btnSegGarden = document.getElementById("btn-seg-garden");
+  const btnSegAcademic = document.getElementById("btn-seg-academic");
+
+  if (btnSegGarden) {
+    btnSegGarden.addEventListener("click", () => setAppMode("garden"));
+  }
+  if (btnSegAcademic) {
+    btnSegAcademic.addEventListener("click", () => setAppMode("academic"));
+  }
+
+  // Quick switch buttons inside academic hub
+  const btnQuickDeep = document.getElementById("btn-acad-quick-deepwork");
+  if (btnQuickDeep) {
+    btnQuickDeep.addEventListener("click", () => {
+      switchAcademicTab("deepwork");
+    });
+  }
+
+  const btnEnlistModal1 = document.getElementById("btn-acad-enlist-modal");
+  const btnEnlistModal2 = document.getElementById("btn-open-enlist-modal");
+  if (btnEnlistModal1) {
+    btnEnlistModal1.addEventListener("click", () => openModal("modal-enlist-task"));
+  }
+  if (btnEnlistModal2) {
+    btnEnlistModal2.addEventListener("click", () => openModal("modal-enlist-task"));
+  }
+
+  const btnRadarReview = document.getElementById("btn-radar-review-now");
+  if (btnRadarReview) {
+    btnRadarReview.addEventListener("click", () => {
+      const statusSelect = document.getElementById("tf-filter-status");
+      if (statusSelect) {
+        statusSelect.value = "due";
+        renderAcademicTaskforce();
+      }
+    });
+  }
+}
+
+// Switch between Academic Tabs
+function switchAcademicTab(targetTab) {
+  const tabs = document.querySelectorAll(".acad-tab-btn");
+  tabs.forEach(btn => {
+    if (btn.getAttribute("data-acad-tab") === targetTab) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  const subviews = document.querySelectorAll(".acad-subview");
+  subviews.forEach(view => {
+    if (view.id === `acad-subview-${targetTab}`) {
+      view.classList.remove("hidden");
+    } else {
+      view.classList.add("hidden");
+    }
+  });
+
+  // Re-trigger KaTeX if switching to formula vault or solutions
+  if (window.renderMathInElement && (targetTab === "formulas" || targetTab === "solutions")) {
+    setTimeout(() => {
+      renderMathInElement(document.getElementById(`acad-subview-${targetTab}`), {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ],
+        throwOnError: false
+      });
+    }, 50);
+  }
+}
+
+function setupAcademicNavTabs() {
+  const tabs = document.querySelectorAll(".acad-tab-btn");
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-acad-tab");
+      switchAcademicTab(target);
+    });
+  });
+}
+
+// =============================================================================
+// SUBVIEW 1: REVISION TASKFORCE & RADAR
+// =============================================================================
+
+function calculateTaskMetrics(task) {
+  const now = new Date();
+  const nextDueDate = new Date(task.nextDue);
+  const diffDays = Math.ceil((nextDueDate - now) / (1000 * 60 * 60 * 24));
+
+  let status = "upcoming";
+  let statusLabel = `In ${diffDays}d`;
+
+  if (diffDays < 0) {
+    status = "overdue";
+    statusLabel = `Overdue (${Math.abs(diffDays)}d)`;
+  } else if (diffDays === 0) {
+    status = "due-today";
+    statusLabel = "DUE TODAY";
+  } else if (task.stage >= 4) {
+    status = "mastered";
+    statusLabel = "MASTERED (R4)";
+  }
+
+  return { diffDays, status, statusLabel };
+}
+
+function renderAcademicTaskforce() {
+  const grid = document.getElementById("taskforce-cards-grid");
+  if (!grid) return;
+
+  const searchVal = (document.getElementById("tf-search-input")?.value || "").toLowerCase().trim();
+  const subjectVal = document.getElementById("tf-filter-subject")?.value || "all";
+  const classVal = document.getElementById("tf-filter-class")?.value || "all";
+  const targetVal = document.getElementById("tf-filter-target")?.value || "all";
+  const statusVal = document.getElementById("tf-filter-status")?.value || "all";
+
+  // Calculate global summary metrics
+  let dueTodayCount = 0;
+  let totalTasks = academicTasks.length;
+  let masteredCount = 0;
+
+  const filteredTasks = academicTasks.filter(task => {
+    const { status } = calculateTaskMetrics(task);
+    if (status === "due-today" || status === "overdue") dueTodayCount++;
+    if (task.stage >= 4) masteredCount++;
+
+    if (subjectVal !== "all" && task.subject !== subjectVal) return false;
+    if (classVal !== "all" && task.classLevel !== classVal) return false;
+    if (targetVal !== "all" && task.targetExam !== targetVal) return false;
+
+    if (statusVal === "due" && !(status === "due-today" || status === "overdue")) return false;
+    if (statusVal === "upcoming" && status !== "upcoming") return false;
+    if (statusVal === "mastered" && status !== "mastered") return false;
+
+    if (searchVal) {
+      const matchText = `${task.title} ${task.notes || ""} ${task.subject}`.toLowerCase();
+      if (!matchText.includes(searchVal)) return false;
+    }
+
+    return true;
+  });
+
+  // Update hero stats
+  const statTotal = document.getElementById("acad-stat-total");
+  const statDue = document.getElementById("acad-stat-due");
+  const statRetention = document.getElementById("acad-stat-retention");
+  const tabBadgeDue = document.getElementById("badge-taskforce-due");
+  const radarAlert = document.getElementById("acad-radar-alert");
+  const radarAlertCount = document.getElementById("radar-alert-count");
+
+  if (statTotal) statTotal.textContent = totalTasks;
+  if (statDue) statDue.innerHTML = `${dueTodayCount} <span class="pulse-badge"></span>`;
+  if (tabBadgeDue) tabBadgeDue.textContent = dueTodayCount;
+
+  // Average retention calculation
+  const avgRetention = totalTasks > 0 ? Math.round(((totalTasks - dueTodayCount) / totalTasks) * 100) : 100;
+  if (statRetention) statRetention.textContent = `${avgRetention}%`;
+
+  // Radar alert visibility
+  if (radarAlert && radarAlertCount) {
+    if (dueTodayCount > 0) {
+      radarAlert.classList.remove("hidden");
+      radarAlertCount.textContent = `${dueTodayCount} Chapter${dueTodayCount > 1 ? 's' : ''}`;
+    } else {
+      radarAlert.classList.add("hidden");
+    }
+  }
+
+  // Render cards
+  if (filteredTasks.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 3rem 1.5rem; text-align: center; background: var(--hub-surface); border-radius: var(--r-lg); border: 1px dashed var(--hub-border);">
+        <p style="font-size: 1.1rem; color: var(--hub-muted); margin: 0 0 1rem 0;">No syllabus units found matching your current filter.</p>
+        <button class="btn btn-primary" onclick="openModal('modal-enlist-task')">➕ Enlist a New Syllabus Unit</button>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filteredTasks.map(task => {
+    const { status, statusLabel } = calculateTaskMetrics(task);
+
+    const subjectClass = task.subject === "Biology" ? "bio" :
+                         task.subject === "Mathematics" ? "math" :
+                         task.subject === "Physics" ? "phys" : "chem";
+
+    const cardBorderClass = status === "overdue" ? "card-overdue" :
+                            status === "due-today" ? "card-due-today" :
+                            status === "mastered" ? "card-mastered" : "card-upcoming";
+
+    // Build cadence ticks (R0 through R4)
+    let ticksHtml = "";
+    for (let i = 0; i < 5; i++) {
+      const isFilled = i <= task.stage;
+      const isMastered = task.stage >= 4;
+      ticksHtml += `<div class="tf-cadence-tick ${isFilled ? 'filled' : ''} ${isMastered ? 'tick-mastered' : ''}"></div>`;
+    }
+
+    return `
+      <div class="taskforce-card ${cardBorderClass}" data-task-id="${task.id}">
+        <div>
+          <div class="tf-header">
+            <div class="tf-meta-badges">
+              <span class="tf-subject-pill ${subjectClass}">${task.subject}</span>
+              <span class="tf-target-pill">Class ${task.classLevel}</span>
+              <span class="tf-target-pill">${task.targetExam}</span>
+              ${task.priority === 'high' ? '<span class="tf-target-pill" style="color:#fbbf24; background:rgba(245,158,11,.15);">High Yield</span>' : ''}
+            </div>
+            <span class="tf-status-badge ${status}">${statusLabel}</span>
+          </div>
+
+          <h3 class="tf-title">${escapeHtml(task.title)}</h3>
+
+          ${task.notes ? `<div class="tf-notes">${escapeHtml(task.notes)}</div>` : ''}
+
+          <!-- Spaced Cadence Progress -->
+          <div class="tf-cadence-bar">
+            <div class="tf-cadence-label-row">
+              <span>Cadence Stage: <strong>R${task.stage}</strong> (${task.stage >= 4 ? 'Mastered' : `Interval: +${SPATIAL_INTERVALS[task.stage]}d`})</span>
+              <span>Next: ${task.nextDue}</span>
+            </div>
+            <div class="tf-cadence-ticks">
+              ${ticksHtml}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tf-meta-footer">
+            <span>Last Reviewed: ${task.lastRevised || task.initialDate}</span>
+            <span>Target: ${task.targetExam}</span>
+          </div>
+
+          <div class="tf-actions">
+            <button class="tf-btn tf-btn-revise" onclick="markTaskRevised('${task.id}')" title="Advance spaced repetition cadence to next interval">
+              ✓ Mark Revised
+            </button>
+            <button class="tf-btn tf-btn-secondary" onclick="snoozeTask('${task.id}')" title="Snooze reminder by 24 hours">
+              ⏰ +24h
+            </button>
+            <button class="tf-btn tf-btn-secondary" onclick="openNCERTReaderForSubject('${task.subject}')" title="Open related NCERT textbook e-book">
+              📖 NCERT
+            </button>
+            <button class="tf-btn tf-btn-secondary" onclick="deleteAcademicTask('${task.id}')" title="Remove unit from taskforce">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// Mark Task Revised (Advances Spaced Cadence R0 -> R1 -> R2 -> R3 -> R4)
+function markTaskRevised(taskId) {
+  const task = academicTasks.find(t => t.id === taskId);
+  if (!task) return;
+
+  const currentStage = task.stage || 0;
+  const nextStage = Math.min(4, currentStage + 1);
+  const nextIntervalDays = SPATIAL_INTERVALS[nextStage];
+
+  const now = new Date();
+  const nextDueDate = new Date(now.getTime() + nextIntervalDays * 86400000);
+
+  task.stage = nextStage;
+  task.lastRevised = now.toISOString().split('T')[0];
+  task.nextDue = nextDueDate.toISOString().split('T')[0];
+
+  saveAcademicTasks();
+  renderAcademicTaskforce();
+
+  // Play crisp confirmation tone
+  playTone(523.25, 0.12); // C5
+  setTimeout(() => playTone(659.25, 0.15), 100); // E5
+
+  showNotification(`✓ ${task.title.substring(0, 32)}... advanced to Cadence R${nextStage}! Next review in ${nextIntervalDays} days.`);
+}
+
+function snoozeTask(taskId) {
+  const task = academicTasks.find(t => t.id === taskId);
+  if (!task) return;
+
+  const nextDue = new Date(task.nextDue);
+  nextDue.setDate(nextDue.getDate() + 1);
+  task.nextDue = nextDue.toISOString().split('T')[0];
+
+  saveAcademicTasks();
+  renderAcademicTaskforce();
+  showNotification(`⏰ Snoozed review for 24 hours (Due: ${task.nextDue})`);
+}
+
+function deleteAcademicTask(taskId) {
+  if (!confirm("Are you sure you want to remove this module from the Revision Taskforce?")) return;
+  academicTasks = academicTasks.filter(t => t.id !== taskId);
+  saveAcademicTasks();
+  renderAcademicTaskforce();
+  updateDeepWorkTargetDropdown();
+  showNotification("Module removed from taskforce.");
+}
+
+function setupTaskforceFilterListeners() {
+  const searchInput = document.getElementById("tf-search-input");
+  const filterSubject = document.getElementById("tf-filter-subject");
+  const filterClass = document.getElementById("tf-filter-class");
+  const filterTarget = document.getElementById("tf-filter-target");
+  const filterStatus = document.getElementById("tf-filter-status");
+
+  [searchInput, filterSubject, filterClass, filterTarget, filterStatus].forEach(el => {
+    if (el) {
+      el.addEventListener("input", renderAcademicTaskforce);
+      el.addEventListener("change", renderAcademicTaskforce);
+    }
+  });
+}
+
+// =============================================================================
+// SUBVIEW 2: NCERT OFFICIAL E-BOOKS & IN-APP READER
+// =============================================================================
+
+function renderAcademicEbooks() {
+  const grid = document.getElementById("ebooks-cards-grid");
+  if (!grid) return;
+
+  const searchVal = (document.getElementById("ebook-search-input")?.value || "").toLowerCase().trim();
+  const categoryVal = document.getElementById("ebook-filter-category")?.value || "all";
+
+  const filteredEbooks = NCERT_EBOOKS_CATALOG.filter(book => {
+    if (categoryVal !== "all" && book.category !== categoryVal) return false;
+    if (searchVal) {
+      const matchText = `${book.title} ${book.chNumber} ${book.topics} ${book.subject}`.toLowerCase();
+      if (!matchText.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  grid.innerHTML = filteredEbooks.map(book => {
+    const subjectColor = book.subject === "Biology" ? "#4ade80" :
+                         book.subject === "Mathematics" ? "#38bdf8" :
+                         book.subject === "Physics" ? "#fbbf24" : "#c084fc";
+
+    const subjectIcon = book.subject === "Biology" ? "🌱" :
+                        book.subject === "Mathematics" ? "📐" :
+                        book.subject === "Physics" ? "⚡" : "🧪";
+
+    return `
+      <div class="ebook-card">
+        <div>
+          <div class="ebook-hdr">
+            <div class="ebook-book-cover">
+              <span class="cover-ncert-lbl">NCERT</span>
+              <span class="cover-icon">${subjectIcon}</span>
+              <span class="cover-code">${book.code}</span>
+            </div>
+            <div class="ebook-info">
+              <div class="ebook-chapter-num" style="color: ${subjectColor};">${book.chNumber} • Class ${book.classLevel} ${book.subject}</div>
+              <h3 class="ebook-title">${escapeHtml(book.title)}</h3>
+              <span class="tf-target-pill" style="font-size: .65rem;">Rationalised Syllabus</span>
+            </div>
+          </div>
+          <div class="ebook-topics">
+            <strong>Key Topics:</strong> ${escapeHtml(book.topics)}
+          </div>
+        </div>
+
+        <div class="ebook-actions">
+          <button class="tf-btn tf-btn-revise" onclick="openNCERTReader('${book.id}')">
+            📖 Read E-Book
+          </button>
+          <a href="${book.officialPdfUrl}" target="_blank" rel="noopener noreferrer" class="tf-btn tf-btn-secondary" style="text-decoration:none;">
+            🌐 Official PDF ↗
+          </a>
+          <button class="tf-btn tf-btn-secondary" onclick="enlistBookToTaskforce('${book.id}')" title="Add chapter directly into spaced revision taskforce">
+            ➕ Enlist
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function openNCERTReader(bookId) {
+  const book = NCERT_EBOOKS_CATALOG.find(b => b.id === bookId);
+  if (!book) return;
+
+  const modal = document.getElementById("modal-ncert-reader");
+  const titleEl = document.getElementById("reader-title");
+  const subEl = document.getElementById("reader-subtitle");
+  const bodyEl = document.getElementById("reader-scroll-body");
+  const officialPdfBtn = document.getElementById("reader-btn-official-pdf");
+  const enlistBtn = document.getElementById("btn-reader-enlist");
+
+  if (!modal || !bodyEl) return;
+
+  titleEl.textContent = `${book.chNumber}: ${book.title}`;
+  subEl.textContent = `Class ${book.classLevel} ${book.subject} • Official NCERT Textbook (Code: ${book.code})`;
+
+  if (officialPdfBtn) officialPdfBtn.href = book.officialPdfUrl;
+  if (enlistBtn) {
+    enlistBtn.onclick = () => {
+      enlistBookToTaskforce(book.id);
+    };
+  }
+
+  // Generate reader content
+  let contentHtml = `
+    <div style="background: rgba(59,130,246,.08); border-left: 4px solid #3b82f6; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem;">
+      <h4 style="margin: 0 0 .3rem 0; color: #60a5fa; font-size: .95rem;">Official Syllabus Mapping &amp; Overview</h4>
+      <p style="margin: 0; font-size: .88rem; line-height: 1.5;">${escapeHtml(book.synopsis)}</p>
+    </div>
+
+    <div class="reader-section-tag">🌟 NCERT Golden Lines (High-Yield Assertion-Reason &amp; Direct NEET/CBSE Triggers)</div>
+  `;
+
+  book.goldenLines.forEach(line => {
+    contentHtml += `<div class="ncert-golden-box">${line}</div>`;
+  });
+
+  if (book.formulas && book.formulas.length > 0) {
+    contentHtml += `<div class="reader-section-tag">⚡ Core Formulas &amp; Quantitative Laws</div>`;
+    book.formulas.forEach(form => {
+      contentHtml += `
+        <div style="background: var(--hub-card); padding: .75rem 1rem; border-radius: 6px; margin-bottom: .6rem; font-family: var(--mono); font-size: .9rem; border: 1px solid var(--hub-border);">
+          ${escapeHtml(form)}
+        </div>
+      `;
+    });
+  }
+
+  if (book.intextQuestions && book.intextQuestions.length > 0) {
+    contentHtml += `<div class="reader-section-tag">💡 NCERT In-Text Conceptual Questions</div>`;
+    book.intextQuestions.forEach(q => {
+      contentHtml += `
+        <div style="background: rgba(16,185,129,.08); border-left: 3px solid #10b981; padding: .85rem 1rem; border-radius: 6px; margin-bottom: .75rem; font-size: .9rem;">
+          ${escapeHtml(q)}
+        </div>
+      `;
+    });
+  }
+
+  bodyEl.innerHTML = contentHtml;
+  openModal("modal-ncert-reader");
+}
+
+function openNCERTReaderForSubject(subject) {
+  const match = NCERT_EBOOKS_CATALOG.find(b => b.subject === subject);
+  if (match) {
+    openNCERTReader(match.id);
+  } else if (NCERT_EBOOKS_CATALOG.length > 0) {
+    openNCERTReader(NCERT_EBOOKS_CATALOG[0].id);
+  }
+}
+
+function enlistBookToTaskforce(bookId) {
+  const book = NCERT_EBOOKS_CATALOG.find(b => b.id === bookId);
+  if (!book) return;
+
+  // Check if already enlisted
+  const exists = academicTasks.find(t => t.title.includes(book.title));
+  if (exists) {
+    showNotification(`"${book.title}" is already in your Revision Taskforce!`);
+    return;
+  }
+
+  const now = new Date();
+  const nextDueDate = new Date(now.getTime() + 1 * 86400000); // R0 -> R1 in 1 day
+
+  const newTask = {
+    id: "acad_custom_" + Date.now(),
+    subject: book.subject,
+    classLevel: book.classLevel,
+    targetExam: book.subject === "Biology" ? "NEET" : "JEE",
+    title: `${book.chNumber}: ${book.title}`,
+    initialDate: now.toISOString().split('T')[0],
+    stage: 0,
+    lastRevised: now.toISOString().split('T')[0],
+    nextDue: nextDueDate.toISOString().split('T')[0],
+    priority: "high",
+    notes: `Topics: ${book.topics.substring(0, 90)}...`
+  };
+
+  academicTasks.unshift(newTask);
+  saveAcademicTasks();
+  renderAcademicTaskforce();
+  updateDeepWorkTargetDropdown();
+  showNotification(`📋 "${book.title}" enlisted into your Revision Taskforce!`);
+}
+
+function setupNCERTReaderControls() {
+  const modal = document.getElementById("modal-ncert-reader");
+  const scrollBody = document.getElementById("reader-scroll-body");
+  const btnFontDec = document.getElementById("btn-reader-font-dec");
+  const btnFontInc = document.getElementById("btn-reader-font-inc");
+  const btnTheme = document.getElementById("btn-reader-theme");
+
+  let currentFontSize = 16;
+  const themes = ["dark", "sepia", "white"];
+  let themeIndex = 0;
+
+  if (btnFontDec && scrollBody) {
+    btnFontDec.addEventListener("click", () => {
+      currentFontSize = Math.max(13, currentFontSize - 1.5);
+      scrollBody.style.fontSize = `${currentFontSize}px`;
+    });
+  }
+
+  if (btnFontInc && scrollBody) {
+    btnFontInc.addEventListener("click", () => {
+      currentFontSize = Math.min(24, currentFontSize + 1.5);
+      scrollBody.style.fontSize = `${currentFontSize}px`;
+    });
+  }
+
+  if (btnTheme && scrollBody) {
+    btnTheme.addEventListener("click", () => {
+      themeIndex = (themeIndex + 1) % themes.length;
+      scrollBody.setAttribute("data-theme", themes[themeIndex]);
+      showNotification(`Reader mode: ${themes[themeIndex].toUpperCase()}`);
+    });
+  }
+
+  // E-book search & filter
+  const searchInput = document.getElementById("ebook-search-input");
+  const catSelect = document.getElementById("ebook-filter-category");
+  if (searchInput) searchInput.addEventListener("input", renderAcademicEbooks);
+  if (catSelect) catSelect.addEventListener("change", renderAcademicEbooks);
+}
+
+// =============================================================================
+// SUBVIEW 3: WORKED SOLUTIONS & EXEMPLAR BANK
+// =============================================================================
+
+function renderAcademicSolutions() {
+  const list = document.getElementById("solutions-cards-list");
+  if (!list) return;
+
+  const searchVal = (document.getElementById("sol-search-input")?.value || "").toLowerCase().trim();
+  const subjectVal = document.getElementById("sol-filter-subject")?.value || "all";
+  const classVal = document.getElementById("sol-filter-class")?.value || "all";
+  const typeVal = document.getElementById("sol-filter-type")?.value || "all";
+
+  const filteredSolutions = NCERT_SOLUTIONS_CATALOG.filter(sol => {
+    if (subjectVal !== "all" && sol.subject !== subjectVal) return false;
+    if (classVal !== "all" && sol.classLevel !== classVal) return false;
+    if (typeVal !== "all" && sol.type !== typeVal) return false;
+    if (searchVal) {
+      const matchText = `${sol.chapter} ${sol.qNumber} ${sol.question} ${sol.answer}`.toLowerCase();
+      if (!matchText.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  list.innerHTML = filteredSolutions.map(sol => {
+    const subjectClass = sol.subject === "Biology" ? "bio" :
+                         sol.subject === "Mathematics" ? "math" :
+                         sol.subject === "Physics" ? "phys" : "chem";
+
+    return `
+      <div class="solution-card">
+        <div class="sol-q-hdr">
+          <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+            <span class="tf-subject-pill ${subjectClass}">${sol.subject}</span>
+            <span class="tf-target-pill">Class ${sol.classLevel}</span>
+            <span class="tf-target-pill">${escapeHtml(sol.chapter)}</span>
+            <span class="tf-target-pill" style="color: #60a5fa;">${escapeHtml(sol.qNumber)}</span>
+          </div>
+          <span class="tf-target-pill" style="background: rgba(59,130,246,.15); color: #93c5fd;">
+            ${sol.type === 'exemplar' ? 'NCERT Exemplar HOTS' : 'Textbook Exercise'}
+          </span>
+        </div>
+
+        <div class="sol-q-text">
+          ${escapeHtml(sol.question)}
+        </div>
+
+        <div class="sol-steps-block">
+          <div style="font-weight: 700; color: #38bdf8; margin-bottom: .6rem; text-transform: uppercase; font-size: .8rem; letter-spacing: .04em;">
+            Step-by-Step Derivation &amp; Working:
+          </div>
+          ${sol.steps.map(step => `<div class="sol-step-item">${step}</div>`).join("")}
+        </div>
+
+        <div class="sol-ans-box">
+          <strong>Final Answer:</strong> ${escapeHtml(sol.answer)}
+        </div>
+
+        <div style="font-size: .78rem; color: var(--hub-muted); margin-top: .75rem; border-top: 1px dashed rgba(255,255,255,.08); padding-top: .5rem;">
+          <strong>Marking Breakdown:</strong> ${escapeHtml(sol.markingScheme)}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function setupSolutionsFilterListeners() {
+  const searchInput = document.getElementById("sol-search-input");
+  const subjSelect = document.getElementById("sol-filter-subject");
+  const classSelect = document.getElementById("sol-filter-class");
+  const typeSelect = document.getElementById("sol-filter-type");
+
+  [searchInput, subjSelect, classSelect, typeSelect].forEach(el => {
+    if (el) {
+      el.addEventListener("input", renderAcademicSolutions);
+      el.addEventListener("change", renderAcademicSolutions);
+    }
+  });
+}
+
+// =============================================================================
+// SUBVIEW 4: PREVIOUS YEAR QUESTIONS (PYQs) & BLUEPRINT
+// =============================================================================
+
+function renderPYQs() {
+  const grid = document.getElementById("pyq-cards-grid");
+  if (!grid) return;
+
+  grid.innerHTML = PYQ_ARCHIVE.map((pyq, idx) => {
+    return `
+      <div class="pyq-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .65rem;">
+          <span class="tf-status-badge due-today" style="font-size: .68rem;">${pyq.exam}</span>
+          <span class="tf-target-pill">${pyq.subject} • ${pyq.topic}</span>
+        </div>
+        <p style="font-size: .92rem; font-weight: 600; color: var(--hub-text); line-height: 1.45; margin: 0 0 1rem 0;">
+          ${escapeHtml(pyq.qText)}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem;">
+          ${pyq.options.map(opt => `
+            <div style="background: var(--hub-card); padding: .45rem .75rem; border-radius: 4px; font-size: .84rem; color: var(--hub-text);">
+              ${escapeHtml(opt)}
+            </div>
+          `).join("")}
+        </div>
+        <details style="background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.25); border-radius: 6px; padding: .65rem .85rem;">
+          <summary style="cursor: pointer; font-size: .8rem; font-weight: 700; color: #34d399;">
+            Reveal Verified Answer &amp; Solution ▾
+          </summary>
+          <div style="margin-top: .75rem; font-size: .84rem; line-height: 1.5; color: var(--hub-text);">
+            <strong style="color: #34d399;">Correct Option: ${pyq.correctOption}</strong>
+            <p style="margin: .35rem 0 0 0; color: var(--hub-muted);">${escapeHtml(pyq.explanation)}</p>
+          </div>
+        </details>
+      </div>
+    `;
+  }).join("");
+}
+
+// =============================================================================
+// SUBVIEW 5: HIGH-YIELD FORMULA VAULT
+// =============================================================================
+
+function renderFormulaVault() {
+  const grid = document.getElementById("vault-cards-grid");
+  if (!grid) return;
+
+  const searchVal = (document.getElementById("vault-search-input")?.value || "").toLowerCase().trim();
+  const subjectVal = document.getElementById("vault-filter-subject")?.value || "all";
+  const classVal = document.getElementById("vault-filter-class")?.value || "all";
+
+  const filteredFormulas = FORMULA_VAULT_DATA.filter(item => {
+    if (subjectVal !== "all" && item.subject !== subjectVal) return false;
+    if (classVal !== "all" && item.classLevel !== classVal) return false;
+    if (searchVal) {
+      const matchText = `${item.title} ${item.formula} ${item.condition} ${item.trick} ${item.category}`.toLowerCase();
+      if (!matchText.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  grid.innerHTML = filteredFormulas.map(item => {
+    const subjectClass = item.subject === "Biology" ? "bio" :
+                         item.subject === "Mathematics" ? "math" :
+                         item.subject === "Physics" ? "phys" : "chem";
+
+    return `
+      <div class="vault-card">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem;">
+            <span class="tf-subject-pill ${subjectClass}">${item.subject}</span>
+            <span class="tf-target-pill">Class ${item.classLevel} • ${escapeHtml(item.category)}</span>
+          </div>
+          <h4 style="font-size: .98rem; font-weight: 700; color: var(--hub-text); margin: 0 0 .5rem 0;">
+            ${escapeHtml(item.title)}
+          </h4>
+          <div class="vault-formula-box">
+            $$${item.formula}$$
+          </div>
+          <div class="vault-notes">
+            <strong>Condition:</strong> ${escapeHtml(item.condition)}
+          </div>
+          <div class="vault-notes" style="margin-top: 4px; color: #fbbf24;">
+            <strong>Exam Shortcut:</strong> ${escapeHtml(item.trick)}
+          </div>
+        </div>
+        <div style="margin-top: 1rem; text-align: right;">
+          <button class="tf-btn tf-btn-secondary" style="font-size: .75rem; padding: .3rem .6rem;" onclick="copyFormulaText('${item.formula.replace(/\\/g, '\\\\')}')">
+            📋 Copy Formula
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  // Trigger KaTeX math auto-rendering
+  if (window.renderMathInElement) {
+    setTimeout(() => {
+      renderMathInElement(grid, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ],
+        throwOnError: false
+      });
+    }, 20);
+  }
+}
+
+function copyFormulaText(formula) {
+  navigator.clipboard.writeText(formula).then(() => {
+    showNotification("Formula copied to clipboard!");
+  }).catch(() => {
+    showNotification("Failed to copy formula.");
+  });
+}
+
+function setupFormulaVaultListeners() {
+  const searchInput = document.getElementById("vault-search-input");
+  const subjSelect = document.getElementById("vault-filter-subject");
+  const classSelect = document.getElementById("vault-filter-class");
+
+  [searchInput, subjSelect, classSelect].forEach(el => {
+    if (el) {
+      el.addEventListener("input", renderFormulaVault);
+      el.addEventListener("change", renderFormulaVault);
+    }
+  });
+}
+
+// =============================================================================
+// SUBVIEW 6: DEEP-WORK FOCUS STATION
+// =============================================================================
+
+function updateDeepWorkTargetDropdown() {
+  const select = document.getElementById("deep-target-select");
+  if (!select) return;
+
+  if (academicTasks.length === 0) {
+    select.innerHTML = `<option value="">No enlisted modules available</option>`;
+    return;
+  }
+
+  select.innerHTML = academicTasks.map(t => {
+    return `<option value="${t.id}">[${t.subject} ${t.classLevel}] ${escapeHtml(t.title)} (Stage R${t.stage})</option>`;
+  }).join("");
+}
+
+function setupDeepWorkStation() {
+  const clockDisplay = document.getElementById("deep-clock-display");
+  const btnStart = document.getElementById("btn-deep-start");
+  const btnPause = document.getElementById("btn-deep-pause");
+  const btnReset = document.getElementById("btn-deep-reset");
+  const presetButtons = document.querySelectorAll(".deep-btn-preset");
+  const soundChips = document.querySelectorAll(".deep-sound-chip");
+
+  function updateClockDisplay() {
+    const mins = Math.floor(deepWorkTimer.seconds / 60);
+    const secs = deepWorkTimer.seconds % 60;
+    if (clockDisplay) {
+      clockDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+  }
+
+  presetButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (deepWorkTimer.isRunning) return;
+      presetButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const mins = parseInt(btn.getAttribute("data-minutes"), 10) || 50;
+      deepWorkTimer.seconds = mins * 60;
+      deepWorkTimer.initialSeconds = mins * 60;
+      updateClockDisplay();
+    });
+  });
+
+  if (btnStart) {
+    btnStart.addEventListener("click", () => {
+      if (deepWorkTimer.isRunning) return;
+      deepWorkTimer.isRunning = true;
+      btnStart.classList.add("hidden");
+      if (btnPause) btnPause.classList.remove("hidden");
+
+      deepWorkTimer.intervalId = setInterval(() => {
+        if (deepWorkTimer.seconds > 0) {
+          deepWorkTimer.seconds--;
+          updateClockDisplay();
+        } else {
+          // Timer finished
+          clearInterval(deepWorkTimer.intervalId);
+          deepWorkTimer.isRunning = false;
+          btnStart.classList.remove("hidden");
+          if (btnPause) btnPause.classList.add("hidden");
+
+          // Play finish chime
+          playTone(523.25, 0.3);
+          setTimeout(() => playTone(659.25, 0.4), 250);
+          setTimeout(() => playTone(783.99, 0.6), 500);
+
+          logCompletedSession();
+          showNotification("🎯 Deep Work Block Complete! Outstanding focus.");
+        }
+      }, 1000);
+    });
+  }
+
+  if (btnPause) {
+    btnPause.addEventListener("click", () => {
+      if (!deepWorkTimer.isRunning) return;
+      clearInterval(deepWorkTimer.intervalId);
+      deepWorkTimer.isRunning = false;
+      btnPause.classList.add("hidden");
+      if (btnStart) btnStart.classList.remove("hidden");
+    });
+  }
+
+  if (btnReset) {
+    btnReset.addEventListener("click", () => {
+      clearInterval(deepWorkTimer.intervalId);
+      deepWorkTimer.isRunning = false;
+      deepWorkTimer.seconds = deepWorkTimer.initialSeconds;
+      updateClockDisplay();
+      if (btnPause) btnPause.classList.add("hidden");
+      if (btnStart) btnStart.classList.remove("hidden");
+    });
+  }
+
+  // Sound chips selector for deep work
+  soundChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      soundChips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      const soundType = chip.getAttribute("data-deep-sound");
+      if (typeof playSoundscape === "function") {
+        playSoundscape(soundType);
+      }
+    });
+  });
+
+  updateClockDisplay();
+}
+
+function logCompletedSession() {
+  const targetSelect = document.getElementById("deep-target-select");
+  const targetId = targetSelect ? targetSelect.value : null;
+  const targetTask = academicTasks.find(t => t.id === targetId);
+
+  const durationMins = Math.round(deepWorkTimer.initialSeconds / 60);
+  const now = new Date();
+  const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  const logList = document.getElementById("deep-log-list");
+  if (logList) {
+    const item = document.createElement("div");
+    item.className = "deep-log-item";
+    item.innerHTML = `
+      <div>
+        <strong>${durationMins}m Block:</strong> ${targetTask ? escapeHtml(targetTask.title.substring(0, 30)) + '...' : 'General NCERT Study'}
+      </div>
+      <span style="color: #60a5fa; font-family: var(--mono); font-size: .75rem;">${timeString}</span>
+    `;
+    // If first item was placeholder, remove it
+    if (logList.children.length === 1 && logList.children[0].textContent.includes("No sessions completed")) {
+      logList.innerHTML = "";
+    }
+    logList.prepend(item);
+  }
+
+  // Update total hours stat
+  const hoursStat = document.getElementById("acad-stat-hours");
+  if (hoursStat) {
+    const prevHours = parseFloat(hoursStat.textContent) || 0;
+    const newHours = (prevHours + durationMins / 60).toFixed(1);
+    hoursStat.textContent = `${newHours}h`;
+  }
+}
+
+// Setup Modal for Enlisting Custom Syllabus Unit
+function setupAcademicEnlistModal() {
+  const form = document.getElementById("form-enlist-task");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const subject = document.getElementById("enlist-subject").value;
+    const classLevel = document.getElementById("enlist-class").value;
+    const targetExam = document.getElementById("enlist-target").value;
+    const title = document.getElementById("enlist-title").value.trim();
+    const dateVal = document.getElementById("enlist-date").value;
+    const priority = document.getElementById("enlist-priority").value;
+    const notes = document.getElementById("enlist-notes").value.trim();
+
+    if (!title || !dateVal) return;
+
+    const initialDate = new Date(dateVal);
+    const nextDue = new Date(initialDate.getTime() + 1 * 86400000); // R0 -> R1 in 1 day
+
+    const newTask = {
+      id: "acad_task_" + Date.now(),
+      subject,
+      classLevel,
+      targetExam,
+      title,
+      initialDate: dateVal,
+      stage: 0,
+      lastRevised: dateVal,
+      nextDue: nextDue.toISOString().split('T')[0],
+      priority,
+      notes: notes || undefined
+    };
+
+    academicTasks.unshift(newTask);
+    saveAcademicTasks();
+    renderAcademicTaskforce();
+    updateDeepWorkTargetDropdown();
+
+    form.reset();
+    closeModal("modal-enlist-task");
+    showNotification(`📋 Enlisted "${title.substring(0, 30)}..." into Revision Taskforce!`);
+  });
+
+  // Set default initial date to today
+  const dateInput = document.getElementById("enlist-date");
+  if (dateInput) {
+    dateInput.value = new Date().toISOString().split('T')[0];
+  }
+}
+
+// Master Initializer for Academic Pro Hub
+function initAcademicProHub() {
+  loadAcademicTasks();
+  setupAcademicModeSwitcher();
+  setupAcademicNavTabs();
+  setupTaskforceFilterListeners();
+  setupNCERTReaderControls();
+  setupSolutionsFilterListeners();
+  setupFormulaVaultListeners();
+  setupDeepWorkStation();
+  setupAcademicEnlistModal();
+
+  // Restore saved app mode (default to 'garden' or saved)
+  const savedMode = localStorage.getItem("mg_app_mode") || "garden";
+  setAppMode(savedMode);
+}
+
+
 // =============================================================================
 // 25. BOOT
 // =============================================================================
@@ -3197,6 +4933,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSprintControls();
   setupNCERTControls();
   setupShareCardActions();
+
+  // Initialize Academic Pro Command Center (CBSE 11-12 & NEET/JEE)
+  initAcademicProHub();
 
   // Update dynamic elements
   renderGarden();
