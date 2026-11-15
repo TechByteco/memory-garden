@@ -2944,3 +2944,460 @@ html[data-theme="light"] .academic-pro-hub {
 .btn-print-note:hover {
   background: #0f172a;
 }
+
+
+/* =============================================================================
+   IN-WEBSITE DIGITAL NCERT TEXTBOOK & EXAM PREPARATION READER
+   Comprehensive embedded reader for online study with all preparation materials
+   ============================================================================= */
+
+.ncert-reader-station {
+  display: flex;
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0,0,0,.4);
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+  min-height: 720px;
+}
+@media (max-width: 950px) {
+  .ncert-reader-station {
+    flex-direction: column;
+  }
+}
+
+/* ─── READER SIDEBAR (CHAPTER NAVIGATOR) ─── */
+.reader-sidebar {
+  width: 320px;
+  background: var(--hub-card);
+  border-right: 1px solid var(--hub-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+@media (max-width: 950px) {
+  .reader-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--hub-border);
+    max-height: 300px;
+  }
+}
+
+.reader-sidebar-hdr {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--hub-border);
+  background: rgba(0,0,0,.15);
+}
+.reader-subject-pills {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: .75rem;
+}
+.reader-subject-pills::-webkit-scrollbar { display: none; }
+.reader-subj-btn {
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--hub-border);
+  color: var(--hub-muted);
+  font-family: var(--font);
+  font-size: .78rem;
+  font-weight: 600;
+  padding: .35rem .65rem;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s ease;
+}
+.reader-subj-btn:hover { color: #fff; background: rgba(255,255,255,.1); }
+.reader-subj-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(37,99,235,.4);
+}
+
+.reader-class-pills {
+  display: flex;
+  gap: 6px;
+  margin-bottom: .75rem;
+}
+.reader-class-btn {
+  flex: 1;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--hub-border);
+  color: var(--hub-muted);
+  font-family: var(--font);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .3rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-align: center;
+  transition: all .2s ease;
+}
+.reader-class-btn.active {
+  background: rgba(99,102,241,.25);
+  color: #a5b4fc;
+  border-color: rgba(99,102,241,.5);
+}
+
+.reader-search-input {
+  width: 100%;
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: var(--r-sm);
+  padding: .45rem .75rem;
+  color: var(--hub-text);
+  font-family: var(--font);
+  font-size: .8rem;
+}
+
+.reader-chapter-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.reader-ch-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  padding: .65rem .85rem;
+  border-radius: var(--r-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--hub-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: all .15s ease;
+}
+.reader-ch-item:hover {
+  background: rgba(255,255,255,.04);
+  color: var(--hub-text);
+}
+.reader-ch-item.active {
+  background: rgba(59,130,246,.15);
+  border-color: rgba(59,130,246,.35);
+  color: #fff;
+}
+.reader-ch-num {
+  font-size: .7rem;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: #60a5fa;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.reader-ch-meta {
+  flex: 1;
+}
+.reader-ch-title {
+  font-size: .84rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+}
+.reader-ch-code {
+  font-size: .65rem;
+  color: var(--hub-muted);
+  font-family: var(--mono);
+  margin-top: 2px;
+}
+
+/* ─── READER MAIN STAGE ─── */
+.reader-main-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--hub-bg);
+}
+
+.reader-stage-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 1.5rem;
+  border-bottom: 1px solid var(--hub-border);
+  background: var(--hub-surface);
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.reader-stage-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.reader-active-ch-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--hub-text);
+  margin: 0;
+}
+
+/* View Switcher Pills inside Reader */
+.reader-view-switcher {
+  display: flex;
+  gap: 4px;
+  background: var(--hub-card);
+  padding: 3px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hub-border);
+}
+.reader-view-pill {
+  background: transparent;
+  border: none;
+  color: var(--hub-muted);
+  font-family: var(--font);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .35rem .75rem;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: all .2s ease;
+  white-space: nowrap;
+}
+.reader-view-pill:hover { color: #fff; }
+.reader-view-pill.active {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(37,99,235,.35);
+}
+
+/* Reader Reading Controls */
+.reader-stage-controls {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.reader-ctrl-btn {
+  background: var(--hub-card);
+  border: 1px solid var(--hub-border);
+  color: var(--hub-text);
+  padding: .35rem .65rem;
+  border-radius: var(--r-sm);
+  font-family: var(--font);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.reader-ctrl-btn:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+/* ─── READING PANE & ARTICLE TYPOGRAPHY ─── */
+.reader-reading-pane {
+  flex: 1;
+  padding: 2.5rem 3.5rem;
+  overflow-y: auto;
+  line-height: 1.85;
+  font-size: 1.05rem;
+  color: var(--hub-text);
+  max-height: 680px;
+}
+@media (max-width: 768px) {
+  .reader-reading-pane { padding: 1.5rem; }
+}
+
+/* Reading Themes */
+.reader-reading-pane[data-theme="dark"] {
+  background: #090e17;
+  color: #e2e8f0;
+}
+.reader-reading-pane[data-theme="sepia"] {
+  background: #fbf0d9;
+  color: #3b2f20;
+  font-family: 'Georgia', serif;
+}
+.reader-reading-pane[data-theme="sepia"] h1,
+.reader-reading-pane[data-theme="sepia"] h2,
+.reader-reading-pane[data-theme="sepia"] h3,
+.reader-reading-pane[data-theme="sepia"] h4 {
+  color: #713f12;
+}
+.reader-reading-pane[data-theme="sepia"] .reader-section-tag {
+  color: #b45309;
+}
+.reader-reading-pane[data-theme="sepia"] .ncert-def-box {
+  background: #fef3c7;
+  border-left-color: #d97706;
+  color: #78350f;
+}
+.reader-reading-pane[data-theme="sepia"] .ncert-math-block {
+  background: #f5e6c8;
+  color: #451a03;
+  border-color: #d97706;
+}
+
+.reader-reading-pane[data-theme="white"] {
+  background: #ffffff;
+  color: #0f172a;
+}
+.reader-reading-pane[data-theme="white"] h1,
+.reader-reading-pane[data-theme="white"] h2,
+.reader-reading-pane[data-theme="white"] h3 {
+  color: #1e3a8a;
+}
+.reader-reading-pane[data-theme="white"] .ncert-def-box {
+  background: #f0fdf4;
+  border-left-color: #16a34a;
+  color: #14532d;
+}
+.reader-reading-pane[data-theme="white"] .ncert-math-block {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* Chapter Presentation Components */
+.reader-ch-header-banner {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hub-border);
+}
+.reader-official-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59,130,246,.15);
+  color: #60a5fa;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .6rem;
+}
+.reader-main-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 .5rem 0;
+  letter-spacing: -.02em;
+}
+.reader-curriculum-sub {
+  font-size: .95rem;
+  color: var(--hub-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.reader-section-header {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2rem 0 .75rem 0;
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reader-para {
+  margin: 0 0 1.25rem 0;
+  line-height: 1.85;
+}
+
+/* NCERT Definition Box */
+.ncert-def-box {
+  background: rgba(59,130,246,.1);
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.ncert-def-box strong { color: #fff; }
+
+/* Math & Reaction Block */
+.ncert-math-block {
+  background: var(--hub-card);
+  border: 1px solid var(--hub-border);
+  border-radius: var(--r-md);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  text-align: center;
+  color: #38bdf8;
+  overflow-x: auto;
+}
+
+/* Solved Example Box */
+.ncert-worked-example {
+  background: rgba(16,185,129,.07);
+  border: 1px solid rgba(16,185,129,.25);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+}
+.example-badge {
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #34d399;
+  letter-spacing: .05em;
+  margin-bottom: .4rem;
+}
+.example-q {
+  font-weight: 700;
+  margin-bottom: .85rem;
+  line-height: 1.5;
+}
+.example-sol {
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--hub-text);
+  border-top: 1px dashed rgba(16,185,129,.2);
+  padding-top: .75rem;
+}
+
+/* NCERT Exercise Accordion */
+.exercise-sol-card {
+  background: var(--hub-card);
+  border: 1px solid var(--hub-border);
+  border-radius: var(--r-md);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.exercise-sol-card summary {
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  background: var(--hub-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.exercise-sol-card summary:hover {
+  background: rgba(255,255,255,.03);
+}
+.exercise-sol-body {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--hub-border);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
+/* Exam Prep PYQ Card inside Reader */
+.reader-pyq-box {
+  background: rgba(245,158,11,.08);
+  border: 1px solid rgba(245,158,11,.3);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.pyq-tag-exam {
+  font-size: .72rem;
+  font-weight: 800;
+  color: #fbbf24;
+  margin-bottom: .4rem;
+  text-transform: uppercase;
+}

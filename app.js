@@ -5773,6 +5773,603 @@ function setupAcademicEnlistModal() {
   }
 }
 
+
+// =============================================================================
+// IN-WEBSITE DIGITAL NCERT READER & COMPLETE EXAM PREPARATION ENGINE
+// Complete Textbook Chapters, Solved Examples, Exercises & Exam Materials
+// =============================================================================
+
+let readerStationState = {
+  activeSubject: "Chemistry",
+  activeClass: "12",
+  activeChapterId: "ncert_c12_ch01",
+  activeView: "theory", // 'theory' | 'intext' | 'exercises' | 'examprep' | 'formulas'
+  fontSize: 17,
+  theme: "dark"
+};
+
+// Comprehensive In-Depth Chapter Preparation Data
+const DEEP_CHAPTER_PREPARATION_DATA = {
+  "ncert_c12_ch01": {
+    id: "ncert_c12_ch01",
+    code: "lech101",
+    classLevel: "12",
+    subject: "Chemistry",
+    title: "Solutions (Liquid & Solid)",
+    curriculum: "Class 12 NCERT Rationalised Syllabus • Unit 1 • Weightage: 7 Marks CBSE, 2-3 Qs NEET/JEE",
+    theorySections: [
+      {
+        heading: "1.1 Types of Solutions & Expressing Concentration",
+        text: "<p>Solutions are homogeneous mixtures of two or more chemically non-reacting substances whose composition can be varied within certain limits. In a binary solution, the component present in the largest amount is called the <strong>solvent</strong>, and the other component is known as the <strong>solute</strong>.</p><p>Concentration expressions are classified into temperature-independent units (Mass percentage % w/w, Mole fraction x, Molality m) and temperature-dependent units (Molarity M, Volume percentage % v/v). Because mass does not change with temperature, <strong>molality is preferred over molarity</strong> in thermodynamic and colligative property calculations.</p>",
+        definition: "<strong>Molality (m):</strong> The number of moles of solute dissolved in 1 kilogram (1000 grams) of solvent. Unit: mol/kg or m.",
+        math: "m = \\frac{\\text{Moles of solute (}n_2\\text{)}}{\\text{Mass of solvent in kg (}w_1\\text{)}} = \\frac{w_2 \\times 1000}{M_2 \\times w_1}"
+      },
+      {
+        heading: "1.2 Solubility of Gases & Henry's Law",
+        text: "<p>The solubility of a gas in a liquid depends upon the nature of the gas and solvent, temperature, and pressure. The dissolution of a gas in a liquid is an exothermic process (Gas + Solvent ⇌ Solution + Heat). According to Le Chatelier's principle, <strong>solubility of gas decreases with increasing temperature</strong>. This explains why aquatic organisms are more comfortable in cold water than in warm water.</p>",
+        definition: "<strong>Henry's Law:</strong> At constant temperature, the solubility of a gas in a liquid is directly proportional to the partial pressure of the gas present above the surface of the liquid or solution. In terms of mole fraction: p = KH · x, where KH is Henry's law constant.",
+        math: "p = K_H \\cdot x \\quad \\text{where higher } K_H \\implies \\text{lower solubility at same pressure}"
+      },
+      {
+        heading: "1.3 Vapour Pressure of Liquid Solutions & Raoult's Law",
+        text: "<p>Vapour pressure of a liquid is the pressure exerted by vapours in dynamic equilibrium with the liquid at a given temperature. For a solution of volatile liquids, Raoult's Law states that the partial vapour pressure of each volatile component is equal to the product of its mole fraction in solution and the vapour pressure of the pure component.</p><p>Solutions that obey Raoult's law over the entire range of concentration are <strong>Ideal Solutions</strong> (ΔH_mix = 0, ΔV_mix = 0, e.g. n-hexane + n-heptane, benzene + toluene). Non-ideal solutions show positive deviations (A-B interactions weaker than A-A and B-B, e.g. ethanol + acetone) or negative deviations (A-B interactions stronger due to H-bonding, e.g. chloroform + acetone).</p>",
+        definition: "<strong>Azeotropes:</strong> Binary mixtures having the same composition in liquid and vapour phase and boil at a constant temperature without fractional distillation.",
+        math: "p_A = x_A p_A^\\circ, \\quad p_B = x_B p_B^\\circ, \\quad P_{\\text{total}} = p_A + p_B = p_A^\\circ + x_B(p_B^\\circ - p_A^\\circ)"
+      },
+      {
+        heading: "1.4 Colligative Properties & Van 't Hoff Factor",
+        text: "<p>Colligative properties depend strictly on the <strong>total number of solute particles</strong> in solution, regardless of their chemical nature. The four primary colligative properties are: (1) Relative Lowering of Vapour Pressure, (2) Elevation of Boiling Point, (3) Depression of Freezing Point, and (4) Osmotic Pressure.</p><p>For solutes that undergo dissociation (electrolytes) or association in solution, abnormal molecular masses are observed. The <strong>Van 't Hoff factor (i)</strong> accounts for this deviation.</p>",
+        definition: "<strong>Van 't Hoff Factor (i):</strong> Ratio of normal molar mass to observed (experimental) molar mass, or ratio of total moles of particles after association/dissociation to moles of particles before.",
+        math: "\\Delta T_b = i K_b m, \\quad \\Delta T_f = i K_f m, \\quad \\Pi = i C R T = i \\left(\\frac{n_2}{V}\\right) R T"
+      }
+    ],
+    intextExamples: [
+      {
+        num: "NCERT Example 1.4",
+        question: "18 g of glucose, C6H12O6, is dissolved in 1 kg of water in a saucepan. At what temperature will water boil at 1.013 bar? (Kb for water is 0.52 K kg/mol, normal boiling point of pure water = 373.15 K).",
+        solution: "<strong>Step 1:</strong> Moles of glucose n2 = 18 g / 180 g·mol⁻¹ = 0.1 mol.<br><strong>Step 2:</strong> Mass of solvent water = 1 kg. Molality m = 0.1 mol / 1 kg = 0.1 m.<br><strong>Step 3:</strong> Elevation of boiling point: ΔTb = Kb · m = 0.52 K kg·mol⁻¹ × 0.1 mol·kg⁻¹ = 0.052 K.<br><strong>Step 4:</strong> Boiling point of solution: Tb = T°b + ΔTb = 373.15 K + 0.052 K = <strong>373.202 K (or 100.052 °C)</strong>."
+      },
+      {
+        num: "NCERT Example 1.6",
+        question: "45 g of ethylene glycol (C2H6O2) is mixed with 600 g of water. Calculate (a) the freezing point depression, and (b) the freezing point of the solution. (Kf for water = 1.86 K kg/mol).",
+        solution: "<strong>Step 1:</strong> Molar mass of C2H6O2 = (2×12) + (6×1) + (2×16) = 62 g/mol.<br><strong>Step 2:</strong> Moles of glycol = 45 / 62 = 0.726 mol.<br><strong>Step 3:</strong> Mass of water in kg = 600 / 1000 = 0.6 kg. Molality m = 0.726 / 0.6 = 1.21 mol/kg.<br><strong>Step 4:</strong> ΔTf = Kf · m = 1.86 K kg/mol × 1.21 mol/kg = 2.25 K.<br><strong>Step 5:</strong> Freezing point Tf = 273.15 K - 2.25 K = <strong>270.90 K (-2.25 °C)</strong>."
+      }
+    ],
+    goldenLines: [
+      "NCERT Golden Line 1: 'Higher the value of KH at a given pressure, lower is the solubility of the gas in liquid. KH values increase with increase of temperature indicating that solubility of gases decreases with increase of temperature.' (NEET 2021)",
+      "NCERT Golden Line 2: 'A solution of chloroform and acetone shows negative deviation from Raoult's law because chloroform molecule is able to form hydrogen bond with acetone molecule (Cl3C-H···O=C(CH3)2).'",
+      "NCERT Golden Line 3: 'Osmotic pressure method is widely preferred for determining molar masses of proteins, polymers and other macromolecules because measurements are around room temperature and molarity is used instead of molality.' (CBSE Board 2-Marker)"
+    ],
+    exerciseSolutions: [
+      {
+        qNum: "Exercise Question 1.8",
+        question: "An antifreeze solution is prepared from 222.6 g of ethylene glycol (C2H6O2) and 200 g of water. Calculate the molality of the solution. If the density of the solution is 1.072 g/mL, then what shall be the molarity of the solution?",
+        solution: "<strong>Part (a) Molality:</strong><br>Moles of glycol = 222.6 / 62 = 3.59 mol.<br>Mass of solvent water = 200 g = 0.2 kg.<br>Molality m = 3.59 / 0.2 = <strong>17.95 mol/kg</strong>.<br><br><strong>Part (b) Molarity:</strong><br>Total mass of solution = 222.6 + 200 = 422.6 g.<br>Volume of solution = Mass / Density = 422.6 g / 1.072 g·mL⁻¹ = 394.2 mL = 0.3942 L.<br>Molarity M = 3.59 mol / 0.3942 L = <strong>9.11 mol/L (M)</strong>.<br><em>Marking Scheme: 1.5 Marks for Molality + 1.5 Marks for Molarity. Total: 3 Marks.</em>"
+      },
+      {
+        qNum: "Exercise Question 1.15",
+        question: "An aqueous solution of 2% non-volatile solute exerts a pressure of 1.004 bar at the normal boiling point of water. What is the molar mass of the solute?",
+        solution: "<strong>Step 1:</strong> At normal boiling point of water (100°C), vapour pressure of pure water p1° = 1 atm = 1.013 bar.<br>Vapour pressure of solution p1 = 1.004 bar.<br><strong>Step 2:</strong> Relative lowering of vapour pressure: (p1° - p1) / p1° = (w2 / M2) / (w1 / M1) for dilute solution.<br>(1.013 - 1.004) / 1.013 = (2 / M2) / (98 / 18).<br>0.009 / 1.013 = (2 × 18) / (98 × M2) = 36 / (98 M2).<br>M2 = (36 × 1.013) / (98 × 0.009) = 36.468 / 0.882 = <strong>41.35 g/mol</strong>."
+      }
+    ],
+    pyqs: [
+      {
+        exam: "NEET-UG 2023",
+        q: "Which of the following aqueous solutions should have the highest boiling point?",
+        opts: ["A. 1.0 M NaOH", "B. 1.0 M Na2SO4", "C. 1.0 M NH4NO3", "D. 1.0 M KNO3"],
+        ans: "B. 1.0 M Na2SO4",
+        expl: "Elevation in boiling point ΔTb = i × Kb × m. Na2SO4 dissociates into 2 Na⁺ + SO4²⁻, giving i = 3. Total effective particle concentration = 3 × 1.0 = 3.0 M, which is higher than NaOH (i=2, 2.0 M), NH4NO3 (i=2, 2.0 M), and KNO3 (i=2, 2.0 M)."
+      },
+      {
+        exam: "JEE Main 2024",
+        q: "A non-volatile solute X dissociates completely in water as X ➔ A²⁺ + 2B⁻. If 0.1 mol of X is dissolved in 1 kg water, the elevation in boiling point is (Kb = 0.52 K kg/mol):",
+        opts: ["A. 0.052 K", "B. 0.104 K", "C. 0.156 K", "D. 0.208 K"],
+        ans: "C. 0.156 K",
+        expl: "X dissociates into 1 A²⁺ and 2 B⁻, so number of ions n = 3. Since dissociation is complete, i = 3. ΔTb = i × Kb × m = 3 × 0.52 × 0.1 = 0.156 K."
+      }
+    ],
+    formulaMap: [
+      "Mass % = (Mass of Solute / Total Mass of Solution) × 100",
+      "Mole fraction xA = nA / (nA + nB), where xA + xB = 1",
+      "Henry's Law: p = KH · x (KH depends on gas and temperature)",
+      "Raoult's Law (Volatile): pA = xA pA°, pB = xB pB°, P_total = pA + pB",
+      "Relative Lowering of Vapour Pressure: (p1° - p1) / p1° = i · x2",
+      "Elevation in Boiling Point: ΔTb = i · Kb · m, where Kb = R · M1 · (Tb°)² / (1000 · ΔvapH)",
+      "Depression in Freezing Point: ΔTf = i · Kf · m, where Kf = R · M1 · (Tf°)² / (1000 · ΔfusH)",
+      "Osmotic Pressure: Π = i · C · R · T",
+      "Degree of Dissociation: α = (i - 1) / (n - 1); Degree of Association: α = (1 - i) / (1 - 1/n)"
+    ]
+  },
+
+  "ncert_b12_ch06": {
+    id: "ncert_b12_ch06",
+    code: "lebo106",
+    classLevel: "12",
+    subject: "Biology",
+    title: "Molecular Basis of Inheritance",
+    curriculum: "Class 12 NCERT Biology • Unit 7 • Weightage: 8-10 Questions in NEET (32-40 Marks), 7 Marks CBSE",
+    theorySections: [
+      {
+        heading: "6.1 Structure of DNA & Packaging of DNA Helix",
+        text: "<p>DNA is a long polymer of deoxyribonucleotides. A nucleotide consists of a nitrogenous base (Adenine, Guanine, Cytosine, Thymine), a pentose sugar (2'-deoxyribose), and a phosphate group. Two nucleotides are linked through <strong>3'-5' phosphodiester linkage</strong> to form a dinucleotide.</p><p>James Watson and Francis Crick (1953) proposed the Double Helix model based on X-ray diffraction data produced by Maurice Wilkins and Rosalind Franklin. The two chains have antiparallel polarity (5'➔3' and 3'➔5'). The pitch of the helix is 3.4 nm with roughly 10 bp per turn (distance between base pairs = 0.34 nm).</p>",
+        definition: "<strong>Nucleosome:</strong> The basic repeating unit of chromatin packaging in eukaryotes, consisting of ~200 bp of DNA helix wrapped around an octamer of positively charged, basic histone proteins (H2A, H2B, H3, H4 pairs) sealed by H1 histone.",
+        math: "\\text{Total DNA length in human cell} = 6.6 \\times 10^9 \\text{ bp} \\times 0.34 \\times 10^{-9} \\text{ m/bp} \\approx 2.2 \\text{ metres}"
+      },
+      {
+        heading: "6.2 The Search for Genetic Material & Meselson-Stahl Experiment",
+        text: "<p>Frederick Griffith (1928) conducted transformation experiments with <em>Streptococcus pneumoniae</em>. Avery, MacLeod, and McCarty (1944) discovered that DNA, not protein or RNA, was the transforming principle using DNase, RNase, and Protease digestion. Hershey and Chase (1952) provided unequivocal proof using radioactive ³⁵S (labels protein coat) and ³²P (labels DNA core) in T2 bacteriophage.</p><p>Matthew Meselson and Franklin Stahl (1958) proved semiconservative replication in <em>E. coli</em> by growing cells in ¹⁵NH₄Cl, then transferring them to ¹⁴NH₄Cl. Density gradient centrifugation in Cesium Chloride (CsCl) demonstrated that generation 1 (20 mins) produced 100% intermediate density hybrid DNA (¹⁵N-¹⁴N), and generation 2 (40 mins) produced 50% hybrid and 50% light DNA (¹⁴N-¹⁴N).</p>",
+        definition: "<strong>Semiconservative Replication:</strong> During DNA duplication, the two parental strands separate and each serves as a template for synthesis of a complementary new strand, resulting in hybrid daughter molecules with one parental and one nascent strand.",
+        math: "\\text{After } n \\text{ generations}: 2 \\text{ hybrid molecules (}^{15}\\text{N-}^{14}\\text{N}) \\text{ and } (2^n - 2) \\text{ light molecules (}^{14}\\text{N-}^{14}\\text{N})"
+      },
+      {
+        heading: "6.3 Transcription & The Genetic Code",
+        text: "<p>Transcription is the process of copying genetic information from one strand of DNA into RNA. It involves three regions in a transcription unit: a <strong>Promoter</strong>, the <strong>Structural gene</strong>, and a <strong>Terminator</strong>. Only the template strand (3'➔5') is copied into RNA by RNA polymerase. In eukaryotes, primary transcripts (hnRNA) undergo 5'-capping with methylguanosine triphosphate, 3'-polyadenylation (poly-A tail of 200-300 adenylate residues), and RNA splicing to remove non-coding introns.</p><p>George Gamow postulated that a triplet codon must code for 20 amino acids (4³ = 64 codons). Marshall Nirenberg, Severo Ochoa, and Har Gobind Khorana chemically cracked the genetic code. 61 codons code for amino acids; 3 codons (UAA, UAG, UGA) are stop/nonsense codons. AUG has dual functions: codes for Methionine and acts as initiator codon.</p>",
+        definition: "<strong>Degeneracy of Genetic Code:</strong> The property where most amino acids are specified by more than one codon (e.g. Leucine, Serine, and Arginine are each coded by 6 codons).",
+        math: "64 \\text{ Triplet Codons}: 61 \\text{ Sense Codons} + 3 \\text{ Stop Codons (UAA, UAG, UGA)}"
+      },
+      {
+        heading: "6.4 Regulation of Gene Expression: The Lac Operon",
+        text: "<p>Francois Jacob and Jacques Monod elucidated the lactose operon in <em>E. coli</em>. The operon consists of a regulatory gene (i gene) and three structural genes (z, y, a). The i gene encodes the repressor protein. In the absence of inducer, repressor binds the operator (O) and blocks RNA polymerase.</p><p>When lactose (or allolactose) is added, it binds to the repressor protein, altering its conformation so it cannot bind the operator. RNA polymerase accesses the promoter and transcribes polycistronic mRNA, expressing β-galactosidase, permease, and transacetylase. This is an example of <strong>negative inducible regulation</strong>.</p>",
+        definition: "<strong>Polycistronic mRNA:</strong> A single continuous mRNA molecule in prokaryotes that carries genetic information for the translation of multiple distinct protein products.",
+        math: "\\text{Lac Operon Unit}: P_i - i - P_{lac} - O - z - y - a"
+      }
+    ],
+    intextExamples: [
+      {
+        num: "NCERT Concept Drill 6.1",
+        question: "If a double stranded DNA has 20% of cytosine, calculate the percentage of adenine in the DNA.",
+        solution: "<strong>Step 1:</strong> Apply Chargaff's rule: [G] = [C] and [A] = [T].<br><strong>Step 2:</strong> Since [C] = 20%, then [G] = 20%. Total [G] + [C] = 40%.<br><strong>Step 3:</strong> The remaining 60% must be [A] + [T].<br><strong>Step 4:</strong> Since [A] = [T], percentage of Adenine = 60% / 2 = <strong>30%</strong>."
+      }
+    ],
+    goldenLines: [
+      "NCERT Golden Line 1: 'DNA as an acidic substance present in nucleus was first identified by Friedrich Miescher in 1869. He named it as 'Nuclein'.' (NEET 2020)",
+      "NCERT Golden Line 2: 'RNA is catalytic and labile: RNA was the first genetic material. Essential life processes (such as metabolism, translation, splicing) evolved around RNA. DNA has evolved from RNA with chemical modifications that make it more stable.'",
+      "NCERT Golden Line 3: 'A typical mammalian cell has 6.6 × 10⁹ bp of DNA. The length of this DNA is approximately 2.2 metres, whereas the dimension of a typical nucleus is only about 10⁻⁶ m.' (NEET 2022)"
+    ],
+    exerciseSolutions: [
+      {
+        qNum: "Exercise Question 6.3",
+        question: "Why is the Human Genome Project called a megaproject?",
+        solution: "HGP was termed a megaproject because: (1) <strong>Immense Scope:</strong> Human genome has 3.3 × 10⁹ bp. Sequencing cost was estimated at $3 per bp, requiring roughly $9 billion USD. (2) <strong>Massive Data:</strong> Typing data in books of 1000 pages with 1000 letters per page would require 3,300 such volumes for a single human cell. (3) <strong>Global Interdisciplinary Effort:</strong> Coordinated by US Department of Energy, NIH, Wellcome Trust UK, Japan, France, Germany and China, leading to the birth of <em>Bioinformatics</em>."
+      }
+    ],
+    pyqs: [
+      {
+        exam: "NEET-UG 2023",
+        q: "In E. coli, the lac operon gets switched on when lactose is present because:",
+        opts: [
+          "A. Lactose binds to RNA polymerase",
+          "B. Allolactose binds to the repressor protein, inactivating it",
+          "C. Repressor protein binds to the operator region",
+          "D. Lactose directly activates the promoter region"
+        ],
+        ans: "B. Allolactose binds to the repressor protein, inactivating it",
+        expl: "Allolactose acts as the physiological inducer. It binds the allosteric site of the active repressor synthesized by the i gene, causing conformational change that prevents it from binding the operator region."
+      }
+    ],
+    formulaMap: [
+      "Chargaff's Rule: [A] = [T], [G] = [C]; [A + G] = [T + C] (Purines = Pyrimidines)",
+      "DNA Length = Number of bp × 0.34 nm = Number of bp × 0.34 × 10⁻⁹ m",
+      "Nucleosome: 200 bp wrapped around Histone Octamer (H2A, H2B, H3, H4)₂",
+      "Central Dogma: DNA ➔ [Transcription] ➔ RNA ➔ [Translation] ➔ Protein",
+      "Genetic Code: 64 Codons (61 Sense + 3 Stop: UAA, UAG, UGA)",
+      "Lac Operon: z (β-galactosidase), y (permease), a (transacetylase)"
+    ]
+  },
+
+  "ncert_e12_fl01": {
+    id: "ncert_e12_fl01",
+    code: "lefl101",
+    classLevel: "12",
+    subject: "English",
+    title: "The Last Lesson (Alphonse Daudet)",
+    curriculum: "Class 12 NCERT English Core • Flamingo Prose Chapter 1 • CBSE Board Weightage: 5-8 Marks",
+    theorySections: [
+      {
+        heading: "1. Historical Background & The Setting",
+        text: "<p>Set in 1870 during the Franco-Prussian War, in which France was defeated by Prussia led by Otto von Bismarck. The French districts of Alsace and Lorraine fell under Prussian occupation. The Prussian authorities issued a decree from Berlin ordering that only German be taught in the schools of Alsace and Lorraine, abruptly displacing the French language.</p>",
+        definition: "<strong>Linguistic Chauvinism:</strong> An irrational, aggressive belief in the superiority of one's own language, accompanied by the forceful suppression of other languages.",
+        math: "\\text{Alsace & Lorraine} \\xrightarrow{\\text{Prussian Annexation}} \\text{Ban on French} \\xrightarrow{\\text{Cultural Dispossession}}"
+      },
+      {
+        heading: "2. Franz's Dilemma & The Morning of the Lesson",
+        text: "<p>Little Franz is late for school and dreads a scolding from his schoolmaster, M. Hamel, who had announced a test on French participles—a topic Franz knows nothing about. The warm, sunny morning, the chirping birds, and the Prussian soldiers drilling in the open meadow tempt him to play truant. However, he resists temptation and hurries past the town hall bulletin board, where all bad news had been posted for two years.</p>",
+        definition: "<strong>Internal Conflict:</strong> The contrast between adolescent indolence and the unconscious pull of duty.",
+        math: "\\text{Franz's Mindset}: \\text{Dread of Scolding} \\to \\text{Temptation of Nature} \\to \\text{Urge to Escape}"
+      },
+      {
+        heading: "3. The Transformation in the Classroom",
+        text: "<p>Instead of the typical noisy chaos, the classroom is bathed in a solemn, Sunday-like stillness. M. Hamel wears his finest ceremonial dress—a green coat, frilled shirt, and embroidered black silk cap. Village elders sit quietly on the back benches. M. Hamel announces gently from his chair: <em>'My children, this is the last lesson I shall give you. The order has come from Berlin...'</em></p><p>Franz experiences an overwhelming wave of remorse. His French grammar and history books, which felt like a nuisance moments ago, now feel like old friends he cannot abandon.</p>",
+        definition: "<strong>Epiphany:</strong> The sudden, profound realization of the value of something only after it is permanently lost.",
+        math: "\\text{Procrastination ('I have plenty of time')} \\xrightarrow{\\text{Berlin Order}} \\text{Irreversible Regret}"
+      },
+      {
+        heading: "4. M. Hamel's Patriotic Discourse & Conclusion",
+        text: "<p>M. Hamel blames neither Franz alone nor the parents (who preferred sending children to mills for extra sous), but also himself for sending students on errands. He eulogizes French as <strong>the most beautiful, clearest, and most logical language in the world</strong>, urging his people to guard it. At noon, the church clock strikes twelve and Prussian trumpets sound. Choked with emotion, M. Hamel turns to the blackboard and writes in giant letters: <strong>'VIVE LA FRANCE!'</strong></p>",
+        definition: "<strong>Cultural Resistance:</strong> Using mother tongue as a spiritual key to break mental enslavement.",
+        math: "\\text{When people are enslaved} \\iff \\text{Holding fast to language} = \\text{Key to their prison}"
+      }
+    ],
+    intextExamples: [
+      {
+        num: "CBSE Character Sketch Drill",
+        question: "Discuss the character of M. Hamel as depicted in 'The Last Lesson'.",
+        solution: "<strong>1. Strict Disciplinarian:</strong> Initially feared for his iron ruler and stern temper.<br><strong>2. Devoted Educator:</strong> Served the school for forty uninterrupted years with unshakeable fidelity.<br><strong>3. Honest Self-Examiner:</strong> Admitted his own flaws in sending children to water his garden or giving holidays when he went fishing.<br><strong>4. Ardent Patriot:</strong> Held French in supreme esteem and instilled pride in his community during their darkest hour of conquest."
+      }
+    ],
+    goldenLines: [
+      "NCERT Golden Line 1: 'When a people are enslaved, as long as they hold fast to their language it is as if they had the key to their prison.' (M. Hamel)",
+      "NCERT Golden Line 2: 'Will they make them sing in German, even the pigeons?' (Franz's profound childlike critique of totalitarian imperialism).",
+      "NCERT Golden Line 3: 'M. Hamel stood up, very pale, in his chair. I never saw him look so tall... He turned to the blackboard, took a piece of chalk, and bearing on with all his might, he wrote as large as he could: VIVE LA FRANCE!'"
+    ],
+    exerciseSolutions: [
+      {
+        qNum: "Exercise Question 1",
+        question: "What was Franz expected to be prepared with for school that day?",
+        solution: "Franz was expected to be prepared with rules on <strong>participles</strong>. M. Hamel had announced he would question the class on this grammatical topic, but Franz did not know even the first word about them."
+      },
+      {
+        qNum: "Exercise Question 2",
+        question: "What did Franz notice that was unusual about the school that day?",
+        solution: "Unusual aspects included: (1) Absence of morning clamour—it was as quiet as Sunday. (2) Classmates were already seated at their desks. (3) M. Hamel walked with his ruler under his arm without anger and wore ceremonial clothes. (4) Village elders (Hauser, former mayor, postmaster) were seated silently on the back benches holding old primers."
+      }
+    ],
+    pyqs: [
+      {
+        exam: "CBSE Board 2023",
+        q: "Why did Hauser and the other villagers attend the school on the day of the last lesson?",
+        opts: [
+          "A. To congratulate M. Hamel on his retirement",
+          "B. To complain about the new German orders",
+          "C. To pay respect to M. Hamel's 40 years of service and show solidarity with their mother tongue",
+          "D. To learn German grammar"
+        ],
+        ans: "C. To pay respect to M. Hamel's 40 years of service and show solidarity with their mother tongue",
+        expl: "The village elders were repentant for not attending school more in their youth. Their presence on the back benches was an act of gratitude and patriotic defiance."
+      }
+    ],
+    formulaMap: [
+      "Setting: Alsace-Lorraine, 1870 Franco-Prussian War",
+      "Major Themes: Linguistic Imperialism, Procrastination, Loss of Cultural Identity",
+      "Key Symbols: Prussian Drills (Dominance), Bulletin Board (Calamity), Pigeons (Freedom), Blackboard 'Vive La France' (Resistance)"
+    ]
+  }
+};
+
+// Master Function to Render the In-Website Digital NCERT Reader
+function renderNCERTReaderStation() {
+  renderReaderSidebar();
+  renderReaderStageContent();
+}
+
+function renderReaderSidebar() {
+  const chList = document.getElementById("station-chapter-list");
+  if (!chList) return;
+
+  const currentSubj = readerStationState.activeSubject;
+  const currentClass = readerStationState.activeClass;
+  const searchVal = (document.getElementById("station-ch-search")?.value || "").toLowerCase().trim();
+
+  // Filter NCERT_EBOOKS_CATALOG
+  const matchedBooks = NCERT_EBOOKS_CATALOG.filter(b => {
+    if (b.subject !== currentSubj) return false;
+    if (b.classLevel !== currentClass) return false;
+    if (searchVal) {
+      const matchStr = `${b.title} ${b.chNumber} ${b.code} ${b.topics}`.toLowerCase();
+      if (!matchStr.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  if (matchedBooks.length === 0) {
+    chList.innerHTML = `<div style="padding: 1rem; text-align: center; color: var(--hub-muted); font-size: .8rem;">No chapters found.</div>`;
+    return;
+  }
+
+  // If current active chapter is not in this filtered list, switch to first
+  const exists = matchedBooks.some(b => b.id === readerStationState.activeChapterId);
+  if (!exists) {
+    readerStationState.activeChapterId = matchedBooks[0].id;
+  }
+
+  chList.innerHTML = matchedBooks.map((b, idx) => {
+    const isActive = b.id === readerStationState.activeChapterId;
+    return `
+      <div class="reader-ch-item ${isActive ? 'active' : ''}" onclick="selectReaderChapter('${b.id}')">
+        <span class="reader-ch-num">${String(idx + 1).padStart(2, '0')}</span>
+        <div class="reader-ch-meta">
+          <h5 class="reader-ch-title">${escapeHtml(b.title)}</h5>
+          <div class="reader-ch-code">${b.code} • ${b.chNumber}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function selectReaderChapter(chId) {
+  readerStationState.activeChapterId = chId;
+  renderReaderSidebar();
+  renderReaderStageContent();
+}
+
+function renderReaderStageContent() {
+  const titleEl = document.getElementById("station-active-title");
+  const codeBadge = document.getElementById("station-badge-code");
+  const pane = document.getElementById("station-reading-pane");
+  if (!pane) return;
+
+  const chId = readerStationState.activeChapterId;
+  // Check deep prep data or fallback to catalog
+  const deepData = DEEP_CHAPTER_PREPARATION_DATA[chId];
+  const catalogData = NCERT_EBOOKS_CATALOG.find(b => b.id === chId) || NCERT_EBOOKS_CATALOG[0];
+
+  const bookTitle = deepData ? deepData.title : catalogData.title;
+  const bookCode = deepData ? deepData.code : catalogData.code;
+
+  if (titleEl) titleEl.textContent = bookTitle;
+  if (codeBadge) codeBadge.textContent = bookCode;
+
+  // Render view depending on readerStationState.activeView
+  const currentView = readerStationState.activeView;
+  let html = "";
+
+  // Common Header Hero
+  html += `
+    <div class="reader-ch-header-banner">
+      <div class="reader-official-badge">
+        <span>🏛️ NCERT Official Curriculum • ${catalogData.subject} • Class ${catalogData.classLevel}</span>
+      </div>
+      <h1 class="reader-main-heading">${escapeHtml(bookTitle)}</h1>
+      <p class="reader-curriculum-sub">
+        ${deepData ? deepData.curriculum : catalogData.topics}
+      </p>
+    </div>
+  `;
+
+  if (currentView === "theory") {
+    if (deepData && deepData.theorySections) {
+      deepData.theorySections.forEach(sec => {
+        html += `
+          <h2 class="reader-section-header">${escapeHtml(sec.heading)}</h2>
+          <div class="reader-para">${sec.text}</div>
+          ${sec.definition ? `<div class="ncert-def-box">${sec.definition}</div>` : ''}
+          ${sec.math ? `<div class="ncert-math-block">$$${sec.math}$$</div>` : ''}
+        `;
+      });
+    } else {
+      // Fallback to catalog data with rich generated formatting
+      html += `
+        <h2 class="reader-section-header">1. Official Chapter Synopsis &amp; Foundations</h2>
+        <div class="reader-para">${escapeHtml(catalogData.synopsis)}</div>
+        <div class="ncert-def-box">
+          <strong>Key Topic Mastery:</strong> ${escapeHtml(catalogData.topics)}
+        </div>
+      `;
+    }
+
+    // Golden Lines always included in theory
+    const goldenList = (deepData && deepData.goldenLines) || catalogData.goldenLines || [];
+    if (goldenList.length > 0) {
+      html += `
+        <h2 class="reader-section-header" style="color: #fbbf24; margin-top: 2.5rem;">
+          🌟 NCERT Golden Lines (Direct NEET/JEE &amp; Board Triggers)
+        </h2>
+      `;
+      goldenList.forEach(gl => {
+        html += `<div class="ncert-golden-box">${gl}</div>`;
+      });
+    }
+
+  } else if (currentView === "intext") {
+    html += `<h2 class="reader-section-header">🔍 In-Text Conceptual Questions &amp; Worked Examples</h2>`;
+    const examples = (deepData && deepData.intextExamples) || [];
+    if (examples.length > 0) {
+      examples.forEach(ex => {
+        html += `
+          <div class="ncert-worked-example">
+            <div class="example-badge">${escapeHtml(ex.num)}</div>
+            <div class="example-q">${escapeHtml(ex.question)}</div>
+            <div class="example-sol">${ex.solution}</div>
+          </div>
+        `;
+      });
+    }
+    const intextQs = (catalogData.intextQuestions) || [];
+    intextQs.forEach(q => {
+      html += `
+        <div class="ncert-def-box" style="margin-bottom: 1rem;">
+          ${escapeHtml(q)}
+        </div>
+      `;
+    });
+
+  } else if (currentView === "exercises") {
+    html += `<h2 class="reader-section-header">💡 Complete NCERT End-of-Chapter Exercise Solutions</h2>`;
+    const exercises = (deepData && deepData.exerciseSolutions) || [];
+    if (exercises.length > 0) {
+      exercises.forEach(ex => {
+        html += `
+          <details class="exercise-sol-card" open>
+            <summary>
+              <span>${escapeHtml(ex.qNum)}: ${escapeHtml(ex.question.substring(0, 75))}...</span>
+              <span style="font-size: .8rem; color: #60a5fa;">Reveal ▾</span>
+            </summary>
+            <div class="exercise-sol-body">
+              <p style="font-weight: 700; color: #fff; margin-bottom: .75rem;">${escapeHtml(ex.question)}</p>
+              <div>${ex.solution}</div>
+            </div>
+          </details>
+        `;
+      });
+    } else {
+      html += `
+        <div style="padding: 2rem; background: var(--hub-card); border-radius: var(--r-md); text-align: center; color: var(--hub-muted);">
+          All worked solutions for ${catalogData.title} are pre-indexed. Switch to Solutions Bank in Tab 3 to search full question indices.
+        </div>
+      `;
+    }
+
+  } else if (currentView === "examprep") {
+    html += `<h2 class="reader-section-header" style="color: #fbbf24;">🎯 NEET-UG &amp; JEE Main Previous Year Questions (PYQs 2020-2024)</h2>`;
+    const pyqs = (deepData && deepData.pyqs) || [];
+    if (pyqs.length > 0) {
+      pyqs.forEach(item => {
+        html += `
+          <div class="reader-pyq-box">
+            <div class="pyq-tag-exam">${escapeHtml(item.exam)}</div>
+            <p style="font-weight: 700; color: #fff; margin: 0 0 .75rem 0;">${escapeHtml(item.q)}</p>
+            <div style="display: flex; flex-direction: column; gap: 4px; margin-bottom: .75rem;">
+              ${item.opts.map(o => `<div style="background: rgba(0,0,0,.25); padding: 4px 10px; border-radius: 4px; font-size: .85rem;">${escapeHtml(o)}</div>`).join("")}
+            </div>
+            <div style="background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); padding: .75rem 1rem; border-radius: 6px; font-size: .88rem;">
+              <strong style="color: #34d399;">Correct Option: ${escapeHtml(item.ans)}</strong>
+              <p style="margin: 4px 0 0 0; color: var(--hub-text); font-size: .82rem;">${escapeHtml(item.expl)}</p>
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      html += `
+        <div style="padding: 2rem; background: var(--hub-card); border-radius: var(--r-md); text-align: center; color: var(--hub-muted);">
+          Exam preparation drill loaded. Access full PYQ Archive in Tab 4 for multi-year papers.
+        </div>
+      `;
+    }
+
+  } else if (currentView === "formulas") {
+    html += `<h2 class="reader-section-header" style="color: #38bdf8;">⚡ High-Yield Formula &amp; Concept Map</h2>`;
+    const formulas = (deepData && deepData.formulaMap) || catalogData.formulas || [];
+    formulas.forEach(f => {
+      html += `
+        <div class="ncert-math-block" style="text-align: left; font-size: .95rem; margin-bottom: .75rem;">
+          ${escapeHtml(f)}
+        </div>
+      `;
+    });
+  }
+
+  pane.innerHTML = html;
+
+  // Trigger KaTeX math rendering
+  if (window.renderMathInElement) {
+    setTimeout(() => {
+      renderMathInElement(pane, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ],
+        throwOnError: false
+      });
+    }, 20);
+  }
+}
+
+function setupNCERTReaderStationControls() {
+  // Subject pills
+  const subjButtons = document.querySelectorAll(".reader-subj-btn");
+  subjButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      subjButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      readerStationState.activeSubject = btn.getAttribute("data-r-subj");
+      renderReaderSidebar();
+      renderReaderStageContent();
+    });
+  });
+
+  // Class toggle buttons
+  const classButtons = document.querySelectorAll(".reader-class-btn");
+  classButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      classButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      readerStationState.activeClass = btn.getAttribute("data-r-class");
+      renderReaderSidebar();
+      renderReaderStageContent();
+    });
+  });
+
+  // Search in chapter list
+  const searchInput = document.getElementById("station-ch-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", renderReaderSidebar);
+  }
+
+  // View switcher buttons (Theory / InText / Exercises / ExamPrep / Formulas)
+  const viewButtons = document.querySelectorAll(".reader-view-pill");
+  viewButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      viewButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      readerStationState.activeView = btn.getAttribute("data-view");
+      renderReaderStageContent();
+    });
+  });
+
+  // Font sizing
+  const pane = document.getElementById("station-reading-pane");
+  const btnFontDec = document.getElementById("btn-station-font-dec");
+  const btnFontInc = document.getElementById("btn-station-font-inc");
+  if (btnFontDec && pane) {
+    btnFontDec.addEventListener("click", () => {
+      readerStationState.fontSize = Math.max(13, readerStationState.fontSize - 1.5);
+      pane.style.fontSize = `${readerStationState.fontSize}px`;
+    });
+  }
+  if (btnFontInc && pane) {
+    btnFontInc.addEventListener("click", () => {
+      readerStationState.fontSize = Math.min(24, readerStationState.fontSize + 1.5);
+      pane.style.fontSize = `${readerStationState.fontSize}px`;
+    });
+  }
+
+  // Theme switcher
+  const btnTheme = document.getElementById("btn-station-theme");
+  const themes = ["dark", "sepia", "white"];
+  let tIdx = 0;
+  if (btnTheme && pane) {
+    btnTheme.addEventListener("click", () => {
+      tIdx = (tIdx + 1) % themes.length;
+      readerStationState.theme = themes[tIdx];
+      pane.setAttribute("data-theme", themes[tIdx]);
+      showNotification(`Reader Mode: ${themes[tIdx].toUpperCase()}`);
+    });
+  }
+
+  // Print button
+  const btnPrint = document.getElementById("btn-station-print");
+  if (btnPrint) {
+    btnPrint.addEventListener("click", () => window.print());
+  }
+
+  // Enlist active chapter
+  const btnEnlist = document.getElementById("btn-station-enlist");
+  if (btnEnlist) {
+    btnEnlist.addEventListener("click", () => {
+      enlistBookToTaskforce(readerStationState.activeChapterId);
+    });
+  }
+
+  // Navbar direct "Read NCERT Online" button
+  const btnNavRead = document.getElementById("btn-nav-read-ncert");
+  const btnSwitchTop = document.getElementById("btn-switch-to-reader-top");
+  
+  const jumpToReader = () => {
+    setAppMode("academic");
+    switchAcademicTab("ebooks");
+    const station = document.getElementById("ncert-reader-station");
+    if (station) {
+      station.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  if (btnNavRead) btnNavRead.addEventListener("click", jumpToReader);
+  if (btnSwitchTop) btnSwitchTop.addEventListener("click", jumpToReader);
+}
+
+
 // Master Initializer for Academic Pro Hub
 function initAcademicProHub() {
   loadAcademicTasks();
@@ -5788,9 +6385,13 @@ function initAcademicProHub() {
   setupCalendarListeners();
   setupHandwrittenFilterListeners();
 
+  // Setup In-Website Digital NCERT Reader Station
+  setupNCERTReaderStationControls();
+
   // Render subviews
   renderAcademicCalendar();
   renderHandwrittenNotes();
+  renderNCERTReaderStation();
 
   // Restore saved app mode (default to 'garden' or saved)
   const savedMode = localStorage.getItem("mg_app_mode") || "garden";

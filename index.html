@@ -216,6 +216,7 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-primary btn-sm" id="btn-nav-read-ncert" title="Read Complete NCERT Textbooks Online on Website" style="background: linear-gradient(135deg, #1d4ed8, #2563eb); border: none;">📖 Read NCERT Online</button>
       <button class="btn btn-ghost btn-sm" id="btn-nav-calendar" title="Open Master Academic Calendar & Time Allotment Station">📅 Calendar</button>
       <button class="btn btn-ghost btn-sm" id="btn-toggle-theme" title="Toggle light/dark theme">☀️</button>
       <button class="btn btn-ghost btn-sm" id="btn-open-pitch">🧠 Science</button>
@@ -1037,32 +1038,115 @@
       </div>
     </div>
 
-    <!-- ─── SUBVIEW 2: NCERT OFFICIAL E-BOOKS ─── -->
+    <!-- ─── SUBVIEW 2: IN-WEBSITE DIGITAL NCERT TEXTBOOK & PREPARATION STATION ─── -->
     <div class="acad-subview hidden" id="acad-subview-ebooks">
-      <div class="acad-filter-toolbar">
-        <div class="acad-filter-group">
-          <input type="text" class="acad-input-search" id="ebook-search-input" placeholder="🔍 Search NCERT textbooks or chapters...">
-          <select class="acad-select" id="ebook-filter-category">
-            <option value="all">All Official E-Books</option>
-            <option value="12-bio">Class 12 Biology (lebo1)</option>
-            <option value="12-math">Class 12 Mathematics (lemh1/2)</option>
-            <option value="12-phys">Class 12 Physics (leph1/2)</option>
-            <option value="12-chem">Class 12 Chemistry (lech1/2)</option>
-            <option value="11-bio">Class 11 Biology (kebo1)</option>
-            <option value="11-math">Class 11 Mathematics (kemh1)</option>
-            <option value="11-phys">Class 11 Physics (keph1/2)</option>
-            <option value="11-chem">Class 11 Chemistry (kech1/2)</option>
-          </select>
+      
+      <!-- Top Overview Banner -->
+      <div style="background: linear-gradient(135deg, rgba(37,99,235,.15), rgba(99,102,241,.1)); border: 1px solid rgba(59,130,246,.3); border-radius: var(--r-md); padding: 1rem 1.35rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem;">
+        <div>
+          <span class="acad-tag-pill" style="margin-bottom: 4px;">📖 Embedded In-Website Digital NCERT Reader</span>
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0 0 2px 0;">Official Class 11 &amp; 12 Online Textbooks &amp; Complete Preparation Station</h3>
+          <p style="font-size: .84rem; color: var(--hub-muted); margin: 0;">Read complete textbook chapters, solved in-text examples, NCERT Golden Lines, worked exercise solutions &amp; NEET/JEE questions directly on this platform.</p>
         </div>
-        <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="border: 1px solid var(--hub-border);">
-          🌐 Open NCERT.nic.in Portal ↗
-        </a>
+        <div style="display: flex; gap: .5rem; align-items: center;">
+          <button class="btn btn-primary btn-sm" id="btn-switch-to-reader-top" style="background:#2563eb; border:none;">Focus Online Reader 📖</button>
+        </div>
       </div>
 
-      <!-- E-Books Catalog Grid -->
-      <div class="ebooks-grid" id="ebooks-cards-grid">
-        <!-- Rendered dynamically by JavaScript -->
+      <!-- Complete In-Website Digital NCERT Reader Station -->
+      <div class="ncert-reader-station" id="ncert-reader-station">
+        <!-- Left Sidebar: Chapter & Subject Navigator -->
+        <div class="reader-sidebar">
+          <div class="reader-sidebar-hdr">
+            <!-- Subject Switcher Pills -->
+            <div class="reader-subject-pills">
+              <button class="reader-subj-btn active" data-r-subj="Chemistry">🧪 Chem</button>
+              <button class="reader-subj-btn" data-r-subj="Biology">🌱 Bio</button>
+              <button class="reader-subj-btn" data-r-subj="Physics">⚡ Phys</button>
+              <button class="reader-subj-btn" data-r-subj="English">📖 Eng</button>
+              <button class="reader-subj-btn" data-r-subj="Mathematics">📐 Math</button>
+            </div>
+            <!-- Class Selector -->
+            <div class="reader-class-pills">
+              <button class="reader-class-btn active" data-r-class="12">Class 12 (Board &amp; Competitive)</button>
+              <button class="reader-class-btn" data-r-class="11">Class 11 (Core Foundations)</button>
+            </div>
+            <!-- Live Filter inside Chapter List -->
+            <input type="text" class="reader-search-input" id="station-ch-search" placeholder="🔍 Search chapter or topic...">
+          </div>
+
+          <!-- Dynamic Chapter List -->
+          <div class="reader-chapter-list" id="station-chapter-list">
+            <!-- Populated dynamically by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Right Reading Stage -->
+        <div class="reader-main-stage">
+          <!-- Reading Toolbar -->
+          <div class="reader-stage-toolbar">
+            <div class="reader-stage-info">
+              <span class="tf-target-pill" id="station-badge-code" style="background:#2563eb; color:#fff;">lech101</span>
+              <h3 class="reader-active-ch-title" id="station-active-title">Solutions</h3>
+            </div>
+
+            <!-- View Switcher -->
+            <div class="reader-view-switcher">
+              <button class="reader-view-pill active" data-view="theory">📖 Textbook Theory</button>
+              <button class="reader-view-pill" data-view="intext">🔍 Solved In-Text</button>
+              <button class="reader-view-pill" data-view="exercises">💡 Exercise Solutions</button>
+              <button class="reader-view-pill" data-view="examprep">🎯 NEET/JEE Drill</button>
+              <button class="reader-view-pill" data-view="formulas">⚡ Formula Map</button>
+            </div>
+
+            <!-- Reading Display Controls -->
+            <div class="reader-stage-controls">
+              <button class="reader-ctrl-btn" id="btn-station-font-dec" title="Decrease font size">A−</button>
+              <button class="reader-ctrl-btn" id="btn-station-font-inc" title="Increase font size">A+</button>
+              <button class="reader-ctrl-btn" id="btn-station-theme" title="Switch theme: Dark / Sepia / White">🎨 Theme</button>
+              <button class="reader-ctrl-btn" id="btn-station-print" title="Print chapter or save as PDF">🖨️ Print</button>
+              <button class="btn btn-primary btn-sm" id="btn-station-enlist" style="font-size: .75rem; padding: .35rem .75rem;">➕ Enlist</button>
+            </div>
+          </div>
+
+          <!-- Reading Scroll Pane -->
+          <div class="reader-reading-pane" id="station-reading-pane" data-theme="dark">
+            <!-- Rendered in full depth with theory, equations, in-text questions & solutions -->
+          </div>
+        </div>
       </div>
+
+      <!-- Quick Catalog Cards Grid below reader -->
+      <div style="margin-top: 2rem;">
+        <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .85rem;">
+          📚 Browse All Official NCERT Books (Quick Access Cards &amp; Official Portal Links)
+        </h4>
+        <div class="acad-filter-toolbar">
+          <div class="acad-filter-group">
+            <input type="text" class="acad-input-search" id="ebook-search-input" placeholder="🔍 Filter quick book cards...">
+            <select class="acad-select" id="ebook-filter-category">
+              <option value="all">All Official E-Books</option>
+              <option value="12-chem">Class 12 Chemistry (lech1/2)</option>
+              <option value="12-bio">Class 12 Biology (lebo1)</option>
+              <option value="12-phys">Class 12 Physics (leph1/2)</option>
+              <option value="12-eng">Class 12 English (Flamingo/Vistas)</option>
+              <option value="12-math">Class 12 Mathematics (lemh1/2)</option>
+              <option value="11-chem">Class 11 Chemistry (kech1/2)</option>
+              <option value="11-bio">Class 11 Biology (kebo1)</option>
+              <option value="11-phys">Class 11 Physics (keph1/2)</option>
+              <option value="11-math">Class 11 Mathematics (kemh1)</option>
+            </select>
+          </div>
+          <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="border: 1px solid var(--hub-border);">
+            🌐 Open NCERT.nic.in Portal ↗
+          </a>
+        </div>
+
+        <div class="ebooks-grid" id="ebooks-cards-grid">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+      </div>
+
     </div>
 
     <!-- ─── SUBVIEW 3: NCERT SOLUTIONS & EXEMPLAR BANK ─── -->
